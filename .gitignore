@@ -1,0 +1,22 @@
+# Node.js
+node_modules/
+.next/
+dist/
+build/
+
+# Spring Boot
+target/
+*.jar
+
+# Heap dumps
+*.hprof
+
+# Environment files
+.env
+
+# IDE
+.idea/
+.vscode/
+
+# Logs
+*.log
