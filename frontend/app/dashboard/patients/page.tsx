@@ -5,6 +5,7 @@ import Link from 'next/link';
 import {
   BookOpen, CalendarDays, CheckCircle2, CreditCard, Eye,
   RefreshCw, Search, UserCheck, Users, XCircle, Filter, UserX,
+  Clock, AlertTriangle, PauseCircle,
 } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { patientApi, getFileUrl } from '@/lib/patientApi';
@@ -12,13 +13,44 @@ import type { WeeklyPaymentStat } from '@/lib/patientApi';
 import type { PatientListItem } from '@/types/patients';
 
 /* ── Badges ── */
-function StatusBadge({ status, paymentStatus }: { status?: string; paymentStatus?: string }) {
-  if ((paymentStatus || '').toUpperCase() === 'FAILED')
-    return <span className="inline-flex rounded-full px-2.5 py-0.5 text-xs font-semibold bg-yellow-100 text-yellow-700">Pending</span>;
+function StatusBadge({ status }: { status?: string }) {
   const v = (status || '').toUpperCase();
-  if (v === 'ACTIVE') return <span className="inline-flex rounded-full px-2.5 py-0.5 text-xs font-semibold bg-green-100 text-green-700">Active</span>;
-  if (v === 'COMPLETED') return <span className="inline-flex rounded-full px-2.5 py-0.5 text-xs font-semibold bg-blue-100 text-blue-700">Completed</span>;
-  return <span className="inline-flex rounded-full px-2.5 py-0.5 text-xs font-semibold bg-gray-100 text-gray-500">Inactive</span>;
+  if (v === 'ACTIVE')
+    return (
+      <span className="inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-semibold bg-green-100 text-green-700">
+        <span className="w-1.5 h-1.5 rounded-full bg-green-500 inline-block" />Active
+      </span>
+    );
+  if (v === 'RENEWAL_DUE' || v === 'PAYMENT_FAILURE')
+    return (
+      <span className="inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-semibold bg-red-100 text-red-700">
+        <span className="w-1.5 h-1.5 rounded-full bg-red-500 inline-block" />Renewal Due
+      </span>
+    );
+  if (v === 'COMPLETED')
+    return (
+      <span className="inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-semibold bg-blue-100 text-blue-700">
+        <span className="w-1.5 h-1.5 rounded-full bg-blue-500 inline-block" />Completed
+      </span>
+    );
+  if (v === 'ON_HOLD')
+    return (
+      <span className="inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-semibold bg-orange-100 text-orange-700">
+        <span className="w-1.5 h-1.5 rounded-full bg-orange-500 inline-block" />On Hold
+      </span>
+    );
+  if (v === 'EXPIRING_SOON')
+    return (
+      <span className="inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-semibold bg-amber-100 text-amber-700">
+        <span className="w-1.5 h-1.5 rounded-full bg-amber-500 inline-block animate-pulse" />Expiring Soon
+      </span>
+    );
+  // Legacy INACTIVE fallback
+  return (
+    <span className="inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-semibold bg-gray-100 text-gray-500">
+      <span className="w-1.5 h-1.5 rounded-full bg-gray-400 inline-block" />Inactive
+    </span>
+  );
 }
 
 function PaymentBadge({ status, patientStatus }: { status?: string; patientStatus?: string }) {
@@ -121,18 +153,24 @@ export default function PatientsPage() {
     return patients.filter((p) => {
       const matchesSearch = !q || [p.patient, p.injury, p.doctorAssigned, p.prescription]
         .filter(Boolean).some((v) => String(v).toLowerCase().includes(q));
-      const subStatus = String(p.status).toUpperCase() === 'PAYMENT_FAILURE' ? 'INACTIVE' : String(p.status).toUpperCase();
-      return matchesSearch && (status === 'ALL' || subStatus === status);
+      const s = String(p.status).toUpperCase();
+      // Normalise legacy statuses for filter matching
+      const normStatus = s === 'PAYMENT_FAILURE' ? 'RENEWAL_DUE' : s === 'INACTIVE' ? 'ON_HOLD' : s;
+      return matchesSearch && (status === 'ALL' || normStatus === status);
     });
   }, [patients, search, status]);
 
-  const stats = useMemo(() => ({
-    total:   patients.length,
-    active:  patients.filter((p) => String(p.status).toUpperCase() === 'ACTIVE').length,
-    inactive: patients.filter((p) => ['INACTIVE', 'PAYMENT_FAILURE'].includes(String(p.status).toUpperCase())).length,
-    completed: patients.filter((p) => String(p.status).toUpperCase() === 'COMPLETED').length,
-    paymentFailure: patients.filter((p) => String(p.status).toUpperCase() === 'PAYMENT_FAILURE').length,
-  }), [patients]);
+  const stats = useMemo(() => {
+    const s = (p: PatientListItem) => String(p.status).toUpperCase();
+    return {
+      total:        patients.length,
+      active:       patients.filter(p => s(p) === 'ACTIVE').length,
+      renewalDue:   patients.filter(p => ['RENEWAL_DUE','PAYMENT_FAILURE'].includes(s(p))).length,
+      completed:    patients.filter(p => s(p) === 'COMPLETED').length,
+      onHold:       patients.filter(p => ['ON_HOLD','INACTIVE'].includes(s(p))).length,
+      expiringSoon: patients.filter(p => s(p) === 'EXPIRING_SOON').length,
+    };
+  }, [patients]);
 
   return (
     <div className="flex h-full flex-col overflow-hidden bg-gray-50 p-4 sm:p-5 lg:p-6">
@@ -160,13 +198,14 @@ export default function PatientsPage() {
         </button>
       </div>
 
-      {/* Stats */}
-      <div className="mb-4 flex-none grid grid-cols-2 gap-3 lg:grid-cols-5">
-        <StatCard label="Total"    value={stats.total}          icon={<Users className="w-4 h-4 text-indigo-500" />}     iconBg="bg-indigo-50" />
-        <StatCard label="Active"   value={stats.active}         icon={<UserCheck className="w-4 h-4 text-green-500" />}   iconBg="bg-green-50"  />
-        <StatCard label="Inactive" value={stats.inactive}       icon={<XCircle className="w-4 h-4 text-gray-400" />}     iconBg="bg-gray-100"  />
-        <StatCard label="Completed" value={stats.completed}     icon={<CheckCircle2 className="w-4 h-4 text-blue-500" />} iconBg="bg-blue-50"   />
-        <PaymentFailureStatCard value={stats.paymentFailure} weeklyStats={weeklyStats} />
+      {/* Stats — 6 cards for 6 statuses */}
+      <div className="mb-4 flex-none grid grid-cols-2 gap-3 lg:grid-cols-6">
+        <StatCard label="Total"         value={stats.total}        icon={<Users className="w-4 h-4 text-indigo-500" />}      iconBg="bg-indigo-50"  />
+        <StatCard label="Active"        value={stats.active}       icon={<UserCheck className="w-4 h-4 text-green-600" />}   iconBg="bg-green-50"   accent="text-green-700" />
+        <StatCard label="Renewal Due"   value={stats.renewalDue}   icon={<CreditCard className="w-4 h-4 text-red-500" />}   iconBg="bg-red-50"     accent="text-red-600" />
+        <StatCard label="Completed"     value={stats.completed}    icon={<CheckCircle2 className="w-4 h-4 text-blue-500" />} iconBg="bg-blue-50"    accent="text-blue-700" />
+        <StatCard label="On Hold"       value={stats.onHold}       icon={<PauseCircle className="w-4 h-4 text-orange-500"/>} iconBg="bg-orange-50"  accent="text-orange-700" />
+        <StatCard label="Expiring Soon" value={stats.expiringSoon} icon={<Clock className="w-4 h-4 text-amber-500" />}      iconBg="bg-amber-50"   accent="text-amber-700" />
       </div>
 
       {/* Search + filter */}
@@ -189,8 +228,10 @@ export default function PatientsPage() {
           >
             <option value="ALL">All Status</option>
             <option value="ACTIVE">Active</option>
-            <option value="INACTIVE">Inactive</option>
+            <option value="RENEWAL_DUE">Renewal Due</option>
             <option value="COMPLETED">Completed</option>
+            <option value="ON_HOLD">On Hold</option>
+            <option value="EXPIRING_SOON">Expiring Soon</option>
           </select>
         </div>
       </div>
@@ -232,7 +273,7 @@ export default function PatientsPage() {
                       {[patient.age && `${patient.age}y`, patient.gender].filter(Boolean).join(' · ') || '—'}
                     </p>
                   </td>
-                  <td className="px-5 py-3.5"><StatusBadge status={patient.status} paymentStatus={patient.paymentStatus} /></td>
+                  <td className="px-5 py-3.5"><StatusBadge status={patient.status} /></td>
                   <td className="px-5 py-3.5 text-sm text-gray-600 whitespace-nowrap">{patient.joinDate || '—'}</td>
                   <td className="px-5 py-3.5 text-sm text-gray-700">{patient.injury || '—'}</td>
                   <td className="px-5 py-3.5 text-sm text-gray-700 whitespace-nowrap">{patient.doctorAssigned || '—'}</td>
@@ -257,16 +298,16 @@ export default function PatientsPage() {
 }
 
 /* ── Stat card ── */
-function StatCard({ label, value, icon, iconBg }: {
-  label: string; value: number; icon: React.ReactNode; iconBg: string;
+function StatCard({ label, value, icon, iconBg, accent }: {
+  label: string; value: number; icon: React.ReactNode; iconBg: string; accent?: string;
 }) {
   return (
     <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-4">
       <div className="flex items-center justify-between mb-2">
-        <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">{label}</p>
-        <div className={`w-7 h-7 rounded-lg flex items-center justify-center ${iconBg}`}>{icon}</div>
+        <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider leading-tight">{label}</p>
+        <div className={`w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0 ${iconBg}`}>{icon}</div>
       </div>
-      <p className="text-2xl font-bold text-gray-900">{value}</p>
+      <p className={`text-2xl font-bold ${accent ?? 'text-gray-900'}`}>{value}</p>
     </div>
   );
 }

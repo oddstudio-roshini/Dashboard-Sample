@@ -191,6 +191,35 @@ export const doctorsAPI = {
     return res.data;
   },
 
+  getClinicProfile: async (id: number) => {
+    const res = await apiClient.get(`/doctors/${id}/clinic-profile`);
+    return res.data;
+  },
+
+  getDoctorPatients: async (id: number, params?: { search?: string; gender?: string; status?: string }) => {
+    const res = await apiClient.get(`/doctors/${id}/patients`, { params });
+    return res.data;
+  },
+
+  importCsv: async (file: File): Promise<ApiResponse<{ created: number; skipped: number; errors: string[] }>> => {
+    const form = new FormData();
+    form.append('file', file);
+    const token = typeof window !== 'undefined' ? localStorage.getItem('medicare_token') : null;
+    // Use a raw axios call — bypasses the apiClient default 'Content-Type: application/json'
+    // so axios can auto-set 'multipart/form-data; boundary=...' correctly for FormData
+    const res = await axios.post(
+      `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8081'}/api/doctors/import-csv`,
+      form,
+      {
+        headers: {
+          ...(token ? { Authorization: `Bearer ${token}` } : {}),
+          // No Content-Type here — browser/axios sets it automatically with boundary
+        },
+      }
+    );
+    return res.data;
+  },
+
   changePassword: async (id: number, currentPassword: string, newPassword: string): Promise<ApiResponse<null>> => {
     const res = await apiClient.post(`/doctors/${id}/change-password`, { currentPassword, newPassword });
     return res.data;

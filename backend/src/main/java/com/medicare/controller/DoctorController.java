@@ -108,8 +108,14 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * DoctorController.java — UPDATED
@@ -366,6 +372,194 @@ public ResponseEntity<ApiResponse<DoctorResponse>> createDoctor(
     @GetMapping("/logs")
     public ResponseEntity<ApiResponse<List<DoctorLogResponse>>> getAllLogs() {
         return ResponseEntity.ok(ApiResponse.success("All logs fetched", doctorService.getAllLogs()));
+    }
+
+    /**
+     * GET /api/doctors/{id}/clinic-profile
+     * Returns the matching ClinicDoctor profile (by email) for a Doctor account.
+     */
+    @GetMapping("/{id}/clinic-profile")
+    public ResponseEntity<ApiResponse<com.medicare.dto.ClinicDTOs.ClinicDoctorResponse>> getClinicProfile(
+            @PathVariable Long id) {
+        try {
+            return ResponseEntity.ok(ApiResponse.success("Clinic profile fetched",
+                    doctorService.getClinicProfile(id)));
+        } catch (RuntimeException e) {
+            return ResponseEntity.badRequest().body(ApiResponse.error(e.getMessage()));
+        }
+    }
+
+    /**
+     * GET /api/doctors/{id}/patients?search=&gender=&status=
+     * Returns ClinicPatient list for the matching ClinicDoctor.
+     */
+    @GetMapping("/{id}/patients")
+    public ResponseEntity<ApiResponse<List<com.medicare.dto.ClinicDTOs.PatientResponse>>> getDoctorPatients(
+            @PathVariable Long id,
+            @RequestParam(required = false) String search,
+            @RequestParam(required = false) String gender,
+            @RequestParam(required = false) String status) {
+        try {
+            return ResponseEntity.ok(ApiResponse.success("Patients fetched",
+                    doctorService.getDoctorPatients(id, search, gender, status)));
+        } catch (RuntimeException e) {
+            return ResponseEntity.badRequest().body(ApiResponse.error(e.getMessage()));
+        }
+    }
+
+    /**
+     * POST /api/doctors/import-csv
+     *
+     * Accepts two CSV formats:
+     *
+     * Format A — ARthoMove master CSV (from arthomove_csv_data/doctors.csv):
+     *   SNO, Hospital SNO, Hospital, Branch SNO, Branch Code, Doctor Name,
+     *   Specialization, Contact Number, Email ID, Highest Qualification,
+     *   Consultation Fee, Patients, Status
+     *
+     * Format B — Simple CSV:
+     *   firstName, lastName, email, mobileNumber, specialization, clinicHospital, status
+     *
+     * Returns: { created, skipped, errors[] }
+     */
+    @PostMapping("/import-csv")
+    public ResponseEntity<ApiResponse<Map<String, Object>>> importCsv(
+            @RequestParam("file") MultipartFile file) {
+        int created = 0, skipped = 0;
+        List<String> errors = new ArrayList<>();
+
+        try (BufferedReader reader = new BufferedReader(
+                new InputStreamReader(file.getInputStream(), StandardCharsets.UTF_8))) {
+
+            String headerLine = reader.readLine();
+            if (headerLine == null)
+                return ResponseEntity.badRequest().body(ApiResponse.error("Empty CSV file"));
+
+            String[] headers = splitCsvRow(headerLine);
+            java.util.Map<String, Integer> idx = new java.util.HashMap<>();
+            for (int i = 0; i < headers.length; i++)
+                idx.put(headers[i].trim().toLowerCase().replaceAll("[^a-z0-9]", ""), i);
+
+            // Detect format: ARthoMove format has "doctor name" column
+            boolean isArthomoveFormat = idx.containsKey("doctorname");
+
+            String line;
+            int rowNum = 1;
+            while ((line = reader.readLine()) != null) {
+                rowNum++;
+                if (line.isBlank()) continue;
+                String[] cols = splitCsvRow(line);
+
+                try {
+                    CreateDoctorRequest req = new CreateDoctorRequest();
+
+                    if (isArthomoveFormat) {
+                        // ── Format A: ARthoMove master CSV ──────────────────
+                        String fullName  = getCol(cols, idx, "doctorname");       // "Dr. Nisha Kumar"
+                        String email     = getCol(cols, idx, "emailid");
+                        String hospital  = getCol(cols, idx, "hospital");
+                        String mobile    = getCol(cols, idx, "contactnumber");
+                        String spec      = getCol(cols, idx, "specialization");
+                        String statusRaw = getCol(cols, idx, "status");
+                        String branchCode= getCol(cols, idx, "branchcode");
+                        String qual      = getCol(cols, idx, "highestqualification");
+
+                        if (fullName.isBlank() || email.isBlank()) {
+                            errors.add("Row " + rowNum + ": Doctor Name and Email ID are required");
+                            skipped++; continue;
+                        }
+
+                        // Parse "Dr. Nisha Kumar" → firstName="Nisha", lastName="Kumar"
+                        String cleaned = fullName.replaceAll("(?i)^Dr\\.?\\s*", "").trim();
+                        int lastSpace  = cleaned.lastIndexOf(' ');
+                        String firstName = lastSpace > 0 ? cleaned.substring(0, lastSpace).trim() : cleaned;
+                        String lastName  = lastSpace > 0 ? cleaned.substring(lastSpace + 1).trim() : "—";
+
+                        req.setFirstName(firstName);
+                        req.setLastName(lastName);
+                        req.setEmail(email);
+                        req.setMobileNumber(mobile);
+                        req.setSpecialization(spec);
+                        req.setClinicHospital(hospital);
+                        req.setNotes(buildNotes(branchCode, qual));
+
+                    } else {
+                        // ── Format B: Simple CSV ─────────────────────────────
+                        String firstName = getCol(cols, idx, "firstname");
+                        String email     = getCol(cols, idx, "email");
+
+                        if (firstName.isBlank() || email.isBlank()) {
+                            errors.add("Row " + rowNum + ": firstName and email are required");
+                            skipped++; continue;
+                        }
+
+                        req.setFirstName(firstName);
+                        req.setLastName(getCol(cols, idx, "lastname"));
+                        req.setEmail(email);
+                        req.setMobileNumber(getCol(cols, idx, "mobilenumber"));
+                        req.setSpecialization(getCol(cols, idx, "specialization"));
+                        req.setClinicHospital(getCol(cols, idx, "clinichospital"));
+                    }
+
+                    // Status — both formats use Active/Inactive or ACTIVE/INACTIVE
+                    String statusRaw = isArthomoveFormat
+                            ? getCol(cols, idx, "status")
+                            : getCol(cols, idx, "status");
+                    req.setStatus(parseStatus(statusRaw));
+                    req.setBirthYear(null);
+
+                    doctorService.createDoctor(req);
+                    created++;
+
+                } catch (Exception e) {
+                    errors.add("Row " + rowNum + ": " + e.getMessage());
+                    skipped++;
+                }
+            }
+        } catch (Exception e) {
+            return ResponseEntity.badRequest()
+                    .body(ApiResponse.error("Failed to parse CSV: " + e.getMessage()));
+        }
+
+        Map<String, Object> result = Map.of("created", created, "skipped", skipped, "errors", errors);
+        return ResponseEntity.ok(ApiResponse.success(
+                created + " doctors imported, " + skipped + " skipped.", result));
+    }
+
+    // ── Helpers ───────────────────────────────────────────────────────────────
+
+    private String[] splitCsvRow(String line) {
+        List<String> cols = new ArrayList<>();
+        boolean inQuotes = false;
+        StringBuilder sb = new StringBuilder();
+        for (char c : line.toCharArray()) {
+            if (c == '"') { inQuotes = !inQuotes; }
+            else if (c == ',' && !inQuotes) { cols.add(sb.toString().trim()); sb.setLength(0); }
+            else { sb.append(c); }
+        }
+        cols.add(sb.toString().trim());
+        return cols.toArray(new String[0]);
+    }
+
+    private String getCol(String[] cols, Map<String, Integer> idx, String key) {
+        Integer i = idx.get(key);
+        return (i != null && i < cols.length) ? cols[i].trim().replace("\"", "") : "";
+    }
+
+    private com.medicare.entity.Doctor.DoctorStatus parseStatus(String raw) {
+        if (raw == null || raw.isBlank()) return com.medicare.entity.Doctor.DoctorStatus.ACTIVE;
+        String up = raw.trim().toUpperCase();
+        if (up.equals("ACTIVE") || up.equals("ACTIVE")) return com.medicare.entity.Doctor.DoctorStatus.ACTIVE;
+        if (up.equals("INACTIVE") || up.equals("INACTIVE")) return com.medicare.entity.Doctor.DoctorStatus.INACTIVE;
+        try { return com.medicare.entity.Doctor.DoctorStatus.valueOf(up); }
+        catch (IllegalArgumentException e) { return com.medicare.entity.Doctor.DoctorStatus.ACTIVE; }
+    }
+
+    private String buildNotes(String branchCode, String qualification) {
+        List<String> parts = new ArrayList<>();
+        if (branchCode != null && !branchCode.isBlank()) parts.add("Branch: " + branchCode);
+        if (qualification != null && !qualification.isBlank()) parts.add("Qualification: " + qualification);
+        return String.join(" | ", parts);
     }
 }
 

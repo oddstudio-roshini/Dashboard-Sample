@@ -153,7 +153,7 @@ function HospitalsTable({ hospitals, onRowClick }: { hospitals: Hospital[]; onRo
           <th className="px-4 py-3 font-semibold">Specialization</th>
           <th className="px-4 py-3 font-semibold">Contact</th>
           <th className="px-4 py-3 font-semibold">Map</th>
-          <th className="px-4 py-3"></th>
+          <th className="px-4 py-3 font-semibold"></th>
         </tr>
       </thead>
       <tbody className="divide-y divide-gray-100">
@@ -171,11 +171,6 @@ function HospitalsTable({ hospitals, onRowClick }: { hospitals: Hospital[]; onRo
               <span className="bg-purple-50 text-purple-700 px-2 py-0.5 rounded-full whitespace-nowrap">{h.specialization}</span>
             </td>
             <td className="px-4 py-3 text-gray-600 text-xs whitespace-nowrap">{h.contactName}</td>
-            <td className="px-4 py-3">
-              <span className={`rounded-full px-2 py-1 text-xs font-semibold whitespace-nowrap ${h.status === 'ACTIVE' ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-600'}`}>
-                {h.status}
-              </span>
-            </td>
             <td className="px-4 py-3" onClick={(e) => e.stopPropagation()}>
               <a
                 href={googleMapsUrl(h.name, h.area || "", h.city || "")}

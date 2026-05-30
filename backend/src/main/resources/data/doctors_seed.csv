@@ -1,0 +1,1057 @@
+SNO,Hospital SNO,Hospital,Branch SNO,Branch Code,Doctor Name,Specialization,Contact Number,Email ID,Highest Qualification,Consultation Fee,Patients,Status
+1,1,OrthoLife Indiranagar Medical Center,1,H001-B01,Dr. Nisha Kumar,Spine Specialist,7615594078,nisha.kumar1@arthomove-demo.com,"BPT, MPT Orthopedics",1000,7,Active
+2,1,OrthoLife Indiranagar Medical Center,1,H001-B01,Dr. Kavya Chopra,Knee Specialist,9346578713,kavya.chopra2@arthomove-demo.com,"BPT, MPT Sports",750,0,Active
+3,1,OrthoLife Indiranagar Medical Center,1,H001-B01,Dr. Anjali Pillai,Rehabilitation Consultant,7010310518,anjali.pillai3@arthomove-demo.com,"BPT, MPT Sports",750,8,Active
+4,1,OrthoLife Indiranagar Medical Center,1,H001-B01,Dr. Anjali Das,Sports Rehab Specialist,9786801128,anjali.das4@arthomove-demo.com,"MBBS, MS Ortho",800,10,Active
+5,1,OrthoLife Indiranagar Medical Center,2,H001-B02,Dr. Meera Thomas,Knee Specialist,9670546688,meera.thomas5@arthomove-demo.com,"BPT, MPT Sports",400,5,Inactive
+6,1,OrthoLife Indiranagar Medical Center,2,H001-B02,Dr. Rohan Mehta,Neuro Physiotherapist,7849877694,rohan.mehta6@arthomove-demo.com,MPT Neuro Rehab,600,2,Active
+7,1,OrthoLife Indiranagar Medical Center,3,H001-B03,Dr. Varun Menon,Shoulder Specialist,9233749894,varun.menon7@arthomove-demo.com,"BPT, MPT Orthopedics",500,5,Inactive
+8,1,OrthoLife Indiranagar Medical Center,3,H001-B03,Dr. Ravi Reddy,Pediatric Orthopedist,7746488771,ravi.reddy8@arthomove-demo.com,"MBBS, MS Ortho",800,6,Active
+9,1,OrthoLife Indiranagar Medical Center,4,H001-B04,Dr. Farhan Kumar,Neuro Physiotherapist,9951718702,farhan.kumar9@arthomove-demo.com,PhD Physiotherapy,400,3,Active
+10,1,OrthoLife Indiranagar Medical Center,4,H001-B04,Dr. Farhan Patel,Neuro Physiotherapist,9217594647,farhan.patel10@arthomove-demo.com,"MBBS, Fellowship Spine",800,7,Active
+11,1,OrthoLife Indiranagar Medical Center,4,H001-B04,Dr. Ravi Das,Spine Specialist,7183933529,ravi.das11@arthomove-demo.com,"MBBS, MS Ortho",600,3,Active
+12,1,OrthoLife Indiranagar Medical Center,4,H001-B04,Dr. Amit Iyer,Rehabilitation Consultant,8365766156,amit.iyer12@arthomove-demo.com,MPT Neuro Rehab,750,6,Active
+13,1,OrthoLife Indiranagar Medical Center,4,H001-B04,Dr. Arjun Das,Physiotherapist,9622683885,arjun.das13@arthomove-demo.com,"BPT, MPT Orthopedics",400,1,Active
+14,2,CarePlus Edappally Healthcare Hub,5,H002-B01,Dr. Isha Pillai,Pediatric Orthopedist,9955271774,isha.pillai14@arthomove-demo.com,"MBBS, Fellowship Spine",1500,6,Active
+15,2,CarePlus Edappally Healthcare Hub,5,H002-B01,Dr. Vikram Mishra,Spine Specialist,7597746886,vikram.mishra15@arthomove-demo.com,"MBBS, DNB Ortho",800,10,Active
+16,2,CarePlus Edappally Healthcare Hub,5,H002-B01,Dr. Sneha Chopra,Neuro Physiotherapist,7355690927,sneha.chopra16@arthomove-demo.com,MPT Neuro Rehab,400,2,Active
+17,2,CarePlus Edappally Healthcare Hub,5,H002-B01,Dr. Karthik Nair,Shoulder Specialist,7237058957,karthik.nair17@arthomove-demo.com,"MBBS, DNB Ortho",750,2,Active
+18,2,CarePlus Edappally Healthcare Hub,5,H002-B01,Dr. Sneha Reddy,Pediatric Orthopedist,9299229959,sneha.reddy18@arthomove-demo.com,"MBBS, MS Ortho",500,1,Active
+19,2,CarePlus Edappally Healthcare Hub,6,H002-B02,Dr. Varun Mehta,Knee Specialist,8881537147,varun.mehta19@arthomove-demo.com,"BPT, MPT Sports",600,1,Inactive
+20,2,CarePlus Edappally Healthcare Hub,6,H002-B02,Dr. Priya Jain,Rehabilitation Consultant,7950047974,priya.jain20@arthomove-demo.com,"MBBS, MS Ortho",1500,7,Active
+21,2,CarePlus Edappally Healthcare Hub,6,H002-B02,Dr. Sanjay Mishra,Pain Management Specialist,9866524041,sanjay.mishra21@arthomove-demo.com,MPT Neuro Rehab,800,5,Active
+22,2,CarePlus Edappally Healthcare Hub,6,H002-B02,Dr. Pooja Gupta,Neuro Physiotherapist,8990453017,pooja.gupta22@arthomove-demo.com,"MBBS, Fellowship Spine",800,9,Active
+23,3,ApolloCare Bandra Speciality Clinic,7,H003-B01,Dr. Manoj Menon,Shoulder Specialist,7317393638,manoj.menon23@arthomove-demo.com,MPT Neuro Rehab,800,7,Active
+24,3,ApolloCare Bandra Speciality Clinic,7,H003-B01,Dr. Karthik Das,Orthopedic Surgeon,7614293968,karthik.das24@arthomove-demo.com,MPT Neuro Rehab,750,3,Active
+25,3,ApolloCare Bandra Speciality Clinic,7,H003-B01,Dr. Amit Patel,Physiotherapist,7995604661,amit.patel25@arthomove-demo.com,"BPT, MPT Sports",1000,3,Active
+26,3,ApolloCare Bandra Speciality Clinic,8,H003-B02,Dr. Sneha Reddy,Spine Specialist,7661797968,sneha.reddy26@arthomove-demo.com,PhD Physiotherapy,800,6,Active
+27,3,ApolloCare Bandra Speciality Clinic,8,H003-B02,Dr. Farhan Reddy,Pediatric Orthopedist,7513412528,farhan.reddy27@arthomove-demo.com,PhD Physiotherapy,500,3,Active
+28,3,ApolloCare Bandra Speciality Clinic,8,H003-B02,Dr. Amit Gupta,Pain Management Specialist,8517133959,amit.gupta28@arthomove-demo.com,PhD Physiotherapy,400,3,Active
+29,3,ApolloCare Bandra Speciality Clinic,8,H003-B02,Dr. Manoj Singh,Shoulder Specialist,9929750017,manoj.singh29@arthomove-demo.com,"MBBS, MS Ortho",800,3,Active
+30,3,ApolloCare Bandra Speciality Clinic,8,H003-B02,Dr. Sanjay Menon,Sports Rehab Specialist,9731121965,sanjay.menon30@arthomove-demo.com,PhD Physiotherapy,1200,3,Active
+31,3,ApolloCare Bandra Speciality Clinic,9,H003-B03,Dr. Rahul Gupta,Physiotherapist,8990421020,rahul.gupta31@arthomove-demo.com,"MBBS, DNB Ortho",1200,6,Active
+32,3,ApolloCare Bandra Speciality Clinic,9,H003-B03,Dr. Isha Rao,Pediatric Orthopedist,7619906234,isha.rao32@arthomove-demo.com,"MBBS, Fellowship Spine",500,7,Active
+33,3,ApolloCare Bandra Speciality Clinic,9,H003-B03,Dr. Karthik Iyer,Spine Specialist,9039652239,karthik.iyer33@arthomove-demo.com,MPT Neuro Rehab,750,6,Active
+34,4,HealWell Kothrud Hospital,10,H004-B01,Dr. Arjun Gupta,Physiotherapist,9872050614,arjun.gupta34@arthomove-demo.com,"MBBS, Diploma Orthopedics",400,1,Active
+35,4,HealWell Kothrud Hospital,10,H004-B01,Dr. Karthik Verma,Orthopedic Surgeon,8434902115,karthik.verma35@arthomove-demo.com,PhD Physiotherapy,800,10,Active
+36,4,HealWell Kothrud Hospital,10,H004-B01,Dr. Kavya Mehta,Rehabilitation Consultant,9171545444,kavya.mehta36@arthomove-demo.com,"BPT, MPT Sports",800,4,Active
+37,4,HealWell Kothrud Hospital,10,H004-B01,Dr. Swetha Rao,Neuro Physiotherapist,7500743292,swetha.rao37@arthomove-demo.com,"MBBS, Diploma Orthopedics",1000,2,Active
+38,4,HealWell Kothrud Hospital,11,H004-B02,Dr. Neha Joshi,Sports Rehab Specialist,9064890901,neha.joshi38@arthomove-demo.com,"MBBS, MS Ortho",500,0,Active
+39,4,HealWell Kothrud Hospital,11,H004-B02,Dr. Amit Thomas,Neuro Physiotherapist,9472304618,amit.thomas39@arthomove-demo.com,"MBBS, Fellowship Spine",1200,3,Active
+40,4,HealWell Kothrud Hospital,12,H004-B03,Dr. Pooja Khan,Knee Specialist,7021697972,pooja.khan40@arthomove-demo.com,PhD Physiotherapy,600,10,Active
+41,4,HealWell Kothrud Hospital,12,H004-B03,Dr. Anjali Jain,Sports Rehab Specialist,7342442043,anjali.jain41@arthomove-demo.com,"MBBS, MS Ortho",400,8,Active
+42,4,HealWell Kothrud Hospital,12,H004-B03,Dr. Rohan Jain,Neuro Physiotherapist,8061809190,rohan.jain42@arthomove-demo.com,"BPT, MPT Orthopedics",1200,9,Active
+43,4,HealWell Kothrud Hospital,12,H004-B03,Dr. Ritika Joshi,Pain Management Specialist,9926659184,ritika.joshi43@arthomove-demo.com,PhD Physiotherapy,800,4,Active
+44,4,HealWell Kothrud Hospital,13,H004-B04,Dr. Manoj Chopra,Pediatric Orthopedist,9117298068,manoj.chopra44@arthomove-demo.com,PhD Physiotherapy,400,1,Active
+45,4,HealWell Kothrud Hospital,13,H004-B04,Dr. Nisha Menon,Orthopedic Surgeon,9180635651,nisha.menon45@arthomove-demo.com,"MBBS, DNB Ortho",400,10,Active
+46,4,HealWell Kothrud Hospital,13,H004-B04,Dr. Neha Singh,Neuro Physiotherapist,9463920867,neha.singh46@arthomove-demo.com,"MBBS, MS Ortho",600,7,Inactive
+47,5,Medicare Navi Mumbai Medical Center,14,H005-B01,Dr. Farhan Mehta,Shoulder Specialist,9487282997,farhan.mehta47@arthomove-demo.com,PhD Physiotherapy,1500,9,Active
+48,5,Medicare Navi Mumbai Medical Center,14,H005-B01,Dr. Sneha Khan,Spine Specialist,9573065240,sneha.khan48@arthomove-demo.com,"MBBS, Diploma Orthopedics",1000,9,Active
+49,5,Medicare Navi Mumbai Medical Center,15,H005-B02,Dr. Manoj Pillai,Physiotherapist,9961055661,manoj.pillai49@arthomove-demo.com,"BPT, MPT Sports",800,10,Active
+50,5,Medicare Navi Mumbai Medical Center,15,H005-B02,Dr. Sneha Reddy,Rehabilitation Consultant,7925188125,sneha.reddy50@arthomove-demo.com,"MBBS, DNB Ortho",600,6,Active
+51,5,Medicare Navi Mumbai Medical Center,15,H005-B02,Dr. Anjali Nair,Neuro Physiotherapist,7452111751,anjali.nair51@arthomove-demo.com,PhD Physiotherapy,750,9,Active
+52,5,Medicare Navi Mumbai Medical Center,16,H005-B03,Dr. Priya Kumar,Pain Management Specialist,8829962914,priya.kumar52@arthomove-demo.com,MPT Neuro Rehab,400,5,Active
+53,5,Medicare Navi Mumbai Medical Center,16,H005-B03,Dr. Anjali Khan,Orthopedic Surgeon,7166299795,anjali.khan53@arthomove-demo.com,"MBBS, Fellowship Spine",500,4,Active
+54,5,Medicare Navi Mumbai Medical Center,16,H005-B03,Dr. Divya Mishra,Physiotherapist,8619196570,divya.mishra54@arthomove-demo.com,"BPT, MPT Orthopedics",1500,3,Active
+55,5,Medicare Navi Mumbai Medical Center,16,H005-B03,Dr. Arjun Kumar,Sports Rehab Specialist,9027621267,arjun.kumar55@arthomove-demo.com,PhD Physiotherapy,400,8,Active
+56,5,Medicare Navi Mumbai Medical Center,17,H005-B04,Dr. Priya Patel,Knee Specialist,7753443009,priya.patel56@arthomove-demo.com,"BPT, MPT Orthopedics",500,0,Active
+57,5,Medicare Navi Mumbai Medical Center,17,H005-B04,Dr. Aditya Menon,Pediatric Orthopedist,7192692124,aditya.menon57@arthomove-demo.com,"MBBS, Fellowship Spine",500,2,On Leave
+58,6,ApolloCare RS Puram Wellness Hospital,18,H006-B01,Dr. Rahul Rao,Shoulder Specialist,8432806346,rahul.rao58@arthomove-demo.com,"BPT, MPT Orthopedics",1000,6,Active
+59,6,ApolloCare RS Puram Wellness Hospital,18,H006-B01,Dr. Vikram Nair,Pediatric Orthopedist,7791456083,vikram.nair59@arthomove-demo.com,"BPT, MPT Sports",400,0,Active
+60,6,ApolloCare RS Puram Wellness Hospital,18,H006-B01,Dr. Kavya Iyer,Pediatric Orthopedist,9837340312,kavya.iyer60@arthomove-demo.com,"MBBS, Diploma Orthopedics",1000,3,Inactive
+61,6,ApolloCare RS Puram Wellness Hospital,18,H006-B01,Dr. Sneha Sharma,Pediatric Orthopedist,7177625349,sneha.sharma61@arthomove-demo.com,"MBBS, DNB Ortho",400,10,Active
+62,6,ApolloCare RS Puram Wellness Hospital,18,H006-B01,Dr. Ritika Mishra,Pain Management Specialist,9223105927,ritika.mishra62@arthomove-demo.com,"MBBS, Fellowship Spine",600,4,Active
+63,6,ApolloCare RS Puram Wellness Hospital,19,H006-B02,Dr. Sneha Pillai,Pediatric Orthopedist,7478519610,sneha.pillai63@arthomove-demo.com,PhD Physiotherapy,500,5,Active
+64,6,ApolloCare RS Puram Wellness Hospital,19,H006-B02,Dr. Amit Menon,Sports Rehab Specialist,9988816711,amit.menon64@arthomove-demo.com,"MBBS, DNB Ortho",750,8,Active
+65,6,ApolloCare RS Puram Wellness Hospital,19,H006-B02,Dr. Swetha Pillai,Pediatric Orthopedist,9657967842,swetha.pillai65@arthomove-demo.com,"MBBS, Diploma Orthopedics",800,0,Inactive
+66,6,ApolloCare RS Puram Wellness Hospital,19,H006-B02,Dr. Nisha Khan,Neuro Physiotherapist,7010170269,nisha.khan66@arthomove-demo.com,MPT Neuro Rehab,750,10,Active
+67,6,ApolloCare RS Puram Wellness Hospital,19,H006-B02,Dr. Farhan Chopra,Spine Specialist,7230347786,farhan.chopra67@arthomove-demo.com,PhD Physiotherapy,1200,1,Active
+68,6,ApolloCare RS Puram Wellness Hospital,20,H006-B03,Dr. Manoj Rao,Spine Specialist,8596363212,manoj.rao68@arthomove-demo.com,"BPT, MPT Sports",500,8,Inactive
+69,6,ApolloCare RS Puram Wellness Hospital,20,H006-B03,Dr. Nisha Gupta,Pediatric Orthopedist,8971072563,nisha.gupta69@arthomove-demo.com,PhD Physiotherapy,1500,10,Active
+70,6,ApolloCare RS Puram Wellness Hospital,20,H006-B03,Dr. Sneha Kumar,Pain Management Specialist,8490810818,sneha.kumar70@arthomove-demo.com,PhD Physiotherapy,750,8,Active
+71,6,ApolloCare RS Puram Wellness Hospital,20,H006-B03,Dr. Karthik Menon,Sports Rehab Specialist,8743380054,karthik.menon71@arthomove-demo.com,MPT Neuro Rehab,1500,3,Active
+72,7,SpinePlus Gandhipuram Medical Center,21,H007-B01,Dr. Rohan Sharma,Knee Specialist,9290846684,rohan.sharma72@arthomove-demo.com,MPT Neuro Rehab,400,1,Active
+73,7,SpinePlus Gandhipuram Medical Center,21,H007-B01,Dr. Pooja Kumar,Rehabilitation Consultant,7884852008,pooja.kumar73@arthomove-demo.com,"MBBS, Fellowship Spine",800,5,Active
+74,7,SpinePlus Gandhipuram Medical Center,21,H007-B01,Dr. Sanjay Reddy,Shoulder Specialist,8022960443,sanjay.reddy74@arthomove-demo.com,"MBBS, DNB Ortho",800,8,Active
+75,7,SpinePlus Gandhipuram Medical Center,22,H007-B02,Dr. Nisha Chopra,Pain Management Specialist,9398402891,nisha.chopra75@arthomove-demo.com,"MBBS, Fellowship Spine",1200,0,Active
+76,7,SpinePlus Gandhipuram Medical Center,22,H007-B02,Dr. Ritika Iyer,Sports Rehab Specialist,7985547435,ritika.iyer76@arthomove-demo.com,MPT Neuro Rehab,800,10,Active
+77,7,SpinePlus Gandhipuram Medical Center,22,H007-B02,Dr. Amit Iyer,Orthopedic Surgeon,7928456797,amit.iyer77@arthomove-demo.com,"MBBS, DNB Ortho",500,1,Active
+78,7,SpinePlus Gandhipuram Medical Center,22,H007-B02,Dr. Rahul Gupta,Rehabilitation Consultant,8333153779,rahul.gupta78@arthomove-demo.com,MPT Neuro Rehab,400,10,Active
+79,7,SpinePlus Gandhipuram Medical Center,22,H007-B02,Dr. Arjun Mehta,Knee Specialist,9078263337,arjun.mehta79@arthomove-demo.com,"BPT, MPT Sports",1200,9,Active
+80,7,SpinePlus Gandhipuram Medical Center,23,H007-B03,Dr. Manoj Verma,Physiotherapist,9372742209,manoj.verma80@arthomove-demo.com,"BPT, MPT Orthopedics",500,2,Active
+81,7,SpinePlus Gandhipuram Medical Center,23,H007-B03,Dr. Meera Rao,Spine Specialist,7206815583,meera.rao81@arthomove-demo.com,"BPT, MPT Sports",500,7,Active
+82,7,SpinePlus Gandhipuram Medical Center,23,H007-B03,Dr. Ravi Khan,Physiotherapist,8277689627,ravi.khan82@arthomove-demo.com,"MBBS, MS Ortho",1000,7,Active
+83,7,SpinePlus Gandhipuram Medical Center,23,H007-B03,Dr. Karthik Menon,Orthopedic Surgeon,7467912141,karthik.menon83@arthomove-demo.com,PhD Physiotherapy,600,2,Inactive
+84,7,SpinePlus Gandhipuram Medical Center,23,H007-B03,Dr. Sanjay Das,Physiotherapist,9620918435,sanjay.das84@arthomove-demo.com,"MBBS, Diploma Orthopedics",400,8,Active
+85,8,CarePlus Marine Drive Speciality Clinic,24,H008-B01,Dr. Farhan Kumar,Knee Specialist,7015720185,farhan.kumar85@arthomove-demo.com,PhD Physiotherapy,1200,7,Active
+86,8,CarePlus Marine Drive Speciality Clinic,24,H008-B01,Dr. Priya Singh,Spine Specialist,9892625660,priya.singh86@arthomove-demo.com,"BPT, MPT Sports",1000,0,Active
+87,8,CarePlus Marine Drive Speciality Clinic,25,H008-B02,Dr. Nisha Patel,Physiotherapist,8112849718,nisha.patel87@arthomove-demo.com,MPT Neuro Rehab,1200,5,Active
+88,8,CarePlus Marine Drive Speciality Clinic,25,H008-B02,Dr. Kavya Mehta,Orthopedic Surgeon,8251538144,kavya.mehta88@arthomove-demo.com,"MBBS, Diploma Orthopedics",1200,4,Active
+89,8,CarePlus Marine Drive Speciality Clinic,25,H008-B02,Dr. Swetha Jain,Rehabilitation Consultant,7102258030,swetha.jain89@arthomove-demo.com,MPT Neuro Rehab,1200,10,Active
+90,8,CarePlus Marine Drive Speciality Clinic,26,H008-B03,Dr. Divya Sharma,Orthopedic Surgeon,9424089164,divya.sharma90@arthomove-demo.com,"BPT, MPT Sports",1000,4,Active
+91,8,CarePlus Marine Drive Speciality Clinic,26,H008-B03,Dr. Lakshmi Mishra,Physiotherapist,7841862030,lakshmi.mishra91@arthomove-demo.com,"BPT, MPT Sports",400,3,Active
+92,8,CarePlus Marine Drive Speciality Clinic,26,H008-B03,Dr. Karthik Jain,Shoulder Specialist,8769523668,karthik.jain92@arthomove-demo.com,"MBBS, Diploma Orthopedics",1000,8,Active
+93,8,CarePlus Marine Drive Speciality Clinic,26,H008-B03,Dr. Arjun Patel,Shoulder Specialist,9356521568,arjun.patel93@arthomove-demo.com,"BPT, MPT Orthopedics",800,3,Active
+94,9,MotionCare Hadapsar Wellness Hospital,27,H009-B01,Dr. Sneha Iyer,Pain Management Specialist,9613671577,sneha.iyer94@arthomove-demo.com,"MBBS, Diploma Orthopedics",1200,0,Active
+95,9,MotionCare Hadapsar Wellness Hospital,27,H009-B01,Dr. Karthik Iyer,Knee Specialist,8515597371,karthik.iyer95@arthomove-demo.com,"MBBS, Fellowship Spine",1200,9,Active
+96,9,MotionCare Hadapsar Wellness Hospital,28,H009-B02,Dr. Lakshmi Jain,Sports Rehab Specialist,9263128196,lakshmi.jain96@arthomove-demo.com,"MBBS, Fellowship Spine",1200,3,Active
+97,9,MotionCare Hadapsar Wellness Hospital,28,H009-B02,Dr. Meera Thomas,Knee Specialist,8224029901,meera.thomas97@arthomove-demo.com,MPT Neuro Rehab,1000,8,Active
+98,9,MotionCare Hadapsar Wellness Hospital,28,H009-B02,Dr. Priya Khan,Physiotherapist,8455618579,priya.khan98@arthomove-demo.com,"MBBS, MS Ortho",1200,8,On Leave
+99,9,MotionCare Hadapsar Wellness Hospital,29,H009-B03,Dr. Nisha Gupta,Pediatric Orthopedist,8134732354,nisha.gupta99@arthomove-demo.com,"MBBS, Fellowship Spine",1200,2,Active
+100,9,MotionCare Hadapsar Wellness Hospital,29,H009-B03,Dr. Neha Reddy,Spine Specialist,7114577584,neha.reddy100@arthomove-demo.com,"MBBS, Diploma Orthopedics",600,8,Inactive
+101,9,MotionCare Hadapsar Wellness Hospital,30,H009-B04,Dr. Rahul Jain,Sports Rehab Specialist,7787010415,rahul.jain101@arthomove-demo.com,"BPT, MPT Orthopedics",1200,10,Active
+102,9,MotionCare Hadapsar Wellness Hospital,30,H009-B04,Dr. Karthik Joshi,Neuro Physiotherapist,9785598217,karthik.joshi102@arthomove-demo.com,PhD Physiotherapy,750,2,Active
+103,9,MotionCare Hadapsar Wellness Hospital,30,H009-B04,Dr. Rahul Das,Knee Specialist,8023850371,rahul.das103@arthomove-demo.com,"MBBS, MS Ortho",800,2,Active
+104,9,MotionCare Hadapsar Wellness Hospital,30,H009-B04,Dr. Amit Verma,Physiotherapist,7560331903,amit.verma104@arthomove-demo.com,PhD Physiotherapy,1000,9,Active
+105,10,ApolloCare Peelamedu Medical Center,31,H010-B01,Dr. Amit Joshi,Physiotherapist,8956164205,amit.joshi105@arthomove-demo.com,MPT Neuro Rehab,750,7,Active
+106,10,ApolloCare Peelamedu Medical Center,31,H010-B01,Dr. Arjun Khan,Sports Rehab Specialist,9812099576,arjun.khan106@arthomove-demo.com,MPT Neuro Rehab,600,9,On Leave
+107,10,ApolloCare Peelamedu Medical Center,31,H010-B01,Dr. Aditya Thomas,Spine Specialist,8836085456,aditya.thomas107@arthomove-demo.com,PhD Physiotherapy,400,7,Active
+108,10,ApolloCare Peelamedu Medical Center,31,H010-B01,Dr. Ravi Rao,Physiotherapist,8931269789,ravi.rao108@arthomove-demo.com,"BPT, MPT Sports",600,0,Active
+109,10,ApolloCare Peelamedu Medical Center,31,H010-B01,Dr. Manoj Singh,Knee Specialist,8205996043,manoj.singh109@arthomove-demo.com,"MBBS, Diploma Orthopedics",800,6,On Leave
+110,10,ApolloCare Peelamedu Medical Center,32,H010-B02,Dr. Anjali Gupta,Spine Specialist,7227051028,anjali.gupta110@arthomove-demo.com,"MBBS, Diploma Orthopedics",500,8,Active
+111,10,ApolloCare Peelamedu Medical Center,32,H010-B02,Dr. Varun Gupta,Pain Management Specialist,9240642429,varun.gupta111@arthomove-demo.com,MPT Neuro Rehab,750,4,Inactive
+112,10,ApolloCare Peelamedu Medical Center,32,H010-B02,Dr. Varun Jain,Neuro Physiotherapist,9595764038,varun.jain112@arthomove-demo.com,"BPT, MPT Orthopedics",750,5,Active
+113,11,HealWell Vyttila Speciality Clinic,33,H011-B01,Dr. Nisha Iyer,Pediatric Orthopedist,8758512686,nisha.iyer113@arthomove-demo.com,"BPT, MPT Orthopedics",1500,6,Active
+114,11,HealWell Vyttila Speciality Clinic,33,H011-B01,Dr. Vikram Rao,Pediatric Orthopedist,9979695867,vikram.rao114@arthomove-demo.com,"MBBS, MS Ortho",800,6,On Leave
+115,11,HealWell Vyttila Speciality Clinic,33,H011-B01,Dr. Varun Chopra,Knee Specialist,8532735241,varun.chopra115@arthomove-demo.com,"MBBS, MS Ortho",750,8,Active
+116,11,HealWell Vyttila Speciality Clinic,33,H011-B01,Dr. Divya Joshi,Physiotherapist,9810798334,divya.joshi116@arthomove-demo.com,"MBBS, DNB Ortho",800,4,Active
+117,11,HealWell Vyttila Speciality Clinic,33,H011-B01,Dr. Kavya Khan,Neuro Physiotherapist,7641758231,kavya.khan117@arthomove-demo.com,"BPT, MPT Sports",600,9,Active
+118,11,HealWell Vyttila Speciality Clinic,34,H011-B02,Dr. Karthik Pillai,Shoulder Specialist,9606940960,karthik.pillai118@arthomove-demo.com,"MBBS, MS Ortho",1500,7,Active
+119,11,HealWell Vyttila Speciality Clinic,34,H011-B02,Dr. Lakshmi Mehta,Pain Management Specialist,7507026086,lakshmi.mehta119@arthomove-demo.com,"MBBS, DNB Ortho",1000,1,Active
+120,12,MotionCare Navrangpura Speciality Clinic,35,H012-B01,Dr. Rohan Mehta,Sports Rehab Specialist,8032020326,rohan.mehta120@arthomove-demo.com,MPT Neuro Rehab,400,0,Inactive
+121,12,MotionCare Navrangpura Speciality Clinic,35,H012-B01,Dr. Manoj Khan,Shoulder Specialist,9673794871,manoj.khan121@arthomove-demo.com,"MBBS, Fellowship Spine",750,9,Active
+122,12,MotionCare Navrangpura Speciality Clinic,35,H012-B01,Dr. Ritika Khan,Spine Specialist,9641789969,ritika.khan122@arthomove-demo.com,PhD Physiotherapy,1500,0,Active
+123,12,MotionCare Navrangpura Speciality Clinic,35,H012-B01,Dr. Amit Pillai,Physiotherapist,7599660577,amit.pillai123@arthomove-demo.com,"MBBS, MS Ortho",500,7,Active
+124,12,MotionCare Navrangpura Speciality Clinic,36,H012-B02,Dr. Amit Chopra,Spine Specialist,9837490797,amit.chopra124@arthomove-demo.com,"MBBS, Diploma Orthopedics",1000,2,On Leave
+125,12,MotionCare Navrangpura Speciality Clinic,36,H012-B02,Dr. Aditya Sharma,Shoulder Specialist,7918623392,aditya.sharma125@arthomove-demo.com,"MBBS, DNB Ortho",500,0,Inactive
+126,12,MotionCare Navrangpura Speciality Clinic,36,H012-B02,Dr. Manoj Iyer,Shoulder Specialist,8966672521,manoj.iyer126@arthomove-demo.com,"MBBS, Fellowship Spine",500,7,Active
+127,12,MotionCare Navrangpura Speciality Clinic,36,H012-B02,Dr. Lakshmi Das,Orthopedic Surgeon,8635806882,lakshmi.das127@arthomove-demo.com,MPT Neuro Rehab,400,1,Active
+128,13,ApolloCare Navi Mumbai Speciality Clinic,37,H013-B01,Dr. Lakshmi Jain,Orthopedic Surgeon,9311127128,lakshmi.jain128@arthomove-demo.com,MPT Neuro Rehab,1500,5,Active
+129,13,ApolloCare Navi Mumbai Speciality Clinic,37,H013-B01,Dr. Anjali Pillai,Orthopedic Surgeon,9130981079,anjali.pillai129@arthomove-demo.com,PhD Physiotherapy,1200,10,Inactive
+130,13,ApolloCare Navi Mumbai Speciality Clinic,38,H013-B02,Dr. Isha Thomas,Shoulder Specialist,9715802909,isha.thomas130@arthomove-demo.com,"MBBS, MS Ortho",400,4,Active
+131,13,ApolloCare Navi Mumbai Speciality Clinic,38,H013-B02,Dr. Meera Khan,Pediatric Orthopedist,8907280123,meera.khan131@arthomove-demo.com,"MBBS, Fellowship Spine",600,9,Active
+132,13,ApolloCare Navi Mumbai Speciality Clinic,38,H013-B02,Dr. Ritika Pillai,Pediatric Orthopedist,8970581629,ritika.pillai132@arthomove-demo.com,MPT Neuro Rehab,750,0,Active
+133,13,ApolloCare Navi Mumbai Speciality Clinic,38,H013-B02,Dr. Manoj Verma,Pediatric Orthopedist,8634250733,manoj.verma133@arthomove-demo.com,"MBBS, MS Ortho",800,10,Active
+134,13,ApolloCare Navi Mumbai Speciality Clinic,39,H013-B03,Dr. Lakshmi Gupta,Pediatric Orthopedist,9040325376,lakshmi.gupta134@arthomove-demo.com,MPT Neuro Rehab,800,7,Active
+135,13,ApolloCare Navi Mumbai Speciality Clinic,39,H013-B03,Dr. Kavya Kumar,Pediatric Orthopedist,9292361618,kavya.kumar135@arthomove-demo.com,"MBBS, MS Ortho",1000,10,Active
+136,13,ApolloCare Navi Mumbai Speciality Clinic,40,H013-B04,Dr. Karthik Rao,Pediatric Orthopedist,7785847129,karthik.rao136@arthomove-demo.com,PhD Physiotherapy,600,0,Active
+137,13,ApolloCare Navi Mumbai Speciality Clinic,40,H013-B04,Dr. Rahul Gupta,Spine Specialist,7605080184,rahul.gupta137@arthomove-demo.com,"MBBS, MS Ortho",600,3,Active
+138,14,Medicare Malviya Nagar Healthcare Hub,41,H014-B01,Dr. Priya Khan,Shoulder Specialist,9444983553,priya.khan138@arthomove-demo.com,"BPT, MPT Sports",500,5,Active
+139,14,Medicare Malviya Nagar Healthcare Hub,41,H014-B01,Dr. Rohan Gupta,Spine Specialist,9948532089,rohan.gupta139@arthomove-demo.com,MPT Neuro Rehab,750,3,Active
+140,14,Medicare Malviya Nagar Healthcare Hub,41,H014-B01,Dr. Isha Chopra,Spine Specialist,9196263355,isha.chopra140@arthomove-demo.com,PhD Physiotherapy,1000,5,Active
+141,14,Medicare Malviya Nagar Healthcare Hub,41,H014-B01,Dr. Ravi Patel,Shoulder Specialist,8808806220,ravi.patel141@arthomove-demo.com,"MBBS, Diploma Orthopedics",600,3,Inactive
+142,14,Medicare Malviya Nagar Healthcare Hub,42,H014-B02,Dr. Vikram Verma,Pain Management Specialist,8753726032,vikram.verma142@arthomove-demo.com,"BPT, MPT Orthopedics",1500,1,Active
+143,14,Medicare Malviya Nagar Healthcare Hub,42,H014-B02,Dr. Kavya Nair,Orthopedic Surgeon,9840083850,kavya.nair143@arthomove-demo.com,"MBBS, Diploma Orthopedics",500,10,Active
+144,14,Medicare Malviya Nagar Healthcare Hub,43,H014-B03,Dr. Manoj Chopra,Spine Specialist,8527758446,manoj.chopra144@arthomove-demo.com,PhD Physiotherapy,800,4,Active
+145,14,Medicare Malviya Nagar Healthcare Hub,43,H014-B03,Dr. Lakshmi Mehta,Shoulder Specialist,7178332584,lakshmi.mehta145@arthomove-demo.com,PhD Physiotherapy,1000,10,Active
+146,14,Medicare Malviya Nagar Healthcare Hub,44,H014-B04,Dr. Farhan Kumar,Pain Management Specialist,8561851744,farhan.kumar146@arthomove-demo.com,PhD Physiotherapy,1200,0,Active
+147,14,Medicare Malviya Nagar Healthcare Hub,44,H014-B04,Dr. Arjun Das,Sports Rehab Specialist,9991511455,arjun.das147@arthomove-demo.com,"BPT, MPT Orthopedics",500,4,Active
+148,14,Medicare Malviya Nagar Healthcare Hub,44,H014-B04,Dr. Neha Thomas,Pediatric Orthopedist,7916497016,neha.thomas148@arthomove-demo.com,"BPT, MPT Sports",800,3,Active
+149,14,Medicare Malviya Nagar Healthcare Hub,44,H014-B04,Dr. Rahul Sharma,Neuro Physiotherapist,8142442607,rahul.sharma149@arthomove-demo.com,"BPT, MPT Orthopedics",800,6,Active
+150,15,OrthoLife Koramangala Hospital,45,H015-B01,Dr. Rohan Mehta,Shoulder Specialist,9201904322,rohan.mehta150@arthomove-demo.com,"BPT, MPT Sports",1500,3,Active
+151,15,OrthoLife Koramangala Hospital,45,H015-B01,Dr. Aditya Menon,Orthopedic Surgeon,8687191203,aditya.menon151@arthomove-demo.com,"BPT, MPT Orthopedics",750,7,Active
+152,15,OrthoLife Koramangala Hospital,46,H015-B02,Dr. Meera Gupta,Knee Specialist,8098221040,meera.gupta152@arthomove-demo.com,"BPT, MPT Orthopedics",1500,5,Active
+153,15,OrthoLife Koramangala Hospital,46,H015-B02,Dr. Aditya Sharma,Shoulder Specialist,9043333538,aditya.sharma153@arthomove-demo.com,"MBBS, Fellowship Spine",400,2,Active
+154,15,OrthoLife Koramangala Hospital,46,H015-B02,Dr. Isha Joshi,Knee Specialist,7300915618,isha.joshi154@arthomove-demo.com,"MBBS, DNB Ortho",400,9,Active
+155,15,OrthoLife Koramangala Hospital,46,H015-B02,Dr. Swetha Chopra,Pediatric Orthopedist,9489971842,swetha.chopra155@arthomove-demo.com,MPT Neuro Rehab,1200,10,Inactive
+156,15,OrthoLife Koramangala Hospital,46,H015-B02,Dr. Swetha Singh,Orthopedic Surgeon,9841333731,swetha.singh156@arthomove-demo.com,"MBBS, DNB Ortho",1200,6,Active
+157,16,SpinePlus Peelamedu Medical Center,47,H016-B01,Dr. Neha Kumar,Shoulder Specialist,9089843699,neha.kumar157@arthomove-demo.com,"MBBS, Fellowship Spine",1200,1,Active
+158,16,SpinePlus Peelamedu Medical Center,47,H016-B01,Dr. Varun Chopra,Rehabilitation Consultant,7457887071,varun.chopra158@arthomove-demo.com,MPT Neuro Rehab,500,4,Active
+159,16,SpinePlus Peelamedu Medical Center,48,H016-B02,Dr. Divya Jain,Sports Rehab Specialist,9528572562,divya.jain159@arthomove-demo.com,"MBBS, DNB Ortho",800,10,Active
+160,16,SpinePlus Peelamedu Medical Center,48,H016-B02,Dr. Sneha Mehta,Rehabilitation Consultant,8318328123,sneha.mehta160@arthomove-demo.com,"BPT, MPT Orthopedics",600,10,Active
+161,16,SpinePlus Peelamedu Medical Center,49,H016-B03,Dr. Swetha Kumar,Pediatric Orthopedist,9950143748,swetha.kumar161@arthomove-demo.com,"BPT, MPT Sports",600,0,Inactive
+162,16,SpinePlus Peelamedu Medical Center,49,H016-B03,Dr. Meera Patel,Pediatric Orthopedist,7397191260,meera.patel162@arthomove-demo.com,"MBBS, DNB Ortho",1200,2,Active
+163,17,SpinePlus Kakkanad Hospital,50,H017-B01,Dr. Neha Menon,Shoulder Specialist,8103995297,neha.menon163@arthomove-demo.com,"MBBS, MS Ortho",1000,4,On Leave
+164,17,SpinePlus Kakkanad Hospital,50,H017-B01,Dr. Arjun Thomas,Sports Rehab Specialist,8124760108,arjun.thomas164@arthomove-demo.com,"MBBS, MS Ortho",750,9,Active
+165,17,SpinePlus Kakkanad Hospital,51,H017-B02,Dr. Ravi Patel,Physiotherapist,8203708782,ravi.patel165@arthomove-demo.com,"BPT, MPT Orthopedics",800,0,Active
+166,17,SpinePlus Kakkanad Hospital,51,H017-B02,Dr. Rahul Nair,Orthopedic Surgeon,9135998989,rahul.nair166@arthomove-demo.com,"MBBS, Diploma Orthopedics",800,2,Active
+167,17,SpinePlus Kakkanad Hospital,51,H017-B02,Dr. Manoj Rao,Sports Rehab Specialist,9149611287,manoj.rao167@arthomove-demo.com,"MBBS, Fellowship Spine",750,10,Active
+168,17,SpinePlus Kakkanad Hospital,51,H017-B02,Dr. Suresh Thomas,Pediatric Orthopedist,9698748694,suresh.thomas168@arthomove-demo.com,"BPT, MPT Orthopedics",750,10,On Leave
+169,17,SpinePlus Kakkanad Hospital,51,H017-B02,Dr. Lakshmi Nair,Shoulder Specialist,7421838545,lakshmi.nair169@arthomove-demo.com,"MBBS, Fellowship Spine",800,0,Active
+170,17,SpinePlus Kakkanad Hospital,52,H017-B03,Dr. Sneha Verma,Pain Management Specialist,9177633427,sneha.verma170@arthomove-demo.com,"MBBS, DNB Ortho",1500,0,Active
+171,17,SpinePlus Kakkanad Hospital,52,H017-B03,Dr. Suresh Mishra,Knee Specialist,8508019630,suresh.mishra171@arthomove-demo.com,"MBBS, Fellowship Spine",600,4,Active
+172,17,SpinePlus Kakkanad Hospital,52,H017-B03,Dr. Nisha Jain,Spine Specialist,9986424238,nisha.jain172@arthomove-demo.com,"BPT, MPT Sports",400,3,Active
+173,17,SpinePlus Kakkanad Hospital,53,H017-B04,Dr. Meera Das,Pain Management Specialist,8100307620,meera.das173@arthomove-demo.com,MPT Neuro Rehab,1200,5,Active
+174,17,SpinePlus Kakkanad Hospital,53,H017-B04,Dr. Pooja Patel,Pain Management Specialist,7952175585,pooja.patel174@arthomove-demo.com,"BPT, MPT Orthopedics",500,8,Active
+175,17,SpinePlus Kakkanad Hospital,53,H017-B04,Dr. Rohan Mehta,Sports Rehab Specialist,8161982734,rohan.mehta175@arthomove-demo.com,"BPT, MPT Orthopedics",800,2,Active
+176,18,Prime Rehab Navrangpura Medical Center,54,H018-B01,Dr. Varun Patel,Pediatric Orthopedist,8510740913,varun.patel176@arthomove-demo.com,"BPT, MPT Orthopedics",400,2,Active
+177,18,Prime Rehab Navrangpura Medical Center,54,H018-B01,Dr. Amit Das,Spine Specialist,9947950740,amit.das177@arthomove-demo.com,"MBBS, Diploma Orthopedics",600,0,Active
+178,18,Prime Rehab Navrangpura Medical Center,54,H018-B01,Dr. Isha Menon,Sports Rehab Specialist,9059503100,isha.menon178@arthomove-demo.com,PhD Physiotherapy,1500,10,Active
+179,18,Prime Rehab Navrangpura Medical Center,55,H018-B02,Dr. Amit Iyer,Rehabilitation Consultant,9558819597,amit.iyer179@arthomove-demo.com,"MBBS, Diploma Orthopedics",1200,2,Active
+180,18,Prime Rehab Navrangpura Medical Center,55,H018-B02,Dr. Suresh Kumar,Spine Specialist,7041447432,suresh.kumar180@arthomove-demo.com,"BPT, MPT Orthopedics",600,0,Active
+181,18,Prime Rehab Navrangpura Medical Center,55,H018-B02,Dr. Sanjay Pillai,Pediatric Orthopedist,7202030423,sanjay.pillai181@arthomove-demo.com,"MBBS, DNB Ortho",750,8,On Leave
+182,18,Prime Rehab Navrangpura Medical Center,55,H018-B02,Dr. Nisha Gupta,Spine Specialist,7472505833,nisha.gupta182@arthomove-demo.com,"BPT, MPT Sports",1000,4,Active
+183,18,Prime Rehab Navrangpura Medical Center,55,H018-B02,Dr. Anjali Verma,Pain Management Specialist,8914261404,anjali.verma183@arthomove-demo.com,"BPT, MPT Sports",600,3,Active
+184,18,Prime Rehab Navrangpura Medical Center,56,H018-B03,Dr. Amit Singh,Orthopedic Surgeon,9527810558,amit.singh184@arthomove-demo.com,"MBBS, MS Ortho",400,0,Inactive
+185,18,Prime Rehab Navrangpura Medical Center,56,H018-B03,Dr. Sneha Khan,Sports Rehab Specialist,8257316094,sneha.khan185@arthomove-demo.com,"BPT, MPT Sports",600,2,Active
+186,18,Prime Rehab Navrangpura Medical Center,57,H018-B04,Dr. Vikram Thomas,Knee Specialist,8076108708,vikram.thomas186@arthomove-demo.com,"MBBS, DNB Ortho",500,8,Active
+187,18,Prime Rehab Navrangpura Medical Center,57,H018-B04,Dr. Farhan Patel,Physiotherapist,7124139369,farhan.patel187@arthomove-demo.com,PhD Physiotherapy,1500,10,Active
+188,18,Prime Rehab Navrangpura Medical Center,57,H018-B04,Dr. Rahul Pillai,Shoulder Specialist,9739889413,rahul.pillai188@arthomove-demo.com,"MBBS, DNB Ortho",1200,0,Active
+189,19,ARthoMove Guindy Wellness Hospital,58,H019-B01,Dr. Priya Kumar,Pediatric Orthopedist,7025121375,priya.kumar189@arthomove-demo.com,PhD Physiotherapy,750,9,Active
+190,19,ARthoMove Guindy Wellness Hospital,58,H019-B01,Dr. Farhan Kumar,Pain Management Specialist,7764871775,farhan.kumar190@arthomove-demo.com,"MBBS, Fellowship Spine",400,10,Active
+191,19,ARthoMove Guindy Wellness Hospital,58,H019-B01,Dr. Isha Kumar,Knee Specialist,9420661549,isha.kumar191@arthomove-demo.com,"MBBS, MS Ortho",600,9,Active
+192,19,ARthoMove Guindy Wellness Hospital,58,H019-B01,Dr. Vikram Nair,Rehabilitation Consultant,9633761851,vikram.nair192@arthomove-demo.com,PhD Physiotherapy,750,8,Active
+193,19,ARthoMove Guindy Wellness Hospital,58,H019-B01,Dr. Pooja Reddy,Pediatric Orthopedist,8509286052,pooja.reddy193@arthomove-demo.com,"BPT, MPT Orthopedics",400,1,Active
+194,19,ARthoMove Guindy Wellness Hospital,59,H019-B02,Dr. Aditya Chopra,Neuro Physiotherapist,7856302750,aditya.chopra194@arthomove-demo.com,"MBBS, MS Ortho",800,0,Inactive
+195,19,ARthoMove Guindy Wellness Hospital,59,H019-B02,Dr. Rahul Mehta,Knee Specialist,9953056418,rahul.mehta195@arthomove-demo.com,"MBBS, Fellowship Spine",1200,4,Active
+196,19,ARthoMove Guindy Wellness Hospital,59,H019-B02,Dr. Farhan Das,Shoulder Specialist,8521383507,farhan.das196@arthomove-demo.com,"BPT, MPT Orthopedics",750,5,Active
+197,19,ARthoMove Guindy Wellness Hospital,60,H019-B03,Dr. Ravi Mishra,Physiotherapist,8873048625,ravi.mishra197@arthomove-demo.com,"BPT, MPT Orthopedics",1000,2,Active
+198,19,ARthoMove Guindy Wellness Hospital,60,H019-B03,Dr. Neha Chopra,Pediatric Orthopedist,9645099990,neha.chopra198@arthomove-demo.com,"MBBS, MS Ortho",800,0,Active
+199,19,ARthoMove Guindy Wellness Hospital,60,H019-B03,Dr. Suresh Chopra,Rehabilitation Consultant,7908352118,suresh.chopra199@arthomove-demo.com,PhD Physiotherapy,1000,5,Active
+200,20,CarePlus Secunderabad Healthcare Hub,61,H020-B01,Dr. Arjun Kumar,Shoulder Specialist,7609085818,arjun.kumar200@arthomove-demo.com,"BPT, MPT Orthopedics",1000,0,Active
+201,20,CarePlus Secunderabad Healthcare Hub,61,H020-B01,Dr. Divya Sharma,Sports Rehab Specialist,9736158736,divya.sharma201@arthomove-demo.com,PhD Physiotherapy,800,8,Active
+202,20,CarePlus Secunderabad Healthcare Hub,61,H020-B01,Dr. Ravi Mishra,Rehabilitation Consultant,8403439881,ravi.mishra202@arthomove-demo.com,"MBBS, Diploma Orthopedics",500,8,Active
+203,20,CarePlus Secunderabad Healthcare Hub,61,H020-B01,Dr. Priya Menon,Orthopedic Surgeon,7113869087,priya.menon203@arthomove-demo.com,"BPT, MPT Orthopedics",1500,8,Active
+204,20,CarePlus Secunderabad Healthcare Hub,61,H020-B01,Dr. Vikram Pillai,Rehabilitation Consultant,8622021237,vikram.pillai204@arthomove-demo.com,"MBBS, DNB Ortho",1200,6,Active
+205,20,CarePlus Secunderabad Healthcare Hub,62,H020-B02,Dr. Sneha Gupta,Rehabilitation Consultant,8026208581,sneha.gupta205@arthomove-demo.com,"MBBS, Diploma Orthopedics",1500,6,Active
+206,20,CarePlus Secunderabad Healthcare Hub,62,H020-B02,Dr. Isha Nair,Knee Specialist,9666562241,isha.nair206@arthomove-demo.com,"MBBS, Diploma Orthopedics",1500,7,Active
+207,20,CarePlus Secunderabad Healthcare Hub,62,H020-B02,Dr. Ravi Singh,Orthopedic Surgeon,8713171978,ravi.singh207@arthomove-demo.com,PhD Physiotherapy,400,0,Active
+208,20,CarePlus Secunderabad Healthcare Hub,63,H020-B03,Dr. Sanjay Patel,Physiotherapist,8535821072,sanjay.patel208@arthomove-demo.com,"MBBS, Diploma Orthopedics",500,1,Active
+209,20,CarePlus Secunderabad Healthcare Hub,63,H020-B03,Dr. Sneha Menon,Pediatric Orthopedist,8718375307,sneha.menon209@arthomove-demo.com,PhD Physiotherapy,1200,2,Active
+210,20,CarePlus Secunderabad Healthcare Hub,63,H020-B03,Dr. Anjali Jain,Neuro Physiotherapist,8913952150,anjali.jain210@arthomove-demo.com,"BPT, MPT Orthopedics",1000,5,Active
+211,20,CarePlus Secunderabad Healthcare Hub,63,H020-B03,Dr. Sneha Jain,Orthopedic Surgeon,7602446546,sneha.jain211@arthomove-demo.com,"MBBS, Diploma Orthopedics",1500,1,Active
+212,20,CarePlus Secunderabad Healthcare Hub,64,H020-B04,Dr. Ritika Verma,Sports Rehab Specialist,7925468627,ritika.verma212@arthomove-demo.com,"MBBS, DNB Ortho",1200,5,Active
+213,20,CarePlus Secunderabad Healthcare Hub,64,H020-B04,Dr. Karthik Kumar,Neuro Physiotherapist,7757691716,karthik.kumar213@arthomove-demo.com,"MBBS, DNB Ortho",500,0,Active
+214,20,CarePlus Secunderabad Healthcare Hub,64,H020-B04,Dr. Arjun Nair,Pediatric Orthopedist,8486983052,arjun.nair214@arthomove-demo.com,"BPT, MPT Orthopedics",1000,10,Active
+215,20,CarePlus Secunderabad Healthcare Hub,64,H020-B04,Dr. Vikram Jain,Sports Rehab Specialist,7805983124,vikram.jain215@arthomove-demo.com,"MBBS, Fellowship Spine",1200,0,Active
+216,21,Prime Rehab Malviya Nagar Healthcare Hub,65,H021-B01,Dr. Isha Das,Pediatric Orthopedist,7267131753,isha.das216@arthomove-demo.com,PhD Physiotherapy,500,7,Active
+217,21,Prime Rehab Malviya Nagar Healthcare Hub,65,H021-B01,Dr. Suresh Nair,Sports Rehab Specialist,7182562472,suresh.nair217@arthomove-demo.com,PhD Physiotherapy,600,5,Active
+218,21,Prime Rehab Malviya Nagar Healthcare Hub,65,H021-B01,Dr. Vikram Iyer,Spine Specialist,7094416423,vikram.iyer218@arthomove-demo.com,"BPT, MPT Orthopedics",750,5,Active
+219,21,Prime Rehab Malviya Nagar Healthcare Hub,66,H021-B02,Dr. Manoj Mishra,Physiotherapist,8047614378,manoj.mishra219@arthomove-demo.com,"MBBS, Fellowship Spine",800,8,Active
+220,21,Prime Rehab Malviya Nagar Healthcare Hub,66,H021-B02,Dr. Rohan Das,Spine Specialist,7708649426,rohan.das220@arthomove-demo.com,"MBBS, Fellowship Spine",750,4,Active
+221,21,Prime Rehab Malviya Nagar Healthcare Hub,66,H021-B02,Dr. Manoj Sharma,Pediatric Orthopedist,9407030880,manoj.sharma221@arthomove-demo.com,"BPT, MPT Orthopedics",600,7,Active
+222,21,Prime Rehab Malviya Nagar Healthcare Hub,67,H021-B03,Dr. Ravi Verma,Pediatric Orthopedist,9125949722,ravi.verma222@arthomove-demo.com,"MBBS, MS Ortho",1200,3,Active
+223,21,Prime Rehab Malviya Nagar Healthcare Hub,67,H021-B03,Dr. Aditya Joshi,Spine Specialist,7600014407,aditya.joshi223@arthomove-demo.com,PhD Physiotherapy,500,10,Active
+224,21,Prime Rehab Malviya Nagar Healthcare Hub,67,H021-B03,Dr. Vikram Chopra,Physiotherapist,9770040930,vikram.chopra224@arthomove-demo.com,"MBBS, Fellowship Spine",1200,5,Active
+225,21,Prime Rehab Malviya Nagar Healthcare Hub,67,H021-B03,Dr. Rahul Reddy,Neuro Physiotherapist,7539707745,rahul.reddy225@arthomove-demo.com,"MBBS, Fellowship Spine",600,1,Active
+226,21,Prime Rehab Malviya Nagar Healthcare Hub,67,H021-B03,Dr. Ravi Jain,Knee Specialist,7359605302,ravi.jain226@arthomove-demo.com,PhD Physiotherapy,600,0,Active
+227,22,ApolloCare Navrangpura Rehab Institute,68,H022-B01,Dr. Anjali Menon,Pediatric Orthopedist,7203025209,anjali.menon227@arthomove-demo.com,"MBBS, Fellowship Spine",400,4,Active
+228,22,ApolloCare Navrangpura Rehab Institute,68,H022-B01,Dr. Arjun Mishra,Knee Specialist,7472660235,arjun.mishra228@arthomove-demo.com,"BPT, MPT Orthopedics",400,6,Active
+229,22,ApolloCare Navrangpura Rehab Institute,69,H022-B02,Dr. Aditya Nair,Spine Specialist,7023209140,aditya.nair229@arthomove-demo.com,"BPT, MPT Orthopedics",1000,4,Active
+230,22,ApolloCare Navrangpura Rehab Institute,69,H022-B02,Dr. Aditya Das,Sports Rehab Specialist,9410740274,aditya.das230@arthomove-demo.com,"MBBS, MS Ortho",800,7,Active
+231,22,ApolloCare Navrangpura Rehab Institute,69,H022-B02,Dr. Pooja Patel,Shoulder Specialist,8949638309,pooja.patel231@arthomove-demo.com,"MBBS, Diploma Orthopedics",1200,7,Active
+232,23,NeuroOrtho Powai Rehab Institute,70,H023-B01,Dr. Nisha Kumar,Orthopedic Surgeon,8892584907,nisha.kumar232@arthomove-demo.com,"BPT, MPT Sports",750,3,Active
+233,23,NeuroOrtho Powai Rehab Institute,70,H023-B01,Dr. Meera Patel,Knee Specialist,9315181788,meera.patel233@arthomove-demo.com,"MBBS, DNB Ortho",1200,3,Active
+234,23,NeuroOrtho Powai Rehab Institute,70,H023-B01,Dr. Isha Menon,Neuro Physiotherapist,9157908945,isha.menon234@arthomove-demo.com,PhD Physiotherapy,500,9,Active
+235,23,NeuroOrtho Powai Rehab Institute,70,H023-B01,Dr. Manoj Menon,Neuro Physiotherapist,8975729273,manoj.menon235@arthomove-demo.com,"BPT, MPT Orthopedics",750,9,Active
+236,23,NeuroOrtho Powai Rehab Institute,71,H023-B02,Dr. Farhan Verma,Knee Specialist,8900385025,farhan.verma236@arthomove-demo.com,MPT Neuro Rehab,800,0,Active
+237,23,NeuroOrtho Powai Rehab Institute,71,H023-B02,Dr. Varun Menon,Pain Management Specialist,8867228839,varun.menon237@arthomove-demo.com,"MBBS, MS Ortho",800,4,Active
+238,23,NeuroOrtho Powai Rehab Institute,71,H023-B02,Dr. Rahul Chopra,Knee Specialist,8257068026,rahul.chopra238@arthomove-demo.com,"BPT, MPT Sports",1000,2,Active
+239,23,NeuroOrtho Powai Rehab Institute,71,H023-B02,Dr. Anjali Iyer,Knee Specialist,7822224005,anjali.iyer239@arthomove-demo.com,"BPT, MPT Sports",1200,10,Active
+240,23,NeuroOrtho Powai Rehab Institute,71,H023-B02,Dr. Rahul Khan,Sports Rehab Specialist,8896780826,rahul.khan240@arthomove-demo.com,"MBBS, Fellowship Spine",400,2,Active
+241,23,NeuroOrtho Powai Rehab Institute,72,H023-B03,Dr. Divya Gupta,Pediatric Orthopedist,7612590163,divya.gupta241@arthomove-demo.com,"MBBS, Fellowship Spine",500,1,Active
+242,23,NeuroOrtho Powai Rehab Institute,72,H023-B03,Dr. Priya Sharma,Physiotherapist,9301481160,priya.sharma242@arthomove-demo.com,"MBBS, Fellowship Spine",1200,10,Active
+243,23,NeuroOrtho Powai Rehab Institute,72,H023-B03,Dr. Pooja Patel,Neuro Physiotherapist,7144130686,pooja.patel243@arthomove-demo.com,"MBBS, DNB Ortho",400,9,Active
+244,24,NeuroOrtho Dwarka Healthcare Hub,73,H024-B01,Dr. Neha Mishra,Orthopedic Surgeon,7084376992,neha.mishra244@arthomove-demo.com,PhD Physiotherapy,600,5,Active
+245,24,NeuroOrtho Dwarka Healthcare Hub,73,H024-B01,Dr. Amit Mehta,Spine Specialist,8937063250,amit.mehta245@arthomove-demo.com,"BPT, MPT Sports",600,4,Active
+246,24,NeuroOrtho Dwarka Healthcare Hub,73,H024-B01,Dr. Swetha Mehta,Spine Specialist,9776665052,swetha.mehta246@arthomove-demo.com,"MBBS, Diploma Orthopedics",500,7,Active
+247,24,NeuroOrtho Dwarka Healthcare Hub,73,H024-B01,Dr. Kavya Verma,Rehabilitation Consultant,8224945104,kavya.verma247@arthomove-demo.com,PhD Physiotherapy,800,6,Active
+248,24,NeuroOrtho Dwarka Healthcare Hub,74,H024-B02,Dr. Divya Singh,Pediatric Orthopedist,9208564901,divya.singh248@arthomove-demo.com,"BPT, MPT Sports",800,10,Active
+249,24,NeuroOrtho Dwarka Healthcare Hub,74,H024-B02,Dr. Anjali Mishra,Neuro Physiotherapist,9972073827,anjali.mishra249@arthomove-demo.com,"MBBS, Diploma Orthopedics",750,2,Active
+250,24,NeuroOrtho Dwarka Healthcare Hub,75,H024-B03,Dr. Rohan Reddy,Orthopedic Surgeon,7344009522,rohan.reddy250@arthomove-demo.com,"MBBS, Fellowship Spine",1200,7,Active
+251,24,NeuroOrtho Dwarka Healthcare Hub,75,H024-B03,Dr. Divya Thomas,Spine Specialist,9301000908,divya.thomas251@arthomove-demo.com,"BPT, MPT Sports",1200,0,Active
+252,24,NeuroOrtho Dwarka Healthcare Hub,75,H024-B03,Dr. Isha Joshi,Physiotherapist,9028354158,isha.joshi252@arthomove-demo.com,"MBBS, DNB Ortho",400,1,Active
+253,24,NeuroOrtho Dwarka Healthcare Hub,75,H024-B03,Dr. Sneha Thomas,Rehabilitation Consultant,9474705311,sneha.thomas253@arthomove-demo.com,"MBBS, MS Ortho",500,9,Active
+254,24,NeuroOrtho Dwarka Healthcare Hub,75,H024-B03,Dr. Sneha Nair,Sports Rehab Specialist,8931806200,sneha.nair254@arthomove-demo.com,"MBBS, Diploma Orthopedics",750,1,Active
+255,25,CarePlus Hadapsar Wellness Hospital,76,H025-B01,Dr. Ravi Reddy,Rehabilitation Consultant,8862673664,ravi.reddy255@arthomove-demo.com,MPT Neuro Rehab,750,1,Active
+256,25,CarePlus Hadapsar Wellness Hospital,76,H025-B01,Dr. Aditya Das,Rehabilitation Consultant,7450509284,aditya.das256@arthomove-demo.com,PhD Physiotherapy,400,1,Active
+257,25,CarePlus Hadapsar Wellness Hospital,76,H025-B01,Dr. Suresh Patel,Physiotherapist,8851502045,suresh.patel257@arthomove-demo.com,"MBBS, MS Ortho",1200,9,Active
+258,25,CarePlus Hadapsar Wellness Hospital,77,H025-B02,Dr. Aditya Mehta,Spine Specialist,9297711506,aditya.mehta258@arthomove-demo.com,"MBBS, DNB Ortho",500,2,Active
+259,25,CarePlus Hadapsar Wellness Hospital,77,H025-B02,Dr. Manoj Patel,Neuro Physiotherapist,9915304450,manoj.patel259@arthomove-demo.com,"MBBS, MS Ortho",800,3,Active
+260,25,CarePlus Hadapsar Wellness Hospital,77,H025-B02,Dr. Rahul Iyer,Rehabilitation Consultant,7013882532,rahul.iyer260@arthomove-demo.com,"MBBS, MS Ortho",800,4,Active
+261,25,CarePlus Hadapsar Wellness Hospital,77,H025-B02,Dr. Pooja Iyer,Pediatric Orthopedist,8713771886,pooja.iyer261@arthomove-demo.com,"MBBS, DNB Ortho",600,4,Active
+262,25,CarePlus Hadapsar Wellness Hospital,77,H025-B02,Dr. Suresh Mishra,Spine Specialist,8837936315,suresh.mishra262@arthomove-demo.com,"MBBS, DNB Ortho",400,3,Active
+263,25,CarePlus Hadapsar Wellness Hospital,78,H025-B03,Dr. Anjali Thomas,Physiotherapist,9563163129,anjali.thomas263@arthomove-demo.com,"MBBS, Diploma Orthopedics",1500,6,Active
+264,25,CarePlus Hadapsar Wellness Hospital,78,H025-B03,Dr. Pooja Menon,Orthopedic Surgeon,8968590964,pooja.menon264@arthomove-demo.com,MPT Neuro Rehab,750,10,Active
+265,26,HealWell Rohini Medical Center,79,H026-B01,Dr. Ravi Chopra,Knee Specialist,7591765047,ravi.chopra265@arthomove-demo.com,"BPT, MPT Orthopedics",800,9,Active
+266,26,HealWell Rohini Medical Center,79,H026-B01,Dr. Meera Singh,Pain Management Specialist,9946896331,meera.singh266@arthomove-demo.com,"BPT, MPT Orthopedics",800,3,Active
+267,26,HealWell Rohini Medical Center,79,H026-B01,Dr. Pooja Verma,Knee Specialist,7420767514,pooja.verma267@arthomove-demo.com,"MBBS, Diploma Orthopedics",1500,5,Active
+268,26,HealWell Rohini Medical Center,79,H026-B01,Dr. Pooja Das,Pediatric Orthopedist,9914233029,pooja.das268@arthomove-demo.com,"MBBS, DNB Ortho",1000,5,Active
+269,26,HealWell Rohini Medical Center,79,H026-B01,Dr. Ritika Rao,Sports Rehab Specialist,8816759238,ritika.rao269@arthomove-demo.com,"BPT, MPT Sports",1200,2,Active
+270,26,HealWell Rohini Medical Center,80,H026-B02,Dr. Priya Das,Spine Specialist,7440778110,priya.das270@arthomove-demo.com,PhD Physiotherapy,400,9,Active
+271,26,HealWell Rohini Medical Center,80,H026-B02,Dr. Priya Iyer,Spine Specialist,8794719903,priya.iyer271@arthomove-demo.com,"MBBS, MS Ortho",1200,2,Active
+272,26,HealWell Rohini Medical Center,81,H026-B03,Dr. Karthik Joshi,Sports Rehab Specialist,7832353068,karthik.joshi272@arthomove-demo.com,MPT Neuro Rehab,400,5,Inactive
+273,26,HealWell Rohini Medical Center,81,H026-B03,Dr. Kavya Singh,Rehabilitation Consultant,9927668098,kavya.singh273@arthomove-demo.com,"MBBS, Fellowship Spine",750,1,Active
+274,26,HealWell Rohini Medical Center,81,H026-B03,Dr. Amit Mehta,Shoulder Specialist,8053926096,amit.mehta274@arthomove-demo.com,"MBBS, Diploma Orthopedics",800,7,Active
+275,26,HealWell Rohini Medical Center,82,H026-B04,Dr. Swetha Reddy,Pediatric Orthopedist,9148722557,swetha.reddy275@arthomove-demo.com,MPT Neuro Rehab,800,2,Active
+276,26,HealWell Rohini Medical Center,82,H026-B04,Dr. Lakshmi Iyer,Spine Specialist,7347040714,lakshmi.iyer276@arthomove-demo.com,PhD Physiotherapy,1200,8,Active
+277,26,HealWell Rohini Medical Center,82,H026-B04,Dr. Ravi Nair,Physiotherapist,9252611978,ravi.nair277@arthomove-demo.com,"MBBS, DNB Ortho",800,10,Active
+278,27,MotionCare Malviya Nagar Rehab Institute,83,H027-B01,Dr. Swetha Mehta,Physiotherapist,9140128331,swetha.mehta278@arthomove-demo.com,MPT Neuro Rehab,400,10,Active
+279,27,MotionCare Malviya Nagar Rehab Institute,83,H027-B01,Dr. Varun Verma,Physiotherapist,8351289622,varun.verma279@arthomove-demo.com,"MBBS, MS Ortho",500,3,Active
+280,27,MotionCare Malviya Nagar Rehab Institute,83,H027-B01,Dr. Nisha Nair,Shoulder Specialist,7805376425,nisha.nair280@arthomove-demo.com,MPT Neuro Rehab,1000,8,Active
+281,27,MotionCare Malviya Nagar Rehab Institute,84,H027-B02,Dr. Farhan Kumar,Orthopedic Surgeon,7920182852,farhan.kumar281@arthomove-demo.com,"BPT, MPT Sports",600,3,Active
+282,27,MotionCare Malviya Nagar Rehab Institute,84,H027-B02,Dr. Ritika Verma,Neuro Physiotherapist,8434354978,ritika.verma282@arthomove-demo.com,"MBBS, Diploma Orthopedics",600,7,Inactive
+283,27,MotionCare Malviya Nagar Rehab Institute,84,H027-B02,Dr. Isha Thomas,Physiotherapist,7787355404,isha.thomas283@arthomove-demo.com,"MBBS, DNB Ortho",800,2,Active
+284,27,MotionCare Malviya Nagar Rehab Institute,84,H027-B02,Dr. Vikram Gupta,Orthopedic Surgeon,8533023641,vikram.gupta284@arthomove-demo.com,"MBBS, DNB Ortho",1500,8,Active
+285,27,MotionCare Malviya Nagar Rehab Institute,84,H027-B02,Dr. Suresh Chopra,Spine Specialist,8163881687,suresh.chopra285@arthomove-demo.com,MPT Neuro Rehab,400,0,Active
+286,27,MotionCare Malviya Nagar Rehab Institute,85,H027-B03,Dr. Manoj Nair,Rehabilitation Consultant,8272081472,manoj.nair286@arthomove-demo.com,"BPT, MPT Sports",400,6,Active
+287,27,MotionCare Malviya Nagar Rehab Institute,85,H027-B03,Dr. Farhan Pillai,Pediatric Orthopedist,8673887246,farhan.pillai287@arthomove-demo.com,"BPT, MPT Orthopedics",750,1,Active
+288,27,MotionCare Malviya Nagar Rehab Institute,85,H027-B03,Dr. Ritika Singh,Physiotherapist,9654662897,ritika.singh288@arthomove-demo.com,"BPT, MPT Sports",1500,9,Active
+289,27,MotionCare Malviya Nagar Rehab Institute,85,H027-B03,Dr. Arjun Joshi,Neuro Physiotherapist,7314564572,arjun.joshi289@arthomove-demo.com,"MBBS, DNB Ortho",750,8,Active
+290,27,MotionCare Malviya Nagar Rehab Institute,85,H027-B03,Dr. Sanjay Gupta,Orthopedic Surgeon,9992665361,sanjay.gupta290@arthomove-demo.com,"MBBS, Diploma Orthopedics",400,8,Active
+291,27,MotionCare Malviya Nagar Rehab Institute,86,H027-B04,Dr. Priya Joshi,Rehabilitation Consultant,7631864176,priya.joshi291@arthomove-demo.com,"BPT, MPT Orthopedics",600,4,Active
+292,27,MotionCare Malviya Nagar Rehab Institute,86,H027-B04,Dr. Nisha Patel,Pediatric Orthopedist,9771555906,nisha.patel292@arthomove-demo.com,"MBBS, DNB Ortho",400,9,Active
+293,27,MotionCare Malviya Nagar Rehab Institute,86,H027-B04,Dr. Rahul Kumar,Rehabilitation Consultant,9342437539,rahul.kumar293@arthomove-demo.com,"BPT, MPT Orthopedics",750,10,Active
+294,28,OrthoLife Anna Nagar Rehab Institute,87,H028-B01,Dr. Ritika Jain,Orthopedic Surgeon,9788528589,ritika.jain294@arthomove-demo.com,PhD Physiotherapy,750,2,Active
+295,28,OrthoLife Anna Nagar Rehab Institute,87,H028-B01,Dr. Lakshmi Gupta,Pain Management Specialist,9160435983,lakshmi.gupta295@arthomove-demo.com,MPT Neuro Rehab,1500,10,Active
+296,28,OrthoLife Anna Nagar Rehab Institute,87,H028-B01,Dr. Karthik Nair,Sports Rehab Specialist,8550617906,karthik.nair296@arthomove-demo.com,"MBBS, Diploma Orthopedics",400,0,Active
+297,28,OrthoLife Anna Nagar Rehab Institute,87,H028-B01,Dr. Varun Rao,Shoulder Specialist,7039344907,varun.rao297@arthomove-demo.com,PhD Physiotherapy,500,3,Active
+298,28,OrthoLife Anna Nagar Rehab Institute,88,H028-B02,Dr. Sneha Singh,Neuro Physiotherapist,9606472452,sneha.singh298@arthomove-demo.com,MPT Neuro Rehab,1200,8,Active
+299,28,OrthoLife Anna Nagar Rehab Institute,88,H028-B02,Dr. Rahul Rao,Orthopedic Surgeon,8599747539,rahul.rao299@arthomove-demo.com,PhD Physiotherapy,600,8,Active
+300,28,OrthoLife Anna Nagar Rehab Institute,88,H028-B02,Dr. Pooja Patel,Pain Management Specialist,7717847214,pooja.patel300@arthomove-demo.com,PhD Physiotherapy,600,0,Active
+301,28,OrthoLife Anna Nagar Rehab Institute,88,H028-B02,Dr. Karthik Khan,Shoulder Specialist,8292676988,karthik.khan301@arthomove-demo.com,"MBBS, Diploma Orthopedics",400,9,Active
+302,28,OrthoLife Anna Nagar Rehab Institute,89,H028-B03,Dr. Suresh Das,Sports Rehab Specialist,9760320877,suresh.das302@arthomove-demo.com,"BPT, MPT Sports",1500,8,Active
+303,28,OrthoLife Anna Nagar Rehab Institute,89,H028-B03,Dr. Meera Verma,Pain Management Specialist,8702772871,meera.verma303@arthomove-demo.com,MPT Neuro Rehab,750,6,Active
+304,28,OrthoLife Anna Nagar Rehab Institute,89,H028-B03,Dr. Manoj Chopra,Pain Management Specialist,9325460189,manoj.chopra304@arthomove-demo.com,"BPT, MPT Orthopedics",500,2,Active
+305,28,OrthoLife Anna Nagar Rehab Institute,89,H028-B03,Dr. Priya Reddy,Pediatric Orthopedist,7298908881,priya.reddy305@arthomove-demo.com,PhD Physiotherapy,800,5,Active
+306,28,OrthoLife Anna Nagar Rehab Institute,89,H028-B03,Dr. Rahul Thomas,Knee Specialist,7599469669,rahul.thomas306@arthomove-demo.com,"BPT, MPT Sports",1500,3,Active
+307,29,ARthoMove Malviya Nagar Medical Center,90,H029-B01,Dr. Rohan Thomas,Pain Management Specialist,8416371206,rohan.thomas307@arthomove-demo.com,"BPT, MPT Sports",1200,0,On Leave
+308,29,ARthoMove Malviya Nagar Medical Center,90,H029-B01,Dr. Divya Mehta,Sports Rehab Specialist,8014584081,divya.mehta308@arthomove-demo.com,"BPT, MPT Orthopedics",1500,5,Active
+309,29,ARthoMove Malviya Nagar Medical Center,90,H029-B01,Dr. Nisha Patel,Pediatric Orthopedist,9508113640,nisha.patel309@arthomove-demo.com,"BPT, MPT Sports",500,9,Active
+310,29,ARthoMove Malviya Nagar Medical Center,90,H029-B01,Dr. Vikram Khan,Neuro Physiotherapist,9770078812,vikram.khan310@arthomove-demo.com,MPT Neuro Rehab,800,6,Active
+311,29,ARthoMove Malviya Nagar Medical Center,91,H029-B02,Dr. Anjali Chopra,Orthopedic Surgeon,8063516852,anjali.chopra311@arthomove-demo.com,"MBBS, DNB Ortho",1500,7,Inactive
+312,29,ARthoMove Malviya Nagar Medical Center,91,H029-B02,Dr. Lakshmi Pillai,Orthopedic Surgeon,8997833150,lakshmi.pillai312@arthomove-demo.com,"BPT, MPT Sports",750,10,Active
+313,29,ARthoMove Malviya Nagar Medical Center,91,H029-B02,Dr. Isha Mishra,Pain Management Specialist,7988837434,isha.mishra313@arthomove-demo.com,MPT Neuro Rehab,1500,0,Active
+314,29,ARthoMove Malviya Nagar Medical Center,92,H029-B03,Dr. Kavya Pillai,Pediatric Orthopedist,8924343548,kavya.pillai314@arthomove-demo.com,PhD Physiotherapy,1200,3,Active
+315,29,ARthoMove Malviya Nagar Medical Center,92,H029-B03,Dr. Ravi Reddy,Physiotherapist,9333528660,ravi.reddy315@arthomove-demo.com,"BPT, MPT Orthopedics",1000,9,Active
+316,29,ARthoMove Malviya Nagar Medical Center,93,H029-B04,Dr. Suresh Rao,Pediatric Orthopedist,8083469544,suresh.rao316@arthomove-demo.com,MPT Neuro Rehab,1500,0,Active
+317,29,ARthoMove Malviya Nagar Medical Center,93,H029-B04,Dr. Pooja Patel,Pediatric Orthopedist,7627456698,pooja.patel317@arthomove-demo.com,"BPT, MPT Sports",1000,9,Active
+318,30,NeuroOrtho Whitefield Healthcare Hub,94,H030-B01,Dr. Swetha Reddy,Rehabilitation Consultant,9725442253,swetha.reddy318@arthomove-demo.com,MPT Neuro Rehab,600,0,Active
+319,30,NeuroOrtho Whitefield Healthcare Hub,94,H030-B01,Dr. Isha Joshi,Rehabilitation Consultant,7503455388,isha.joshi319@arthomove-demo.com,"MBBS, DNB Ortho",600,8,Active
+320,30,NeuroOrtho Whitefield Healthcare Hub,94,H030-B01,Dr. Nisha Patel,Neuro Physiotherapist,8665600762,nisha.patel320@arthomove-demo.com,"MBBS, DNB Ortho",400,9,Active
+321,30,NeuroOrtho Whitefield Healthcare Hub,95,H030-B02,Dr. Manoj Gupta,Rehabilitation Consultant,8996736720,manoj.gupta321@arthomove-demo.com,PhD Physiotherapy,400,0,Active
+322,30,NeuroOrtho Whitefield Healthcare Hub,95,H030-B02,Dr. Ravi Nair,Spine Specialist,8432058699,ravi.nair322@arthomove-demo.com,"MBBS, Diploma Orthopedics",1500,5,Active
+323,30,NeuroOrtho Whitefield Healthcare Hub,95,H030-B02,Dr. Suresh Singh,Rehabilitation Consultant,7945037548,suresh.singh323@arthomove-demo.com,"MBBS, MS Ortho",1200,8,Active
+324,30,NeuroOrtho Whitefield Healthcare Hub,95,H030-B02,Dr. Sanjay Chopra,Pediatric Orthopedist,7337687058,sanjay.chopra324@arthomove-demo.com,"MBBS, MS Ortho",800,2,Active
+325,30,NeuroOrtho Whitefield Healthcare Hub,96,H030-B03,Dr. Varun Rao,Knee Specialist,9598444088,varun.rao325@arthomove-demo.com,MPT Neuro Rehab,1500,10,Inactive
+326,30,NeuroOrtho Whitefield Healthcare Hub,96,H030-B03,Dr. Sanjay Reddy,Physiotherapist,9724937979,sanjay.reddy326@arthomove-demo.com,"MBBS, MS Ortho",600,0,Active
+327,30,NeuroOrtho Whitefield Healthcare Hub,96,H030-B03,Dr. Rahul Reddy,Shoulder Specialist,8849674166,rahul.reddy327@arthomove-demo.com,"MBBS, DNB Ortho",1000,10,Active
+328,31,NeuroOrtho Vyttila Wellness Hospital,97,H031-B01,Dr. Divya Thomas,Knee Specialist,7394026908,divya.thomas328@arthomove-demo.com,PhD Physiotherapy,800,10,Active
+329,31,NeuroOrtho Vyttila Wellness Hospital,97,H031-B01,Dr. Vikram Sharma,Knee Specialist,9221689745,vikram.sharma329@arthomove-demo.com,"BPT, MPT Sports",500,2,Active
+330,31,NeuroOrtho Vyttila Wellness Hospital,97,H031-B01,Dr. Isha Kumar,Orthopedic Surgeon,9702751005,isha.kumar330@arthomove-demo.com,PhD Physiotherapy,750,1,Active
+331,31,NeuroOrtho Vyttila Wellness Hospital,97,H031-B01,Dr. Neha Gupta,Spine Specialist,8484951657,neha.gupta331@arthomove-demo.com,"MBBS, MS Ortho",400,10,Active
+332,31,NeuroOrtho Vyttila Wellness Hospital,98,H031-B02,Dr. Priya Singh,Pediatric Orthopedist,9682119569,priya.singh332@arthomove-demo.com,PhD Physiotherapy,1500,1,Active
+333,31,NeuroOrtho Vyttila Wellness Hospital,98,H031-B02,Dr. Varun Pillai,Neuro Physiotherapist,9925007516,varun.pillai333@arthomove-demo.com,"MBBS, Diploma Orthopedics",800,9,On Leave
+334,31,NeuroOrtho Vyttila Wellness Hospital,99,H031-B03,Dr. Pooja Pillai,Pain Management Specialist,9441010427,pooja.pillai334@arthomove-demo.com,"MBBS, Diploma Orthopedics",750,4,Inactive
+335,31,NeuroOrtho Vyttila Wellness Hospital,99,H031-B03,Dr. Pooja Sharma,Pediatric Orthopedist,8006039810,pooja.sharma335@arthomove-demo.com,"MBBS, Diploma Orthopedics",1000,6,Active
+336,32,SpinePlus Kakkanad Hospital,100,H032-B01,Dr. Sneha Menon,Physiotherapist,9234284022,sneha.menon336@arthomove-demo.com,"MBBS, Fellowship Spine",1000,7,Active
+337,32,SpinePlus Kakkanad Hospital,100,H032-B01,Dr. Anjali Mishra,Rehabilitation Consultant,8999635768,anjali.mishra337@arthomove-demo.com,PhD Physiotherapy,800,7,Active
+338,32,SpinePlus Kakkanad Hospital,100,H032-B01,Dr. Sneha Rao,Rehabilitation Consultant,7408170284,sneha.rao338@arthomove-demo.com,PhD Physiotherapy,600,0,Active
+339,32,SpinePlus Kakkanad Hospital,100,H032-B01,Dr. Lakshmi Mishra,Neuro Physiotherapist,9321499970,lakshmi.mishra339@arthomove-demo.com,"BPT, MPT Sports",1500,1,Active
+340,32,SpinePlus Kakkanad Hospital,101,H032-B02,Dr. Neha Reddy,Sports Rehab Specialist,8223956721,neha.reddy340@arthomove-demo.com,"MBBS, Diploma Orthopedics",400,2,On Leave
+341,32,SpinePlus Kakkanad Hospital,101,H032-B02,Dr. Divya Das,Rehabilitation Consultant,7734188079,divya.das341@arthomove-demo.com,PhD Physiotherapy,1200,1,Active
+342,32,SpinePlus Kakkanad Hospital,101,H032-B02,Dr. Swetha Gupta,Pediatric Orthopedist,7954063856,swetha.gupta342@arthomove-demo.com,"MBBS, Diploma Orthopedics",600,0,Active
+343,32,SpinePlus Kakkanad Hospital,101,H032-B02,Dr. Rahul Verma,Physiotherapist,8842055553,rahul.verma343@arthomove-demo.com,MPT Neuro Rehab,1000,1,Active
+344,32,SpinePlus Kakkanad Hospital,101,H032-B02,Dr. Farhan Patel,Pain Management Specialist,9471124617,farhan.patel344@arthomove-demo.com,MPT Neuro Rehab,400,9,Inactive
+345,32,SpinePlus Kakkanad Hospital,102,H032-B03,Dr. Divya Das,Spine Specialist,8826829508,divya.das345@arthomove-demo.com,"BPT, MPT Orthopedics",1500,10,Inactive
+346,32,SpinePlus Kakkanad Hospital,102,H032-B03,Dr. Divya Mehta,Physiotherapist,9638110502,divya.mehta346@arthomove-demo.com,"MBBS, DNB Ortho",500,10,Active
+347,32,SpinePlus Kakkanad Hospital,102,H032-B03,Dr. Karthik Joshi,Knee Specialist,9142043845,karthik.joshi347@arthomove-demo.com,"MBBS, MS Ortho",1000,5,Active
+348,32,SpinePlus Kakkanad Hospital,102,H032-B03,Dr. Sneha Mehta,Knee Specialist,7230085789,sneha.mehta348@arthomove-demo.com,MPT Neuro Rehab,1500,2,Active
+349,33,MotionCare Tonk Road Hospital,103,H033-B01,Dr. Kavya Verma,Knee Specialist,8774054586,kavya.verma349@arthomove-demo.com,PhD Physiotherapy,600,3,Active
+350,33,MotionCare Tonk Road Hospital,103,H033-B01,Dr. Amit Verma,Knee Specialist,8568939116,amit.verma350@arthomove-demo.com,"MBBS, Fellowship Spine",1200,7,Active
+351,33,MotionCare Tonk Road Hospital,103,H033-B01,Dr. Farhan Gupta,Shoulder Specialist,8963389586,farhan.gupta351@arthomove-demo.com,"MBBS, Fellowship Spine",1000,0,Active
+352,33,MotionCare Tonk Road Hospital,104,H033-B02,Dr. Rohan Chopra,Pain Management Specialist,9293684268,rohan.chopra352@arthomove-demo.com,MPT Neuro Rehab,1500,8,Active
+353,33,MotionCare Tonk Road Hospital,104,H033-B02,Dr. Sneha Rao,Shoulder Specialist,7343390627,sneha.rao353@arthomove-demo.com,MPT Neuro Rehab,400,5,Active
+354,33,MotionCare Tonk Road Hospital,104,H033-B02,Dr. Kavya Thomas,Neuro Physiotherapist,8658617284,kavya.thomas354@arthomove-demo.com,"MBBS, Diploma Orthopedics",1500,4,Active
+355,33,MotionCare Tonk Road Hospital,104,H033-B02,Dr. Rahul Singh,Physiotherapist,8430297081,rahul.singh355@arthomove-demo.com,"BPT, MPT Sports",800,3,Active
+356,34,SpinePlus Porur Speciality Clinic,105,H034-B01,Dr. Ritika Thomas,Rehabilitation Consultant,7472334466,ritika.thomas356@arthomove-demo.com,PhD Physiotherapy,600,0,Active
+357,34,SpinePlus Porur Speciality Clinic,105,H034-B01,Dr. Sanjay Iyer,Pain Management Specialist,9068628868,sanjay.iyer357@arthomove-demo.com,"MBBS, Diploma Orthopedics",1200,10,Active
+358,34,SpinePlus Porur Speciality Clinic,105,H034-B01,Dr. Karthik Rao,Spine Specialist,8795428326,karthik.rao358@arthomove-demo.com,"MBBS, Diploma Orthopedics",500,2,Active
+359,34,SpinePlus Porur Speciality Clinic,105,H034-B01,Dr. Ravi Menon,Physiotherapist,7050755084,ravi.menon359@arthomove-demo.com,MPT Neuro Rehab,800,5,Inactive
+360,34,SpinePlus Porur Speciality Clinic,106,H034-B02,Dr. Manoj Jain,Neuro Physiotherapist,7952496017,manoj.jain360@arthomove-demo.com,"MBBS, MS Ortho",1500,2,Active
+361,34,SpinePlus Porur Speciality Clinic,106,H034-B02,Dr. Sanjay Joshi,Neuro Physiotherapist,7993357024,sanjay.joshi361@arthomove-demo.com,"MBBS, MS Ortho",600,10,Active
+362,34,SpinePlus Porur Speciality Clinic,106,H034-B02,Dr. Lakshmi Thomas,Orthopedic Surgeon,9961069637,lakshmi.thomas362@arthomove-demo.com,"MBBS, Fellowship Spine",1200,3,Active
+363,34,SpinePlus Porur Speciality Clinic,106,H034-B02,Dr. Kavya Singh,Sports Rehab Specialist,9141442460,kavya.singh363@arthomove-demo.com,"MBBS, Diploma Orthopedics",400,8,Active
+364,34,SpinePlus Porur Speciality Clinic,106,H034-B02,Dr. Neha Thomas,Shoulder Specialist,9674999020,neha.thomas364@arthomove-demo.com,"BPT, MPT Sports",600,6,Active
+365,34,SpinePlus Porur Speciality Clinic,107,H034-B03,Dr. Meera Singh,Rehabilitation Consultant,8435110269,meera.singh365@arthomove-demo.com,"BPT, MPT Sports",500,6,Active
+366,34,SpinePlus Porur Speciality Clinic,107,H034-B03,Dr. Varun Joshi,Knee Specialist,8547018977,varun.joshi366@arthomove-demo.com,MPT Neuro Rehab,1500,2,Active
+367,34,SpinePlus Porur Speciality Clinic,108,H034-B04,Dr. Manoj Joshi,Shoulder Specialist,9066881557,manoj.joshi367@arthomove-demo.com,"BPT, MPT Orthopedics",500,6,Active
+368,34,SpinePlus Porur Speciality Clinic,108,H034-B04,Dr. Manoj Menon,Shoulder Specialist,8694298410,manoj.menon368@arthomove-demo.com,"MBBS, Fellowship Spine",1500,1,Active
+369,34,SpinePlus Porur Speciality Clinic,108,H034-B04,Dr. Priya Iyer,Rehabilitation Consultant,7806958621,priya.iyer369@arthomove-demo.com,MPT Neuro Rehab,600,2,Active
+370,34,SpinePlus Porur Speciality Clinic,108,H034-B04,Dr. Anjali Gupta,Neuro Physiotherapist,8313245275,anjali.gupta370@arthomove-demo.com,PhD Physiotherapy,1000,2,Active
+371,34,SpinePlus Porur Speciality Clinic,108,H034-B04,Dr. Isha Khan,Knee Specialist,7361657652,isha.khan371@arthomove-demo.com,"MBBS, DNB Ortho",800,7,Active
+372,35,MotionCare Hadapsar Wellness Hospital,109,H035-B01,Dr. Kavya Sharma,Pain Management Specialist,8615970001,kavya.sharma372@arthomove-demo.com,"MBBS, MS Ortho",400,1,Active
+373,35,MotionCare Hadapsar Wellness Hospital,109,H035-B01,Dr. Amit Menon,Physiotherapist,8718321305,amit.menon373@arthomove-demo.com,"MBBS, Fellowship Spine",1000,9,Active
+374,35,MotionCare Hadapsar Wellness Hospital,109,H035-B01,Dr. Varun Thomas,Pediatric Orthopedist,7851115673,varun.thomas374@arthomove-demo.com,"BPT, MPT Sports",400,6,On Leave
+375,35,MotionCare Hadapsar Wellness Hospital,109,H035-B01,Dr. Farhan Pillai,Pain Management Specialist,8455418925,farhan.pillai375@arthomove-demo.com,"BPT, MPT Sports",500,0,Active
+376,35,MotionCare Hadapsar Wellness Hospital,110,H035-B02,Dr. Divya Reddy,Pediatric Orthopedist,8986571689,divya.reddy376@arthomove-demo.com,PhD Physiotherapy,400,2,Active
+377,35,MotionCare Hadapsar Wellness Hospital,110,H035-B02,Dr. Meera Rao,Knee Specialist,7846017262,meera.rao377@arthomove-demo.com,"MBBS, MS Ortho",750,4,Active
+378,35,MotionCare Hadapsar Wellness Hospital,110,H035-B02,Dr. Arjun Singh,Physiotherapist,8788457321,arjun.singh378@arthomove-demo.com,PhD Physiotherapy,400,3,Active
+379,36,SpinePlus Velachery Hospital,111,H036-B01,Dr. Vikram Chopra,Pain Management Specialist,7250274962,vikram.chopra379@arthomove-demo.com,"BPT, MPT Sports",750,9,Active
+380,36,SpinePlus Velachery Hospital,111,H036-B01,Dr. Aditya Mehta,Spine Specialist,9608853298,aditya.mehta380@arthomove-demo.com,"MBBS, Diploma Orthopedics",1000,5,Active
+381,36,SpinePlus Velachery Hospital,112,H036-B02,Dr. Aditya Jain,Orthopedic Surgeon,9585537304,aditya.jain381@arthomove-demo.com,"BPT, MPT Sports",800,7,Active
+382,36,SpinePlus Velachery Hospital,112,H036-B02,Dr. Ritika Verma,Sports Rehab Specialist,8388176762,ritika.verma382@arthomove-demo.com,"MBBS, DNB Ortho",400,8,On Leave
+383,37,NeuroOrtho Singanallur Rehab Institute,113,H037-B01,Dr. Vikram Kumar,Sports Rehab Specialist,8708101481,vikram.kumar383@arthomove-demo.com,"MBBS, DNB Ortho",600,8,Active
+384,37,NeuroOrtho Singanallur Rehab Institute,113,H037-B01,Dr. Amit Menon,Pediatric Orthopedist,8745861805,amit.menon384@arthomove-demo.com,"BPT, MPT Sports",1000,5,Inactive
+385,37,NeuroOrtho Singanallur Rehab Institute,113,H037-B01,Dr. Rohan Thomas,Neuro Physiotherapist,8201104083,rohan.thomas385@arthomove-demo.com,"MBBS, Fellowship Spine",800,8,Active
+386,37,NeuroOrtho Singanallur Rehab Institute,113,H037-B01,Dr. Ritika Khan,Rehabilitation Consultant,7081001428,ritika.khan386@arthomove-demo.com,PhD Physiotherapy,600,10,Active
+387,37,NeuroOrtho Singanallur Rehab Institute,114,H037-B02,Dr. Varun Gupta,Pediatric Orthopedist,7729598677,varun.gupta387@arthomove-demo.com,"MBBS, Diploma Orthopedics",1200,6,Active
+388,37,NeuroOrtho Singanallur Rehab Institute,114,H037-B02,Dr. Farhan Kumar,Rehabilitation Consultant,7185088087,farhan.kumar388@arthomove-demo.com,MPT Neuro Rehab,750,5,Active
+389,37,NeuroOrtho Singanallur Rehab Institute,114,H037-B02,Dr. Neha Iyer,Pediatric Orthopedist,8736653978,neha.iyer389@arthomove-demo.com,MPT Neuro Rehab,500,5,Active
+390,37,NeuroOrtho Singanallur Rehab Institute,114,H037-B02,Dr. Meera Mehta,Spine Specialist,8598096282,meera.mehta390@arthomove-demo.com,"BPT, MPT Orthopedics",1000,1,Active
+391,37,NeuroOrtho Singanallur Rehab Institute,114,H037-B02,Dr. Vikram Pillai,Rehabilitation Consultant,8609797855,vikram.pillai391@arthomove-demo.com,"MBBS, MS Ortho",750,1,Active
+392,37,NeuroOrtho Singanallur Rehab Institute,115,H037-B03,Dr. Farhan Rao,Shoulder Specialist,7177539872,farhan.rao392@arthomove-demo.com,"MBBS, Fellowship Spine",1200,6,Active
+393,37,NeuroOrtho Singanallur Rehab Institute,115,H037-B03,Dr. Manoj Kumar,Shoulder Specialist,7258988108,manoj.kumar393@arthomove-demo.com,MPT Neuro Rehab,400,9,Active
+394,37,NeuroOrtho Singanallur Rehab Institute,115,H037-B03,Dr. Amit Kumar,Neuro Physiotherapist,9762295794,amit.kumar394@arthomove-demo.com,"MBBS, Diploma Orthopedics",1200,1,Active
+395,37,NeuroOrtho Singanallur Rehab Institute,115,H037-B03,Dr. Nisha Singh,Neuro Physiotherapist,8044152644,nisha.singh395@arthomove-demo.com,MPT Neuro Rehab,500,9,Active
+396,37,NeuroOrtho Singanallur Rehab Institute,116,H037-B04,Dr. Ravi Iyer,Rehabilitation Consultant,8648023628,ravi.iyer396@arthomove-demo.com,"MBBS, MS Ortho",400,10,Active
+397,37,NeuroOrtho Singanallur Rehab Institute,116,H037-B04,Dr. Nisha Das,Rehabilitation Consultant,8500770990,nisha.das397@arthomove-demo.com,"BPT, MPT Sports",750,0,Active
+398,37,NeuroOrtho Singanallur Rehab Institute,116,H037-B04,Dr. Ravi Kumar,Physiotherapist,8980433315,ravi.kumar398@arthomove-demo.com,PhD Physiotherapy,500,5,Active
+399,37,NeuroOrtho Singanallur Rehab Institute,116,H037-B04,Dr. Isha Verma,Neuro Physiotherapist,9490571753,isha.verma399@arthomove-demo.com,"MBBS, DNB Ortho",800,8,Active
+400,38,CarePlus Powai Rehab Institute,117,H038-B01,Dr. Lakshmi Iyer,Orthopedic Surgeon,9078695760,lakshmi.iyer400@arthomove-demo.com,"BPT, MPT Orthopedics",1500,9,Active
+401,38,CarePlus Powai Rehab Institute,117,H038-B01,Dr. Aditya Chopra,Pain Management Specialist,7592530955,aditya.chopra401@arthomove-demo.com,"MBBS, Diploma Orthopedics",600,10,Active
+402,38,CarePlus Powai Rehab Institute,117,H038-B01,Dr. Neha Rao,Knee Specialist,9553093731,neha.rao402@arthomove-demo.com,"BPT, MPT Sports",500,1,Active
+403,38,CarePlus Powai Rehab Institute,118,H038-B02,Dr. Arjun Thomas,Rehabilitation Consultant,7255065299,arjun.thomas403@arthomove-demo.com,"MBBS, MS Ortho",800,4,Active
+404,38,CarePlus Powai Rehab Institute,118,H038-B02,Dr. Arjun Joshi,Pain Management Specialist,7040046454,arjun.joshi404@arthomove-demo.com,"MBBS, Diploma Orthopedics",400,4,Active
+405,38,CarePlus Powai Rehab Institute,118,H038-B02,Dr. Sanjay Reddy,Knee Specialist,9444696458,sanjay.reddy405@arthomove-demo.com,"MBBS, DNB Ortho",500,5,Active
+406,39,ARthoMove Saibaba Colony Healthcare Hub,119,H039-B01,Dr. Varun Patel,Physiotherapist,8494099857,varun.patel406@arthomove-demo.com,MPT Neuro Rehab,1000,7,Active
+407,39,ARthoMove Saibaba Colony Healthcare Hub,119,H039-B01,Dr. Neha Nair,Pain Management Specialist,9016959911,neha.nair407@arthomove-demo.com,"MBBS, DNB Ortho",800,5,Active
+408,39,ARthoMove Saibaba Colony Healthcare Hub,119,H039-B01,Dr. Varun Joshi,Rehabilitation Consultant,7286728774,varun.joshi408@arthomove-demo.com,"MBBS, Diploma Orthopedics",800,7,Active
+409,39,ARthoMove Saibaba Colony Healthcare Hub,119,H039-B01,Dr. Ravi Sharma,Pain Management Specialist,7531195960,ravi.sharma409@arthomove-demo.com,"MBBS, DNB Ortho",1000,10,Active
+410,39,ARthoMove Saibaba Colony Healthcare Hub,120,H039-B02,Dr. Priya Nair,Sports Rehab Specialist,8208361088,priya.nair410@arthomove-demo.com,"MBBS, MS Ortho",1000,8,Inactive
+411,39,ARthoMove Saibaba Colony Healthcare Hub,120,H039-B02,Dr. Karthik Mehta,Shoulder Specialist,7528515501,karthik.mehta411@arthomove-demo.com,"BPT, MPT Sports",750,5,Active
+412,39,ARthoMove Saibaba Colony Healthcare Hub,121,H039-B03,Dr. Sanjay Sharma,Rehabilitation Consultant,8631879897,sanjay.sharma412@arthomove-demo.com,PhD Physiotherapy,1000,4,Active
+413,39,ARthoMove Saibaba Colony Healthcare Hub,121,H039-B03,Dr. Rahul Verma,Shoulder Specialist,9621098636,rahul.verma413@arthomove-demo.com,"MBBS, Diploma Orthopedics",500,3,Active
+414,39,ARthoMove Saibaba Colony Healthcare Hub,122,H039-B04,Dr. Pooja Sharma,Sports Rehab Specialist,7806664059,pooja.sharma414@arthomove-demo.com,"MBBS, Diploma Orthopedics",500,5,Active
+415,39,ARthoMove Saibaba Colony Healthcare Hub,122,H039-B04,Dr. Pooja Verma,Sports Rehab Specialist,9072267940,pooja.verma415@arthomove-demo.com,PhD Physiotherapy,600,2,Active
+416,39,ARthoMove Saibaba Colony Healthcare Hub,122,H039-B04,Dr. Manoj Singh,Rehabilitation Consultant,8371492627,manoj.singh416@arthomove-demo.com,"BPT, MPT Sports",400,1,Active
+417,40,CarePlus Anna Nagar Speciality Clinic,123,H040-B01,Dr. Farhan Menon,Orthopedic Surgeon,7216656910,farhan.menon417@arthomove-demo.com,"MBBS, Diploma Orthopedics",1500,0,Inactive
+418,40,CarePlus Anna Nagar Speciality Clinic,123,H040-B01,Dr. Suresh Jain,Physiotherapist,7340250064,suresh.jain418@arthomove-demo.com,"MBBS, DNB Ortho",500,8,Active
+419,40,CarePlus Anna Nagar Speciality Clinic,123,H040-B01,Dr. Kavya Patel,Knee Specialist,9395943578,kavya.patel419@arthomove-demo.com,"MBBS, Fellowship Spine",750,10,Active
+420,40,CarePlus Anna Nagar Speciality Clinic,123,H040-B01,Dr. Meera Rao,Physiotherapist,9438720757,meera.rao420@arthomove-demo.com,"BPT, MPT Sports",1000,5,Active
+421,40,CarePlus Anna Nagar Speciality Clinic,123,H040-B01,Dr. Manoj Reddy,Physiotherapist,7685902330,manoj.reddy421@arthomove-demo.com,"MBBS, Fellowship Spine",400,7,Active
+422,40,CarePlus Anna Nagar Speciality Clinic,124,H040-B02,Dr. Rohan Das,Orthopedic Surgeon,9231596378,rohan.das422@arthomove-demo.com,"BPT, MPT Orthopedics",800,2,Active
+423,40,CarePlus Anna Nagar Speciality Clinic,124,H040-B02,Dr. Rohan Mishra,Pediatric Orthopedist,9860681441,rohan.mishra423@arthomove-demo.com,PhD Physiotherapy,400,7,Active
+424,40,CarePlus Anna Nagar Speciality Clinic,125,H040-B03,Dr. Amit Menon,Pediatric Orthopedist,8965628073,amit.menon424@arthomove-demo.com,"BPT, MPT Sports",1000,1,On Leave
+425,40,CarePlus Anna Nagar Speciality Clinic,125,H040-B03,Dr. Karthik Mehta,Shoulder Specialist,7937062587,karthik.mehta425@arthomove-demo.com,"BPT, MPT Sports",1500,9,Inactive
+426,40,CarePlus Anna Nagar Speciality Clinic,125,H040-B03,Dr. Vikram Thomas,Rehabilitation Consultant,9588444372,vikram.thomas426@arthomove-demo.com,"BPT, MPT Orthopedics",400,3,Active
+427,41,MotionCare Singanallur Hospital,126,H041-B01,Dr. Suresh Pillai,Physiotherapist,8310017925,suresh.pillai427@arthomove-demo.com,"BPT, MPT Orthopedics",400,3,Active
+428,41,MotionCare Singanallur Hospital,126,H041-B01,Dr. Pooja Iyer,Neuro Physiotherapist,8151332096,pooja.iyer428@arthomove-demo.com,"MBBS, Diploma Orthopedics",750,10,Active
+429,41,MotionCare Singanallur Hospital,127,H041-B02,Dr. Divya Das,Spine Specialist,8176228095,divya.das429@arthomove-demo.com,"MBBS, Fellowship Spine",500,8,Active
+430,41,MotionCare Singanallur Hospital,127,H041-B02,Dr. Suresh Reddy,Spine Specialist,9556769597,suresh.reddy430@arthomove-demo.com,"MBBS, DNB Ortho",500,3,Inactive
+431,41,MotionCare Singanallur Hospital,127,H041-B02,Dr. Isha Singh,Spine Specialist,9013184341,isha.singh431@arthomove-demo.com,"BPT, MPT Sports",1500,8,Active
+432,41,MotionCare Singanallur Hospital,128,H041-B03,Dr. Varun Khan,Rehabilitation Consultant,7287490726,varun.khan432@arthomove-demo.com,"MBBS, Fellowship Spine",1500,2,Active
+433,41,MotionCare Singanallur Hospital,128,H041-B03,Dr. Neha Joshi,Sports Rehab Specialist,7072486115,neha.joshi433@arthomove-demo.com,PhD Physiotherapy,750,3,Inactive
+434,41,MotionCare Singanallur Hospital,129,H041-B04,Dr. Manoj Mehta,Knee Specialist,8535777785,manoj.mehta434@arthomove-demo.com,"MBBS, DNB Ortho",500,5,Active
+435,41,MotionCare Singanallur Hospital,129,H041-B04,Dr. Pooja Mehta,Neuro Physiotherapist,8748632810,pooja.mehta435@arthomove-demo.com,"MBBS, Diploma Orthopedics",1000,1,Active
+436,41,MotionCare Singanallur Hospital,129,H041-B04,Dr. Ravi Rao,Shoulder Specialist,8660244569,ravi.rao436@arthomove-demo.com,"MBBS, Diploma Orthopedics",750,2,Active
+437,42,SpinePlus Bopal Healthcare Hub,130,H042-B01,Dr. Arjun Menon,Physiotherapist,7455799900,arjun.menon437@arthomove-demo.com,"MBBS, Diploma Orthopedics",600,7,Active
+438,42,SpinePlus Bopal Healthcare Hub,130,H042-B01,Dr. Aditya Iyer,Pain Management Specialist,7782803568,aditya.iyer438@arthomove-demo.com,"BPT, MPT Orthopedics",1200,1,Active
+439,42,SpinePlus Bopal Healthcare Hub,130,H042-B01,Dr. Isha Chopra,Neuro Physiotherapist,9631771862,isha.chopra439@arthomove-demo.com,PhD Physiotherapy,800,8,Inactive
+440,42,SpinePlus Bopal Healthcare Hub,130,H042-B01,Dr. Rohan Rao,Sports Rehab Specialist,9467264401,rohan.rao440@arthomove-demo.com,"MBBS, DNB Ortho",400,9,Active
+441,42,SpinePlus Bopal Healthcare Hub,131,H042-B02,Dr. Anjali Menon,Sports Rehab Specialist,9875875098,anjali.menon441@arthomove-demo.com,"MBBS, MS Ortho",1500,1,Active
+442,42,SpinePlus Bopal Healthcare Hub,131,H042-B02,Dr. Manoj Menon,Pediatric Orthopedist,7444073197,manoj.menon442@arthomove-demo.com,"BPT, MPT Orthopedics",600,10,Active
+443,42,SpinePlus Bopal Healthcare Hub,131,H042-B02,Dr. Priya Iyer,Neuro Physiotherapist,7035821726,priya.iyer443@arthomove-demo.com,"BPT, MPT Sports",600,1,Active
+444,42,SpinePlus Bopal Healthcare Hub,131,H042-B02,Dr. Pooja Das,Neuro Physiotherapist,7127168109,pooja.das444@arthomove-demo.com,"BPT, MPT Orthopedics",1500,8,Active
+445,42,SpinePlus Bopal Healthcare Hub,131,H042-B02,Dr. Arjun Khan,Pain Management Specialist,9326834870,arjun.khan445@arthomove-demo.com,"MBBS, DNB Ortho",600,6,Active
+446,43,HealWell Powai Hospital,132,H043-B01,Dr. Farhan Iyer,Sports Rehab Specialist,7277156853,farhan.iyer446@arthomove-demo.com,"MBBS, MS Ortho",1500,2,Active
+447,43,HealWell Powai Hospital,132,H043-B01,Dr. Sneha Joshi,Orthopedic Surgeon,9656260080,sneha.joshi447@arthomove-demo.com,MPT Neuro Rehab,600,1,Active
+448,43,HealWell Powai Hospital,133,H043-B02,Dr. Karthik Menon,Pediatric Orthopedist,9621541519,karthik.menon448@arthomove-demo.com,"MBBS, MS Ortho",1500,3,Active
+449,43,HealWell Powai Hospital,133,H043-B02,Dr. Divya Mishra,Neuro Physiotherapist,7296149909,divya.mishra449@arthomove-demo.com,"MBBS, Fellowship Spine",1000,0,Active
+450,43,HealWell Powai Hospital,133,H043-B02,Dr. Isha Pillai,Shoulder Specialist,7279891454,isha.pillai450@arthomove-demo.com,"BPT, MPT Orthopedics",600,9,Active
+451,43,HealWell Powai Hospital,134,H043-B03,Dr. Sneha Pillai,Pain Management Specialist,8041450563,sneha.pillai451@arthomove-demo.com,"BPT, MPT Sports",800,7,Active
+452,43,HealWell Powai Hospital,134,H043-B03,Dr. Rahul Khan,Rehabilitation Consultant,7183594123,rahul.khan452@arthomove-demo.com,"MBBS, Fellowship Spine",750,3,Active
+453,43,HealWell Powai Hospital,134,H043-B03,Dr. Nisha Rao,Knee Specialist,9702521514,nisha.rao453@arthomove-demo.com,"BPT, MPT Sports",600,2,Active
+454,43,HealWell Powai Hospital,134,H043-B03,Dr. Lakshmi Joshi,Pediatric Orthopedist,8234087056,lakshmi.joshi454@arthomove-demo.com,"BPT, MPT Sports",600,6,Active
+455,44,ARthoMove Kukatpally Medical Center,135,H044-B01,Dr. Swetha Nair,Pediatric Orthopedist,7762948467,swetha.nair455@arthomove-demo.com,PhD Physiotherapy,1000,9,Active
+456,44,ARthoMove Kukatpally Medical Center,135,H044-B01,Dr. Karthik Chopra,Physiotherapist,7565086922,karthik.chopra456@arthomove-demo.com,"MBBS, Diploma Orthopedics",800,1,Active
+457,44,ARthoMove Kukatpally Medical Center,135,H044-B01,Dr. Rohan Thomas,Neuro Physiotherapist,9094059647,rohan.thomas457@arthomove-demo.com,"MBBS, MS Ortho",1200,7,Active
+458,44,ARthoMove Kukatpally Medical Center,136,H044-B02,Dr. Sanjay Rao,Shoulder Specialist,9514277021,sanjay.rao458@arthomove-demo.com,MPT Neuro Rehab,1200,9,Active
+459,44,ARthoMove Kukatpally Medical Center,136,H044-B02,Dr. Ritika Jain,Sports Rehab Specialist,8295126608,ritika.jain459@arthomove-demo.com,PhD Physiotherapy,400,7,Active
+460,44,ARthoMove Kukatpally Medical Center,136,H044-B02,Dr. Manoj Reddy,Rehabilitation Consultant,8675351534,manoj.reddy460@arthomove-demo.com,"MBBS, Diploma Orthopedics",1200,10,Active
+461,45,HealWell Viman Nagar Wellness Hospital,137,H045-B01,Dr. Vikram Nair,Rehabilitation Consultant,8307079190,vikram.nair461@arthomove-demo.com,"MBBS, Fellowship Spine",750,8,Active
+462,45,HealWell Viman Nagar Wellness Hospital,137,H045-B01,Dr. Meera Verma,Pain Management Specialist,7826565293,meera.verma462@arthomove-demo.com,PhD Physiotherapy,400,7,Inactive
+463,45,HealWell Viman Nagar Wellness Hospital,137,H045-B01,Dr. Priya Pillai,Physiotherapist,8162469889,priya.pillai463@arthomove-demo.com,PhD Physiotherapy,1200,7,Active
+464,45,HealWell Viman Nagar Wellness Hospital,137,H045-B01,Dr. Ravi Menon,Shoulder Specialist,8367988368,ravi.menon464@arthomove-demo.com,PhD Physiotherapy,800,5,Active
+465,45,HealWell Viman Nagar Wellness Hospital,138,H045-B02,Dr. Aditya Chopra,Sports Rehab Specialist,9791969091,aditya.chopra465@arthomove-demo.com,"BPT, MPT Sports",500,2,Inactive
+466,45,HealWell Viman Nagar Wellness Hospital,138,H045-B02,Dr. Rahul Patel,Pediatric Orthopedist,7535305325,rahul.patel466@arthomove-demo.com,PhD Physiotherapy,1200,5,Active
+467,45,HealWell Viman Nagar Wellness Hospital,138,H045-B02,Dr. Meera Sharma,Neuro Physiotherapist,8813409514,meera.sharma467@arthomove-demo.com,"MBBS, MS Ortho",800,2,Active
+468,45,HealWell Viman Nagar Wellness Hospital,138,H045-B02,Dr. Farhan Pillai,Rehabilitation Consultant,7093215294,farhan.pillai468@arthomove-demo.com,"BPT, MPT Orthopedics",1500,7,Active
+469,45,HealWell Viman Nagar Wellness Hospital,139,H045-B03,Dr. Rahul Reddy,Shoulder Specialist,7314562530,rahul.reddy469@arthomove-demo.com,"BPT, MPT Sports",1500,0,Active
+470,45,HealWell Viman Nagar Wellness Hospital,139,H045-B03,Dr. Sneha Singh,Physiotherapist,7113146442,sneha.singh470@arthomove-demo.com,"BPT, MPT Orthopedics",750,8,Active
+471,45,HealWell Viman Nagar Wellness Hospital,139,H045-B03,Dr. Rahul Kumar,Neuro Physiotherapist,9942443793,rahul.kumar471@arthomove-demo.com,PhD Physiotherapy,800,1,Inactive
+472,46,MotionCare Wakad Healthcare Hub,140,H046-B01,Dr. Manoj Verma,Orthopedic Surgeon,9553001731,manoj.verma472@arthomove-demo.com,"MBBS, Fellowship Spine",800,0,Active
+473,46,MotionCare Wakad Healthcare Hub,140,H046-B01,Dr. Manoj Nair,Shoulder Specialist,9298567240,manoj.nair473@arthomove-demo.com,MPT Neuro Rehab,600,3,Active
+474,46,MotionCare Wakad Healthcare Hub,141,H046-B02,Dr. Farhan Das,Rehabilitation Consultant,9523649411,farhan.das474@arthomove-demo.com,"MBBS, MS Ortho",800,3,Active
+475,46,MotionCare Wakad Healthcare Hub,141,H046-B02,Dr. Varun Jain,Neuro Physiotherapist,9601767873,varun.jain475@arthomove-demo.com,"MBBS, MS Ortho",800,0,Active
+476,46,MotionCare Wakad Healthcare Hub,142,H046-B03,Dr. Meera Verma,Neuro Physiotherapist,8480632448,meera.verma476@arthomove-demo.com,PhD Physiotherapy,1000,7,Active
+477,46,MotionCare Wakad Healthcare Hub,142,H046-B03,Dr. Anjali Khan,Pediatric Orthopedist,9408337836,anjali.khan477@arthomove-demo.com,"BPT, MPT Orthopedics",750,10,Active
+478,46,MotionCare Wakad Healthcare Hub,142,H046-B03,Dr. Meera Thomas,Pediatric Orthopedist,8765599919,meera.thomas478@arthomove-demo.com,PhD Physiotherapy,1000,7,Active
+479,47,NeuroOrtho RS Puram Wellness Hospital,143,H047-B01,Dr. Isha Reddy,Knee Specialist,7605433707,isha.reddy479@arthomove-demo.com,"BPT, MPT Sports",500,2,Active
+480,47,NeuroOrtho RS Puram Wellness Hospital,143,H047-B01,Dr. Divya Mishra,Knee Specialist,8019255317,divya.mishra480@arthomove-demo.com,MPT Neuro Rehab,800,1,Active
+481,47,NeuroOrtho RS Puram Wellness Hospital,143,H047-B01,Dr. Sanjay Verma,Knee Specialist,8142509563,sanjay.verma481@arthomove-demo.com,PhD Physiotherapy,400,1,Active
+482,47,NeuroOrtho RS Puram Wellness Hospital,143,H047-B01,Dr. Arjun Menon,Shoulder Specialist,9197763858,arjun.menon482@arthomove-demo.com,PhD Physiotherapy,1000,10,Active
+483,47,NeuroOrtho RS Puram Wellness Hospital,143,H047-B01,Dr. Priya Pillai,Orthopedic Surgeon,8830824130,priya.pillai483@arthomove-demo.com,"BPT, MPT Orthopedics",750,1,On Leave
+484,47,NeuroOrtho RS Puram Wellness Hospital,144,H047-B02,Dr. Vikram Rao,Rehabilitation Consultant,9811080238,vikram.rao484@arthomove-demo.com,"BPT, MPT Sports",1200,10,Active
+485,47,NeuroOrtho RS Puram Wellness Hospital,144,H047-B02,Dr. Arjun Thomas,Sports Rehab Specialist,7459582956,arjun.thomas485@arthomove-demo.com,MPT Neuro Rehab,500,2,Active
+486,47,NeuroOrtho RS Puram Wellness Hospital,144,H047-B02,Dr. Manoj Patel,Shoulder Specialist,8506799645,manoj.patel486@arthomove-demo.com,"BPT, MPT Orthopedics",500,0,Active
+487,48,NeuroOrtho Malviya Nagar Medical Center,145,H048-B01,Dr. Ritika Reddy,Physiotherapist,8502092252,ritika.reddy487@arthomove-demo.com,"BPT, MPT Orthopedics",1200,4,Active
+488,48,NeuroOrtho Malviya Nagar Medical Center,145,H048-B01,Dr. Rohan Patel,Pediatric Orthopedist,8045961974,rohan.patel488@arthomove-demo.com,"MBBS, MS Ortho",500,0,Active
+489,48,NeuroOrtho Malviya Nagar Medical Center,146,H048-B02,Dr. Ritika Reddy,Sports Rehab Specialist,9418286549,ritika.reddy489@arthomove-demo.com,"MBBS, MS Ortho",400,9,Active
+490,48,NeuroOrtho Malviya Nagar Medical Center,146,H048-B02,Dr. Manoj Iyer,Orthopedic Surgeon,9599002842,manoj.iyer490@arthomove-demo.com,"MBBS, DNB Ortho",800,2,Active
+491,49,NeuroOrtho Dwarka Speciality Clinic,147,H049-B01,Dr. Amit Gupta,Shoulder Specialist,7134496895,amit.gupta491@arthomove-demo.com,"MBBS, MS Ortho",400,10,Active
+492,49,NeuroOrtho Dwarka Speciality Clinic,147,H049-B01,Dr. Meera Reddy,Pediatric Orthopedist,7972040932,meera.reddy492@arthomove-demo.com,"MBBS, Fellowship Spine",1500,4,On Leave
+493,49,NeuroOrtho Dwarka Speciality Clinic,147,H049-B01,Dr. Sanjay Sharma,Physiotherapist,8440277601,sanjay.sharma493@arthomove-demo.com,"MBBS, DNB Ortho",400,7,Active
+494,49,NeuroOrtho Dwarka Speciality Clinic,148,H049-B02,Dr. Priya Iyer,Knee Specialist,8653995211,priya.iyer494@arthomove-demo.com,MPT Neuro Rehab,400,3,Active
+495,49,NeuroOrtho Dwarka Speciality Clinic,148,H049-B02,Dr. Farhan Joshi,Shoulder Specialist,8867253081,farhan.joshi495@arthomove-demo.com,MPT Neuro Rehab,400,9,On Leave
+496,49,NeuroOrtho Dwarka Speciality Clinic,148,H049-B02,Dr. Varun Pillai,Physiotherapist,8698710149,varun.pillai496@arthomove-demo.com,"MBBS, Fellowship Spine",400,0,Active
+497,49,NeuroOrtho Dwarka Speciality Clinic,149,H049-B03,Dr. Kavya Jain,Physiotherapist,7117025449,kavya.jain497@arthomove-demo.com,PhD Physiotherapy,1200,1,Active
+498,49,NeuroOrtho Dwarka Speciality Clinic,149,H049-B03,Dr. Karthik Reddy,Sports Rehab Specialist,7633523175,karthik.reddy498@arthomove-demo.com,"MBBS, Fellowship Spine",800,8,Active
+499,49,NeuroOrtho Dwarka Speciality Clinic,149,H049-B03,Dr. Vikram Verma,Knee Specialist,7577014111,vikram.verma499@arthomove-demo.com,MPT Neuro Rehab,500,9,Active
+500,49,NeuroOrtho Dwarka Speciality Clinic,149,H049-B03,Dr. Aditya Nair,Spine Specialist,8300255395,aditya.nair500@arthomove-demo.com,"MBBS, DNB Ortho",750,6,Active
+501,49,NeuroOrtho Dwarka Speciality Clinic,150,H049-B04,Dr. Varun Kumar,Physiotherapist,9036323518,varun.kumar501@arthomove-demo.com,MPT Neuro Rehab,400,3,Active
+502,49,NeuroOrtho Dwarka Speciality Clinic,150,H049-B04,Dr. Isha Sharma,Sports Rehab Specialist,8666069508,isha.sharma502@arthomove-demo.com,MPT Neuro Rehab,1000,7,Active
+503,49,NeuroOrtho Dwarka Speciality Clinic,150,H049-B04,Dr. Divya Thomas,Knee Specialist,8391727154,divya.thomas503@arthomove-demo.com,"BPT, MPT Sports",1000,9,Active
+504,49,NeuroOrtho Dwarka Speciality Clinic,150,H049-B04,Dr. Isha Chopra,Pain Management Specialist,9906923951,isha.chopra504@arthomove-demo.com,"MBBS, MS Ortho",1200,4,Active
+505,49,NeuroOrtho Dwarka Speciality Clinic,150,H049-B04,Dr. Pooja Rao,Pain Management Specialist,8383489953,pooja.rao505@arthomove-demo.com,"BPT, MPT Orthopedics",750,1,Active
+506,50,OrthoLife Bandra Rehab Institute,151,H050-B01,Dr. Priya Das,Physiotherapist,8079631324,priya.das506@arthomove-demo.com,"MBBS, MS Ortho",1500,5,Inactive
+507,50,OrthoLife Bandra Rehab Institute,151,H050-B01,Dr. Meera Pillai,Sports Rehab Specialist,9687037557,meera.pillai507@arthomove-demo.com,MPT Neuro Rehab,600,5,Active
+508,50,OrthoLife Bandra Rehab Institute,151,H050-B01,Dr. Sanjay Joshi,Physiotherapist,9681652235,sanjay.joshi508@arthomove-demo.com,"MBBS, MS Ortho",1500,10,Active
+509,50,OrthoLife Bandra Rehab Institute,152,H050-B02,Dr. Sanjay Gupta,Rehabilitation Consultant,9016812075,sanjay.gupta509@arthomove-demo.com,"MBBS, MS Ortho",1200,0,Active
+510,50,OrthoLife Bandra Rehab Institute,152,H050-B02,Dr. Pooja Chopra,Pediatric Orthopedist,8859392244,pooja.chopra510@arthomove-demo.com,MPT Neuro Rehab,500,7,Active
+511,50,OrthoLife Bandra Rehab Institute,152,H050-B02,Dr. Pooja Jain,Sports Rehab Specialist,9056094461,pooja.jain511@arthomove-demo.com,MPT Neuro Rehab,750,0,Active
+512,50,OrthoLife Bandra Rehab Institute,152,H050-B02,Dr. Amit Kumar,Spine Specialist,8656605059,amit.kumar512@arthomove-demo.com,"MBBS, MS Ortho",1000,6,Active
+513,50,OrthoLife Bandra Rehab Institute,153,H050-B03,Dr. Ravi Reddy,Rehabilitation Consultant,9144661995,ravi.reddy513@arthomove-demo.com,"MBBS, Fellowship Spine",500,0,Active
+514,50,OrthoLife Bandra Rehab Institute,153,H050-B03,Dr. Priya Sharma,Orthopedic Surgeon,8266688545,priya.sharma514@arthomove-demo.com,MPT Neuro Rehab,1200,7,Active
+515,51,NeuroOrtho Rohini Wellness Hospital,154,H051-B01,Dr. Ritika Mehta,Sports Rehab Specialist,8691461641,ritika.mehta515@arthomove-demo.com,MPT Neuro Rehab,400,4,Active
+516,51,NeuroOrtho Rohini Wellness Hospital,154,H051-B01,Dr. Vikram Patel,Orthopedic Surgeon,7451990818,vikram.patel516@arthomove-demo.com,"MBBS, Diploma Orthopedics",1200,1,Active
+517,51,NeuroOrtho Rohini Wellness Hospital,154,H051-B01,Dr. Sneha Jain,Orthopedic Surgeon,7473535226,sneha.jain517@arthomove-demo.com,MPT Neuro Rehab,1000,4,Active
+518,51,NeuroOrtho Rohini Wellness Hospital,154,H051-B01,Dr. Sanjay Mishra,Pediatric Orthopedist,8174752949,sanjay.mishra518@arthomove-demo.com,"MBBS, Diploma Orthopedics",600,7,Active
+519,51,NeuroOrtho Rohini Wellness Hospital,154,H051-B01,Dr. Manoj Iyer,Shoulder Specialist,8196787788,manoj.iyer519@arthomove-demo.com,"MBBS, MS Ortho",400,2,Active
+520,51,NeuroOrtho Rohini Wellness Hospital,155,H051-B02,Dr. Anjali Nair,Spine Specialist,8093099986,anjali.nair520@arthomove-demo.com,"BPT, MPT Orthopedics",1000,6,Active
+521,51,NeuroOrtho Rohini Wellness Hospital,155,H051-B02,Dr. Swetha Das,Sports Rehab Specialist,8860620981,swetha.das521@arthomove-demo.com,"MBBS, MS Ortho",500,1,Active
+522,51,NeuroOrtho Rohini Wellness Hospital,155,H051-B02,Dr. Manoj Singh,Sports Rehab Specialist,8412264725,manoj.singh522@arthomove-demo.com,"MBBS, Fellowship Spine",1200,10,Active
+523,51,NeuroOrtho Rohini Wellness Hospital,155,H051-B02,Dr. Sanjay Nair,Physiotherapist,9640641231,sanjay.nair523@arthomove-demo.com,MPT Neuro Rehab,1500,3,Active
+524,51,NeuroOrtho Rohini Wellness Hospital,155,H051-B02,Dr. Ritika Gupta,Spine Specialist,8988217026,ritika.gupta524@arthomove-demo.com,"MBBS, Diploma Orthopedics",750,10,Active
+525,52,OrthoLife Porur Medical Center,156,H052-B01,Dr. Sneha Gupta,Rehabilitation Consultant,8057410376,sneha.gupta525@arthomove-demo.com,"MBBS, DNB Ortho",500,6,Active
+526,52,OrthoLife Porur Medical Center,156,H052-B01,Dr. Kavya Nair,Physiotherapist,9148241430,kavya.nair526@arthomove-demo.com,"MBBS, Fellowship Spine",750,5,Active
+527,52,OrthoLife Porur Medical Center,156,H052-B01,Dr. Amit Khan,Sports Rehab Specialist,9017066863,amit.khan527@arthomove-demo.com,"MBBS, Diploma Orthopedics",750,9,Active
+528,52,OrthoLife Porur Medical Center,157,H052-B02,Dr. Suresh Mishra,Physiotherapist,9245277050,suresh.mishra528@arthomove-demo.com,"MBBS, Diploma Orthopedics",800,6,Active
+529,52,OrthoLife Porur Medical Center,157,H052-B02,Dr. Pooja Nair,Shoulder Specialist,8210902805,pooja.nair529@arthomove-demo.com,"MBBS, Diploma Orthopedics",1500,10,On Leave
+530,52,OrthoLife Porur Medical Center,157,H052-B02,Dr. Arjun Rao,Spine Specialist,9879086865,arjun.rao530@arthomove-demo.com,"BPT, MPT Orthopedics",600,5,Active
+531,52,OrthoLife Porur Medical Center,157,H052-B02,Dr. Aditya Joshi,Neuro Physiotherapist,9758456271,aditya.joshi531@arthomove-demo.com,"BPT, MPT Sports",750,3,Active
+532,52,OrthoLife Porur Medical Center,157,H052-B02,Dr. Farhan Rao,Sports Rehab Specialist,7151285136,farhan.rao532@arthomove-demo.com,"MBBS, Fellowship Spine",600,0,Active
+533,52,OrthoLife Porur Medical Center,158,H052-B03,Dr. Sanjay Rao,Pediatric Orthopedist,7322607347,sanjay.rao533@arthomove-demo.com,"MBBS, Fellowship Spine",400,7,Inactive
+534,52,OrthoLife Porur Medical Center,158,H052-B03,Dr. Pooja Reddy,Sports Rehab Specialist,7238728807,pooja.reddy534@arthomove-demo.com,"BPT, MPT Sports",500,7,Inactive
+535,52,OrthoLife Porur Medical Center,158,H052-B03,Dr. Anjali Iyer,Spine Specialist,7784710738,anjali.iyer535@arthomove-demo.com,"MBBS, DNB Ortho",1500,3,Active
+536,52,OrthoLife Porur Medical Center,158,H052-B03,Dr. Divya Mehta,Shoulder Specialist,7875757513,divya.mehta536@arthomove-demo.com,"BPT, MPT Orthopedics",400,4,Active
+537,52,OrthoLife Porur Medical Center,158,H052-B03,Dr. Amit Joshi,Knee Specialist,9566118289,amit.joshi537@arthomove-demo.com,"MBBS, DNB Ortho",1200,1,Active
+538,52,OrthoLife Porur Medical Center,159,H052-B04,Dr. Farhan Singh,Pediatric Orthopedist,9220699255,farhan.singh538@arthomove-demo.com,"BPT, MPT Sports",1200,0,Active
+539,52,OrthoLife Porur Medical Center,159,H052-B04,Dr. Meera Mehta,Rehabilitation Consultant,9875634491,meera.mehta539@arthomove-demo.com,"MBBS, MS Ortho",400,6,Active
+540,52,OrthoLife Porur Medical Center,159,H052-B04,Dr. Arjun Joshi,Neuro Physiotherapist,7908338265,arjun.joshi540@arthomove-demo.com,PhD Physiotherapy,500,8,Active
+541,52,OrthoLife Porur Medical Center,159,H052-B04,Dr. Amit Thomas,Sports Rehab Specialist,7408962870,amit.thomas541@arthomove-demo.com,"BPT, MPT Orthopedics",1200,4,Active
+542,53,Prime Rehab Wakad Hospital,160,H053-B01,Dr. Priya Reddy,Shoulder Specialist,8864915350,priya.reddy542@arthomove-demo.com,"MBBS, MS Ortho",600,4,Active
+543,53,Prime Rehab Wakad Hospital,160,H053-B01,Dr. Kavya Menon,Pediatric Orthopedist,8167917761,kavya.menon543@arthomove-demo.com,PhD Physiotherapy,600,0,Active
+544,53,Prime Rehab Wakad Hospital,160,H053-B01,Dr. Aditya Rao,Physiotherapist,9233591335,aditya.rao544@arthomove-demo.com,"BPT, MPT Sports",1500,0,Active
+545,53,Prime Rehab Wakad Hospital,160,H053-B01,Dr. Sanjay Gupta,Shoulder Specialist,9872450409,sanjay.gupta545@arthomove-demo.com,"MBBS, Fellowship Spine",1200,0,Active
+546,53,Prime Rehab Wakad Hospital,161,H053-B02,Dr. Arjun Jain,Rehabilitation Consultant,8362970386,arjun.jain546@arthomove-demo.com,"MBBS, Fellowship Spine",600,8,Active
+547,53,Prime Rehab Wakad Hospital,161,H053-B02,Dr. Meera Sharma,Sports Rehab Specialist,9299025100,meera.sharma547@arthomove-demo.com,"MBBS, DNB Ortho",1500,10,Inactive
+548,53,Prime Rehab Wakad Hospital,161,H053-B02,Dr. Vikram Rao,Spine Specialist,7019801106,vikram.rao548@arthomove-demo.com,"BPT, MPT Sports",1500,3,Active
+549,53,Prime Rehab Wakad Hospital,161,H053-B02,Dr. Meera Menon,Physiotherapist,9266403075,meera.menon549@arthomove-demo.com,"MBBS, MS Ortho",1200,10,Active
+550,54,SpinePlus Saket Hospital,162,H054-B01,Dr. Amit Menon,Shoulder Specialist,8018233200,amit.menon550@arthomove-demo.com,"MBBS, DNB Ortho",800,4,Active
+551,54,SpinePlus Saket Hospital,162,H054-B01,Dr. Karthik Iyer,Rehabilitation Consultant,7401791944,karthik.iyer551@arthomove-demo.com,MPT Neuro Rehab,750,8,On Leave
+552,54,SpinePlus Saket Hospital,162,H054-B01,Dr. Isha Singh,Pediatric Orthopedist,8084781822,isha.singh552@arthomove-demo.com,"MBBS, DNB Ortho",500,5,Active
+553,54,SpinePlus Saket Hospital,162,H054-B01,Dr. Kavya Menon,Shoulder Specialist,7984855050,kavya.menon553@arthomove-demo.com,PhD Physiotherapy,400,6,Active
+554,54,SpinePlus Saket Hospital,162,H054-B01,Dr. Priya Menon,Shoulder Specialist,7125343646,priya.menon554@arthomove-demo.com,PhD Physiotherapy,1000,8,Active
+555,54,SpinePlus Saket Hospital,163,H054-B02,Dr. Pooja Gupta,Spine Specialist,9947914159,pooja.gupta555@arthomove-demo.com,"MBBS, DNB Ortho",400,9,Inactive
+556,54,SpinePlus Saket Hospital,163,H054-B02,Dr. Sneha Mishra,Pain Management Specialist,7783626849,sneha.mishra556@arthomove-demo.com,"MBBS, Fellowship Spine",800,0,Active
+557,54,SpinePlus Saket Hospital,163,H054-B02,Dr. Farhan Reddy,Neuro Physiotherapist,8751537926,farhan.reddy557@arthomove-demo.com,"MBBS, MS Ortho",400,7,Active
+558,54,SpinePlus Saket Hospital,163,H054-B02,Dr. Varun Sharma,Orthopedic Surgeon,7830773667,varun.sharma558@arthomove-demo.com,MPT Neuro Rehab,1200,6,Active
+559,54,SpinePlus Saket Hospital,163,H054-B02,Dr. Rahul Gupta,Rehabilitation Consultant,8431373129,rahul.gupta559@arthomove-demo.com,MPT Neuro Rehab,400,1,Active
+560,54,SpinePlus Saket Hospital,164,H054-B03,Dr. Rohan Nair,Orthopedic Surgeon,8863038169,rohan.nair560@arthomove-demo.com,"BPT, MPT Orthopedics",800,5,Active
+561,54,SpinePlus Saket Hospital,164,H054-B03,Dr. Nisha Mishra,Knee Specialist,8462929177,nisha.mishra561@arthomove-demo.com,"BPT, MPT Sports",1500,1,Active
+562,55,ARthoMove Kothrud Medical Center,165,H055-B01,Dr. Arjun Reddy,Neuro Physiotherapist,8406686799,arjun.reddy562@arthomove-demo.com,"MBBS, Fellowship Spine",1500,1,Active
+563,55,ARthoMove Kothrud Medical Center,165,H055-B01,Dr. Kavya Khan,Pediatric Orthopedist,7281212635,kavya.khan563@arthomove-demo.com,"BPT, MPT Orthopedics",400,8,Active
+564,55,ARthoMove Kothrud Medical Center,165,H055-B01,Dr. Isha Kumar,Spine Specialist,9783907516,isha.kumar564@arthomove-demo.com,"BPT, MPT Sports",1200,7,Active
+565,55,ARthoMove Kothrud Medical Center,166,H055-B02,Dr. Lakshmi Verma,Rehabilitation Consultant,8747706085,lakshmi.verma565@arthomove-demo.com,MPT Neuro Rehab,1000,9,Active
+566,55,ARthoMove Kothrud Medical Center,166,H055-B02,Dr. Suresh Gupta,Pain Management Specialist,9175078312,suresh.gupta566@arthomove-demo.com,"BPT, MPT Sports",1200,6,Active
+567,55,ARthoMove Kothrud Medical Center,166,H055-B02,Dr. Divya Reddy,Sports Rehab Specialist,8686222905,divya.reddy567@arthomove-demo.com,"MBBS, Fellowship Spine",1000,2,Active
+568,55,ARthoMove Kothrud Medical Center,166,H055-B02,Dr. Farhan Verma,Knee Specialist,7255382743,farhan.verma568@arthomove-demo.com,"BPT, MPT Sports",600,7,Active
+569,55,ARthoMove Kothrud Medical Center,166,H055-B02,Dr. Nisha Sharma,Pain Management Specialist,8362317553,nisha.sharma569@arthomove-demo.com,"BPT, MPT Sports",750,4,Active
+570,55,ARthoMove Kothrud Medical Center,167,H055-B03,Dr. Swetha Jain,Sports Rehab Specialist,7605116976,swetha.jain570@arthomove-demo.com,"MBBS, MS Ortho",800,4,Active
+571,55,ARthoMove Kothrud Medical Center,167,H055-B03,Dr. Sanjay Reddy,Neuro Physiotherapist,9734135054,sanjay.reddy571@arthomove-demo.com,"MBBS, MS Ortho",400,7,Active
+572,55,ARthoMove Kothrud Medical Center,167,H055-B03,Dr. Farhan Khan,Shoulder Specialist,7120040234,farhan.khan572@arthomove-demo.com,"MBBS, DNB Ortho",600,1,Active
+573,55,ARthoMove Kothrud Medical Center,167,H055-B03,Dr. Pooja Jain,Knee Specialist,7658694919,pooja.jain573@arthomove-demo.com,"MBBS, Diploma Orthopedics",800,6,Active
+574,56,CarePlus Kothrud Speciality Clinic,168,H056-B01,Dr. Isha Singh,Pain Management Specialist,8873207181,isha.singh574@arthomove-demo.com,"BPT, MPT Orthopedics",1500,5,Active
+575,56,CarePlus Kothrud Speciality Clinic,168,H056-B01,Dr. Nisha Kumar,Pediatric Orthopedist,8903540642,nisha.kumar575@arthomove-demo.com,"MBBS, DNB Ortho",1000,6,Active
+576,56,CarePlus Kothrud Speciality Clinic,168,H056-B01,Dr. Suresh Menon,Neuro Physiotherapist,7717186588,suresh.menon576@arthomove-demo.com,"MBBS, MS Ortho",400,7,Active
+577,56,CarePlus Kothrud Speciality Clinic,168,H056-B01,Dr. Suresh Iyer,Rehabilitation Consultant,7069942922,suresh.iyer577@arthomove-demo.com,"BPT, MPT Sports",500,0,Active
+578,56,CarePlus Kothrud Speciality Clinic,168,H056-B01,Dr. Aditya Khan,Rehabilitation Consultant,9893201089,aditya.khan578@arthomove-demo.com,"BPT, MPT Orthopedics",1000,8,On Leave
+579,56,CarePlus Kothrud Speciality Clinic,169,H056-B02,Dr. Vikram Nair,Sports Rehab Specialist,7333580210,vikram.nair579@arthomove-demo.com,"BPT, MPT Sports",800,8,Active
+580,56,CarePlus Kothrud Speciality Clinic,169,H056-B02,Dr. Meera Nair,Physiotherapist,7397531752,meera.nair580@arthomove-demo.com,PhD Physiotherapy,1000,0,Active
+581,56,CarePlus Kothrud Speciality Clinic,169,H056-B02,Dr. Karthik Nair,Pain Management Specialist,9002593758,karthik.nair581@arthomove-demo.com,"BPT, MPT Orthopedics",400,6,Active
+582,56,CarePlus Kothrud Speciality Clinic,169,H056-B02,Dr. Karthik Rao,Knee Specialist,9443053447,karthik.rao582@arthomove-demo.com,MPT Neuro Rehab,750,1,Active
+583,56,CarePlus Kothrud Speciality Clinic,169,H056-B02,Dr. Manoj Gupta,Sports Rehab Specialist,8635542846,manoj.gupta583@arthomove-demo.com,PhD Physiotherapy,1500,9,Active
+584,56,CarePlus Kothrud Speciality Clinic,170,H056-B03,Dr. Pooja Jain,Neuro Physiotherapist,7160834028,pooja.jain584@arthomove-demo.com,"MBBS, Diploma Orthopedics",750,1,Active
+585,56,CarePlus Kothrud Speciality Clinic,170,H056-B03,Dr. Ravi Iyer,Shoulder Specialist,9626718892,ravi.iyer585@arthomove-demo.com,PhD Physiotherapy,800,1,Active
+586,56,CarePlus Kothrud Speciality Clinic,170,H056-B03,Dr. Nisha Khan,Neuro Physiotherapist,8533769791,nisha.khan586@arthomove-demo.com,PhD Physiotherapy,600,7,Active
+587,56,CarePlus Kothrud Speciality Clinic,171,H056-B04,Dr. Karthik Nair,Pain Management Specialist,8165175866,karthik.nair587@arthomove-demo.com,PhD Physiotherapy,800,7,Active
+588,56,CarePlus Kothrud Speciality Clinic,171,H056-B04,Dr. Rohan Reddy,Pediatric Orthopedist,9262897572,rohan.reddy588@arthomove-demo.com,"MBBS, MS Ortho",1000,4,Active
+589,56,CarePlus Kothrud Speciality Clinic,171,H056-B04,Dr. Lakshmi Sharma,Spine Specialist,8338004143,lakshmi.sharma589@arthomove-demo.com,"MBBS, DNB Ortho",1500,7,On Leave
+590,57,MotionCare Vyttila Medical Center,172,H057-B01,Dr. Rohan Mehta,Knee Specialist,9069552110,rohan.mehta590@arthomove-demo.com,MPT Neuro Rehab,500,7,Active
+591,57,MotionCare Vyttila Medical Center,172,H057-B01,Dr. Karthik Khan,Pain Management Specialist,7211544485,karthik.khan591@arthomove-demo.com,"MBBS, MS Ortho",600,5,Active
+592,57,MotionCare Vyttila Medical Center,172,H057-B01,Dr. Pooja Iyer,Rehabilitation Consultant,9273924678,pooja.iyer592@arthomove-demo.com,"BPT, MPT Sports",1500,0,Active
+593,57,MotionCare Vyttila Medical Center,172,H057-B01,Dr. Ritika Jain,Pain Management Specialist,7882324396,ritika.jain593@arthomove-demo.com,PhD Physiotherapy,600,5,Active
+594,57,MotionCare Vyttila Medical Center,172,H057-B01,Dr. Swetha Menon,Physiotherapist,9783747669,swetha.menon594@arthomove-demo.com,"BPT, MPT Sports",750,8,Active
+595,57,MotionCare Vyttila Medical Center,173,H057-B02,Dr. Manoj Sharma,Sports Rehab Specialist,8866028928,manoj.sharma595@arthomove-demo.com,"BPT, MPT Orthopedics",500,9,Active
+596,57,MotionCare Vyttila Medical Center,173,H057-B02,Dr. Manoj Iyer,Rehabilitation Consultant,8534096199,manoj.iyer596@arthomove-demo.com,"MBBS, Diploma Orthopedics",500,6,Active
+597,57,MotionCare Vyttila Medical Center,173,H057-B02,Dr. Arjun Iyer,Pain Management Specialist,9018034206,arjun.iyer597@arthomove-demo.com,"MBBS, Diploma Orthopedics",800,3,Active
+598,57,MotionCare Vyttila Medical Center,173,H057-B02,Dr. Anjali Pillai,Knee Specialist,9478348814,anjali.pillai598@arthomove-demo.com,PhD Physiotherapy,750,0,Active
+599,57,MotionCare Vyttila Medical Center,174,H057-B03,Dr. Ravi Iyer,Neuro Physiotherapist,8619621323,ravi.iyer599@arthomove-demo.com,"MBBS, DNB Ortho",1000,1,Active
+600,57,MotionCare Vyttila Medical Center,174,H057-B03,Dr. Ritika Das,Physiotherapist,7883090458,ritika.das600@arthomove-demo.com,"BPT, MPT Orthopedics",500,8,Active
+601,57,MotionCare Vyttila Medical Center,174,H057-B03,Dr. Manoj Sharma,Sports Rehab Specialist,7671672702,manoj.sharma601@arthomove-demo.com,"MBBS, DNB Ortho",1200,2,On Leave
+602,57,MotionCare Vyttila Medical Center,174,H057-B03,Dr. Sneha Pillai,Rehabilitation Consultant,9771304238,sneha.pillai602@arthomove-demo.com,"MBBS, Diploma Orthopedics",1500,9,Active
+603,58,ApolloCare Prahlad Nagar Wellness Hospital,175,H058-B01,Dr. Suresh Joshi,Spine Specialist,8204397188,suresh.joshi603@arthomove-demo.com,"MBBS, Fellowship Spine",1500,2,Active
+604,58,ApolloCare Prahlad Nagar Wellness Hospital,175,H058-B01,Dr. Pooja Pillai,Spine Specialist,9011872139,pooja.pillai604@arthomove-demo.com,"BPT, MPT Sports",400,3,Active
+605,58,ApolloCare Prahlad Nagar Wellness Hospital,175,H058-B01,Dr. Rohan Thomas,Orthopedic Surgeon,8217921182,rohan.thomas605@arthomove-demo.com,"BPT, MPT Orthopedics",600,6,Active
+606,58,ApolloCare Prahlad Nagar Wellness Hospital,175,H058-B01,Dr. Sneha Kumar,Rehabilitation Consultant,8600974909,sneha.kumar606@arthomove-demo.com,"BPT, MPT Orthopedics",800,7,Active
+607,58,ApolloCare Prahlad Nagar Wellness Hospital,175,H058-B01,Dr. Rahul Reddy,Spine Specialist,8308848606,rahul.reddy607@arthomove-demo.com,"MBBS, Fellowship Spine",1500,5,Active
+608,58,ApolloCare Prahlad Nagar Wellness Hospital,176,H058-B02,Dr. Rohan Jain,Orthopedic Surgeon,8773904554,rohan.jain608@arthomove-demo.com,"BPT, MPT Sports",1000,3,Inactive
+609,58,ApolloCare Prahlad Nagar Wellness Hospital,176,H058-B02,Dr. Nisha Sharma,Shoulder Specialist,9346989847,nisha.sharma609@arthomove-demo.com,"BPT, MPT Sports",800,5,Active
+610,58,ApolloCare Prahlad Nagar Wellness Hospital,177,H058-B03,Dr. Manoj Menon,Pain Management Specialist,9891900002,manoj.menon610@arthomove-demo.com,"MBBS, Fellowship Spine",750,2,Active
+611,58,ApolloCare Prahlad Nagar Wellness Hospital,177,H058-B03,Dr. Meera Thomas,Neuro Physiotherapist,7684989912,meera.thomas611@arthomove-demo.com,PhD Physiotherapy,500,9,Active
+612,58,ApolloCare Prahlad Nagar Wellness Hospital,177,H058-B03,Dr. Divya Menon,Physiotherapist,8164418054,divya.menon612@arthomove-demo.com,"MBBS, MS Ortho",1200,0,On Leave
+613,59,SpinePlus Janakpuri Wellness Hospital,178,H059-B01,Dr. Anjali Joshi,Neuro Physiotherapist,8491671656,anjali.joshi613@arthomove-demo.com,"MBBS, Diploma Orthopedics",500,0,Active
+614,59,SpinePlus Janakpuri Wellness Hospital,178,H059-B01,Dr. Neha Joshi,Knee Specialist,9851682038,neha.joshi614@arthomove-demo.com,MPT Neuro Rehab,1200,9,Active
+615,59,SpinePlus Janakpuri Wellness Hospital,178,H059-B01,Dr. Sneha Patel,Sports Rehab Specialist,9797087701,sneha.patel615@arthomove-demo.com,MPT Neuro Rehab,600,5,Active
+616,59,SpinePlus Janakpuri Wellness Hospital,178,H059-B01,Dr. Ravi Rao,Sports Rehab Specialist,7116012418,ravi.rao616@arthomove-demo.com,"BPT, MPT Orthopedics",800,0,Active
+617,59,SpinePlus Janakpuri Wellness Hospital,178,H059-B01,Dr. Rohan Sharma,Neuro Physiotherapist,9109692621,rohan.sharma617@arthomove-demo.com,PhD Physiotherapy,1200,8,Active
+618,59,SpinePlus Janakpuri Wellness Hospital,179,H059-B02,Dr. Vikram Reddy,Rehabilitation Consultant,9403242216,vikram.reddy618@arthomove-demo.com,"MBBS, Fellowship Spine",500,4,Active
+619,59,SpinePlus Janakpuri Wellness Hospital,179,H059-B02,Dr. Varun Kumar,Orthopedic Surgeon,8031215595,varun.kumar619@arthomove-demo.com,MPT Neuro Rehab,1000,3,Active
+620,59,SpinePlus Janakpuri Wellness Hospital,180,H059-B03,Dr. Isha Gupta,Physiotherapist,7213124346,isha.gupta620@arthomove-demo.com,PhD Physiotherapy,750,3,Active
+621,59,SpinePlus Janakpuri Wellness Hospital,180,H059-B03,Dr. Suresh Kumar,Shoulder Specialist,9386861235,suresh.kumar621@arthomove-demo.com,"MBBS, Diploma Orthopedics",1000,6,Active
+622,59,SpinePlus Janakpuri Wellness Hospital,180,H059-B03,Dr. Sanjay Singh,Shoulder Specialist,9031868659,sanjay.singh622@arthomove-demo.com,"MBBS, DNB Ortho",1200,10,On Leave
+623,59,SpinePlus Janakpuri Wellness Hospital,180,H059-B03,Dr. Sanjay Khan,Knee Specialist,9516621567,sanjay.khan623@arthomove-demo.com,"MBBS, Fellowship Spine",750,7,Active
+624,59,SpinePlus Janakpuri Wellness Hospital,180,H059-B03,Dr. Manoj Jain,Knee Specialist,9806060506,manoj.jain624@arthomove-demo.com,"MBBS, Fellowship Spine",1500,0,Active
+625,59,SpinePlus Janakpuri Wellness Hospital,181,H059-B04,Dr. Nisha Menon,Rehabilitation Consultant,7173246155,nisha.menon625@arthomove-demo.com,"MBBS, DNB Ortho",750,2,Active
+626,59,SpinePlus Janakpuri Wellness Hospital,181,H059-B04,Dr. Rahul Chopra,Spine Specialist,8799659123,rahul.chopra626@arthomove-demo.com,"MBBS, Fellowship Spine",500,10,Active
+627,60,MotionCare Navi Mumbai Speciality Clinic,182,H060-B01,Dr. Pooja Thomas,Sports Rehab Specialist,8827342890,pooja.thomas627@arthomove-demo.com,"MBBS, Fellowship Spine",1200,9,Active
+628,60,MotionCare Navi Mumbai Speciality Clinic,182,H060-B01,Dr. Suresh Rao,Pediatric Orthopedist,8813004362,suresh.rao628@arthomove-demo.com,MPT Neuro Rehab,1200,7,Active
+629,60,MotionCare Navi Mumbai Speciality Clinic,183,H060-B02,Dr. Vikram Jain,Spine Specialist,8861333305,vikram.jain629@arthomove-demo.com,PhD Physiotherapy,600,0,Active
+630,60,MotionCare Navi Mumbai Speciality Clinic,183,H060-B02,Dr. Lakshmi Gupta,Physiotherapist,9372367908,lakshmi.gupta630@arthomove-demo.com,"MBBS, DNB Ortho",500,2,Active
+631,61,HealWell Satellite Medical Center,184,H061-B01,Dr. Karthik Singh,Pain Management Specialist,8235986484,karthik.singh631@arthomove-demo.com,"MBBS, MS Ortho",1200,10,Active
+632,61,HealWell Satellite Medical Center,184,H061-B01,Dr. Amit Sharma,Physiotherapist,9526323107,amit.sharma632@arthomove-demo.com,MPT Neuro Rehab,1000,9,Inactive
+633,61,HealWell Satellite Medical Center,185,H061-B02,Dr. Ritika Gupta,Rehabilitation Consultant,7362408319,ritika.gupta633@arthomove-demo.com,MPT Neuro Rehab,500,3,Active
+634,61,HealWell Satellite Medical Center,185,H061-B02,Dr. Rahul Pillai,Knee Specialist,8385375122,rahul.pillai634@arthomove-demo.com,"MBBS, MS Ortho",1200,2,Active
+635,61,HealWell Satellite Medical Center,185,H061-B02,Dr. Isha Pillai,Spine Specialist,7082244913,isha.pillai635@arthomove-demo.com,"MBBS, MS Ortho",600,2,Inactive
+636,61,HealWell Satellite Medical Center,186,H061-B03,Dr. Rahul Nair,Sports Rehab Specialist,8916101995,rahul.nair636@arthomove-demo.com,"BPT, MPT Sports",500,2,On Leave
+637,61,HealWell Satellite Medical Center,186,H061-B03,Dr. Priya Reddy,Physiotherapist,9882064562,priya.reddy637@arthomove-demo.com,"MBBS, MS Ortho",400,10,Active
+638,61,HealWell Satellite Medical Center,186,H061-B03,Dr. Priya Iyer,Neuro Physiotherapist,8422832995,priya.iyer638@arthomove-demo.com,"MBBS, Diploma Orthopedics",800,5,Active
+639,61,HealWell Satellite Medical Center,186,H061-B03,Dr. Isha Jain,Pain Management Specialist,7365586171,isha.jain639@arthomove-demo.com,"BPT, MPT Orthopedics",400,0,Active
+640,61,HealWell Satellite Medical Center,187,H061-B04,Dr. Arjun Reddy,Spine Specialist,7851562837,arjun.reddy640@arthomove-demo.com,"MBBS, Fellowship Spine",1200,5,Active
+641,61,HealWell Satellite Medical Center,187,H061-B04,Dr. Lakshmi Iyer,Knee Specialist,7261234945,lakshmi.iyer641@arthomove-demo.com,"MBBS, Diploma Orthopedics",800,5,Active
+642,61,HealWell Satellite Medical Center,187,H061-B04,Dr. Ravi Joshi,Orthopedic Surgeon,9749875840,ravi.joshi642@arthomove-demo.com,"MBBS, DNB Ortho",400,10,Active
+643,62,SpinePlus Hinjewadi Rehab Institute,188,H062-B01,Dr. Kavya Kumar,Pediatric Orthopedist,7737038774,kavya.kumar643@arthomove-demo.com,PhD Physiotherapy,750,5,Active
+644,62,SpinePlus Hinjewadi Rehab Institute,188,H062-B01,Dr. Sanjay Joshi,Sports Rehab Specialist,7480874592,sanjay.joshi644@arthomove-demo.com,"BPT, MPT Orthopedics",800,10,Active
+645,62,SpinePlus Hinjewadi Rehab Institute,188,H062-B01,Dr. Kavya Khan,Knee Specialist,8675386688,kavya.khan645@arthomove-demo.com,"BPT, MPT Orthopedics",1500,6,Active
+646,62,SpinePlus Hinjewadi Rehab Institute,188,H062-B01,Dr. Amit Khan,Physiotherapist,9691178188,amit.khan646@arthomove-demo.com,"MBBS, Diploma Orthopedics",1000,9,On Leave
+647,62,SpinePlus Hinjewadi Rehab Institute,188,H062-B01,Dr. Amit Menon,Knee Specialist,7249914107,amit.menon647@arthomove-demo.com,"BPT, MPT Orthopedics",400,9,Active
+648,62,SpinePlus Hinjewadi Rehab Institute,189,H062-B02,Dr. Manoj Iyer,Pediatric Orthopedist,9307557861,manoj.iyer648@arthomove-demo.com,PhD Physiotherapy,1500,9,Active
+649,62,SpinePlus Hinjewadi Rehab Institute,189,H062-B02,Dr. Amit Reddy,Physiotherapist,9881756109,amit.reddy649@arthomove-demo.com,MPT Neuro Rehab,800,5,Active
+650,62,SpinePlus Hinjewadi Rehab Institute,189,H062-B02,Dr. Arjun Joshi,Physiotherapist,8394469266,arjun.joshi650@arthomove-demo.com,"MBBS, DNB Ortho",800,4,Active
+651,62,SpinePlus Hinjewadi Rehab Institute,189,H062-B02,Dr. Kavya Pillai,Orthopedic Surgeon,9528897378,kavya.pillai651@arthomove-demo.com,"MBBS, Fellowship Spine",600,0,Active
+652,62,SpinePlus Hinjewadi Rehab Institute,190,H062-B03,Dr. Meera Khan,Pediatric Orthopedist,7090533019,meera.khan652@arthomove-demo.com,"MBBS, DNB Ortho",1500,9,Inactive
+653,62,SpinePlus Hinjewadi Rehab Institute,190,H062-B03,Dr. Karthik Sharma,Orthopedic Surgeon,7865437011,karthik.sharma653@arthomove-demo.com,"MBBS, DNB Ortho",1500,10,On Leave
+654,62,SpinePlus Hinjewadi Rehab Institute,190,H062-B03,Dr. Manoj Iyer,Sports Rehab Specialist,8316808068,manoj.iyer654@arthomove-demo.com,"MBBS, DNB Ortho",400,4,Active
+655,62,SpinePlus Hinjewadi Rehab Institute,191,H062-B04,Dr. Ritika Patel,Physiotherapist,8049357814,ritika.patel655@arthomove-demo.com,"BPT, MPT Orthopedics",1500,8,Active
+656,62,SpinePlus Hinjewadi Rehab Institute,191,H062-B04,Dr. Ravi Gupta,Spine Specialist,7375573785,ravi.gupta656@arthomove-demo.com,"BPT, MPT Orthopedics",800,10,Active
+657,63,SpinePlus Tambaram Healthcare Hub,192,H063-B01,Dr. Priya Kumar,Physiotherapist,8106097849,priya.kumar657@arthomove-demo.com,"MBBS, Diploma Orthopedics",400,5,Active
+658,63,SpinePlus Tambaram Healthcare Hub,192,H063-B01,Dr. Suresh Joshi,Sports Rehab Specialist,7358623422,suresh.joshi658@arthomove-demo.com,"BPT, MPT Sports",600,3,Active
+659,63,SpinePlus Tambaram Healthcare Hub,192,H063-B01,Dr. Amit Iyer,Neuro Physiotherapist,9612476859,amit.iyer659@arthomove-demo.com,"MBBS, Diploma Orthopedics",1200,5,Active
+660,63,SpinePlus Tambaram Healthcare Hub,193,H063-B02,Dr. Aditya Mishra,Shoulder Specialist,9806676462,aditya.mishra660@arthomove-demo.com,"MBBS, MS Ortho",800,7,Active
+661,63,SpinePlus Tambaram Healthcare Hub,193,H063-B02,Dr. Rohan Gupta,Pain Management Specialist,9161693133,rohan.gupta661@arthomove-demo.com,"BPT, MPT Sports",400,5,Active
+662,64,HealWell Edappally Speciality Clinic,194,H064-B01,Dr. Amit Menon,Knee Specialist,8804463580,amit.menon662@arthomove-demo.com,"MBBS, MS Ortho",500,3,Active
+663,64,HealWell Edappally Speciality Clinic,194,H064-B01,Dr. Karthik Gupta,Physiotherapist,8797049988,karthik.gupta663@arthomove-demo.com,"BPT, MPT Sports",500,0,Active
+664,64,HealWell Edappally Speciality Clinic,194,H064-B01,Dr. Ritika Nair,Orthopedic Surgeon,7539543284,ritika.nair664@arthomove-demo.com,MPT Neuro Rehab,1200,2,Active
+665,64,HealWell Edappally Speciality Clinic,194,H064-B01,Dr. Swetha Pillai,Sports Rehab Specialist,7162801680,swetha.pillai665@arthomove-demo.com,"MBBS, Diploma Orthopedics",800,3,Active
+666,64,HealWell Edappally Speciality Clinic,195,H064-B02,Dr. Neha Singh,Knee Specialist,9166118570,neha.singh666@arthomove-demo.com,"MBBS, MS Ortho",1500,0,Active
+667,64,HealWell Edappally Speciality Clinic,195,H064-B02,Dr. Anjali Pillai,Sports Rehab Specialist,7786655719,anjali.pillai667@arthomove-demo.com,MPT Neuro Rehab,400,6,Active
+668,64,HealWell Edappally Speciality Clinic,195,H064-B02,Dr. Priya Reddy,Pain Management Specialist,8575310026,priya.reddy668@arthomove-demo.com,PhD Physiotherapy,1200,10,Active
+669,65,NeuroOrtho Navi Mumbai Wellness Hospital,196,H065-B01,Dr. Suresh Rao,Shoulder Specialist,8115275073,suresh.rao669@arthomove-demo.com,PhD Physiotherapy,600,0,Active
+670,65,NeuroOrtho Navi Mumbai Wellness Hospital,196,H065-B01,Dr. Vikram Nair,Orthopedic Surgeon,8322362819,vikram.nair670@arthomove-demo.com,"MBBS, Diploma Orthopedics",800,2,Active
+671,65,NeuroOrtho Navi Mumbai Wellness Hospital,196,H065-B01,Dr. Meera Nair,Physiotherapist,7215197096,meera.nair671@arthomove-demo.com,"MBBS, DNB Ortho",600,2,Active
+672,65,NeuroOrtho Navi Mumbai Wellness Hospital,196,H065-B01,Dr. Manoj Iyer,Shoulder Specialist,8812598339,manoj.iyer672@arthomove-demo.com,"BPT, MPT Orthopedics",600,10,Inactive
+673,65,NeuroOrtho Navi Mumbai Wellness Hospital,197,H065-B02,Dr. Ritika Thomas,Orthopedic Surgeon,7226567992,ritika.thomas673@arthomove-demo.com,PhD Physiotherapy,400,5,Active
+674,65,NeuroOrtho Navi Mumbai Wellness Hospital,197,H065-B02,Dr. Ritika Nair,Orthopedic Surgeon,8660902885,ritika.nair674@arthomove-demo.com,"MBBS, Fellowship Spine",1200,0,Active
+675,65,NeuroOrtho Navi Mumbai Wellness Hospital,198,H065-B03,Dr. Isha Verma,Physiotherapist,7452887646,isha.verma675@arthomove-demo.com,"MBBS, MS Ortho",800,10,Active
+676,65,NeuroOrtho Navi Mumbai Wellness Hospital,198,H065-B03,Dr. Rahul Menon,Pain Management Specialist,9171003570,rahul.menon676@arthomove-demo.com,MPT Neuro Rehab,750,4,Active
+677,65,NeuroOrtho Navi Mumbai Wellness Hospital,198,H065-B03,Dr. Rohan Khan,Spine Specialist,8421152192,rohan.khan677@arthomove-demo.com,PhD Physiotherapy,500,4,On Leave
+678,65,NeuroOrtho Navi Mumbai Wellness Hospital,199,H065-B04,Dr. Lakshmi Patel,Neuro Physiotherapist,7148629783,lakshmi.patel678@arthomove-demo.com,"MBBS, DNB Ortho",800,5,Active
+679,65,NeuroOrtho Navi Mumbai Wellness Hospital,199,H065-B04,Dr. Sanjay Mishra,Rehabilitation Consultant,9189034774,sanjay.mishra679@arthomove-demo.com,"MBBS, Fellowship Spine",1000,10,Active
+680,65,NeuroOrtho Navi Mumbai Wellness Hospital,199,H065-B04,Dr. Farhan Jain,Shoulder Specialist,7357822394,farhan.jain680@arthomove-demo.com,"MBBS, Diploma Orthopedics",400,9,Active
+681,66,NeuroOrtho RS Puram Hospital,200,H066-B01,Dr. Varun Chopra,Shoulder Specialist,7745529003,varun.chopra681@arthomove-demo.com,MPT Neuro Rehab,500,3,Active
+682,66,NeuroOrtho RS Puram Hospital,200,H066-B01,Dr. Varun Iyer,Shoulder Specialist,9040276177,varun.iyer682@arthomove-demo.com,"BPT, MPT Orthopedics",750,9,Active
+683,66,NeuroOrtho RS Puram Hospital,201,H066-B02,Dr. Divya Thomas,Pain Management Specialist,7224696318,divya.thomas683@arthomove-demo.com,"BPT, MPT Orthopedics",1200,9,Active
+684,66,NeuroOrtho RS Puram Hospital,201,H066-B02,Dr. Sanjay Patel,Neuro Physiotherapist,7392526555,sanjay.patel684@arthomove-demo.com,"MBBS, Diploma Orthopedics",500,8,Active
+685,66,NeuroOrtho RS Puram Hospital,201,H066-B02,Dr. Meera Sharma,Orthopedic Surgeon,8470487042,meera.sharma685@arthomove-demo.com,"MBBS, MS Ortho",1200,9,Active
+686,66,NeuroOrtho RS Puram Hospital,201,H066-B02,Dr. Kavya Iyer,Neuro Physiotherapist,8245035783,kavya.iyer686@arthomove-demo.com,MPT Neuro Rehab,500,2,Active
+687,66,NeuroOrtho RS Puram Hospital,202,H066-B03,Dr. Arjun Kumar,Orthopedic Surgeon,7470428485,arjun.kumar687@arthomove-demo.com,"MBBS, MS Ortho",800,4,Active
+688,66,NeuroOrtho RS Puram Hospital,202,H066-B03,Dr. Isha Khan,Shoulder Specialist,8031681573,isha.khan688@arthomove-demo.com,PhD Physiotherapy,800,1,Active
+689,67,HealWell Kakkanad Rehab Institute,203,H067-B01,Dr. Ravi Mishra,Neuro Physiotherapist,8322156343,ravi.mishra689@arthomove-demo.com,"MBBS, Diploma Orthopedics",750,9,Active
+690,67,HealWell Kakkanad Rehab Institute,203,H067-B01,Dr. Rohan Das,Neuro Physiotherapist,9897293190,rohan.das690@arthomove-demo.com,"BPT, MPT Orthopedics",500,0,Active
+691,67,HealWell Kakkanad Rehab Institute,204,H067-B02,Dr. Suresh Rao,Neuro Physiotherapist,8749079232,suresh.rao691@arthomove-demo.com,MPT Neuro Rehab,500,8,Active
+692,67,HealWell Kakkanad Rehab Institute,204,H067-B02,Dr. Swetha Thomas,Neuro Physiotherapist,8950692519,swetha.thomas692@arthomove-demo.com,"BPT, MPT Orthopedics",800,0,Active
+693,67,HealWell Kakkanad Rehab Institute,204,H067-B02,Dr. Farhan Mehta,Knee Specialist,9278136248,farhan.mehta693@arthomove-demo.com,"MBBS, MS Ortho",1000,5,Active
+694,67,HealWell Kakkanad Rehab Institute,205,H067-B03,Dr. Vikram Gupta,Pediatric Orthopedist,7441275798,vikram.gupta694@arthomove-demo.com,"MBBS, MS Ortho",1200,3,Active
+695,67,HealWell Kakkanad Rehab Institute,205,H067-B03,Dr. Rahul Joshi,Rehabilitation Consultant,9419628419,rahul.joshi695@arthomove-demo.com,"MBBS, Fellowship Spine",1200,5,Active
+696,67,HealWell Kakkanad Rehab Institute,205,H067-B03,Dr. Neha Das,Neuro Physiotherapist,9352627382,neha.das696@arthomove-demo.com,"MBBS, Diploma Orthopedics",400,1,On Leave
+697,67,HealWell Kakkanad Rehab Institute,205,H067-B03,Dr. Rohan Sharma,Knee Specialist,7323673654,rohan.sharma697@arthomove-demo.com,"MBBS, MS Ortho",750,0,On Leave
+698,68,Medicare C Scheme Hospital,206,H068-B01,Dr. Suresh Jain,Spine Specialist,8923266242,suresh.jain698@arthomove-demo.com,PhD Physiotherapy,1000,7,Active
+699,68,Medicare C Scheme Hospital,206,H068-B01,Dr. Manoj Kumar,Knee Specialist,7406887727,manoj.kumar699@arthomove-demo.com,MPT Neuro Rehab,1500,4,Active
+700,68,Medicare C Scheme Hospital,206,H068-B01,Dr. Nisha Thomas,Sports Rehab Specialist,8752059354,nisha.thomas700@arthomove-demo.com,"BPT, MPT Orthopedics",1500,8,Active
+701,68,Medicare C Scheme Hospital,206,H068-B01,Dr. Sneha Iyer,Rehabilitation Consultant,8704915610,sneha.iyer701@arthomove-demo.com,"MBBS, MS Ortho",500,3,On Leave
+702,68,Medicare C Scheme Hospital,207,H068-B02,Dr. Pooja Verma,Shoulder Specialist,9292476807,pooja.verma702@arthomove-demo.com,"MBBS, DNB Ortho",1200,10,Active
+703,68,Medicare C Scheme Hospital,207,H068-B02,Dr. Sneha Verma,Neuro Physiotherapist,8742789437,sneha.verma703@arthomove-demo.com,"MBBS, Diploma Orthopedics",750,3,Active
+704,68,Medicare C Scheme Hospital,207,H068-B02,Dr. Isha Mehta,Pediatric Orthopedist,8783588454,isha.mehta704@arthomove-demo.com,"MBBS, MS Ortho",750,7,Active
+705,68,Medicare C Scheme Hospital,207,H068-B02,Dr. Amit Thomas,Shoulder Specialist,8324540536,amit.thomas705@arthomove-demo.com,"MBBS, MS Ortho",800,7,Active
+706,68,Medicare C Scheme Hospital,208,H068-B03,Dr. Sneha Mishra,Neuro Physiotherapist,9841476238,sneha.mishra706@arthomove-demo.com,"MBBS, MS Ortho",500,8,Active
+707,68,Medicare C Scheme Hospital,208,H068-B03,Dr. Aditya Jain,Spine Specialist,7193517087,aditya.jain707@arthomove-demo.com,"BPT, MPT Orthopedics",750,1,Active
+708,68,Medicare C Scheme Hospital,208,H068-B03,Dr. Ravi Mishra,Pain Management Specialist,8272447539,ravi.mishra708@arthomove-demo.com,"MBBS, Diploma Orthopedics",1000,10,Active
+709,68,Medicare C Scheme Hospital,208,H068-B03,Dr. Rohan Jain,Neuro Physiotherapist,7343357843,rohan.jain709@arthomove-demo.com,"MBBS, Diploma Orthopedics",800,0,Active
+710,68,Medicare C Scheme Hospital,208,H068-B03,Dr. Priya Rao,Rehabilitation Consultant,7613637506,priya.rao710@arthomove-demo.com,"MBBS, MS Ortho",400,4,Active
+711,69,SpinePlus Bandra Rehab Institute,209,H069-B01,Dr. Farhan Patel,Pediatric Orthopedist,8202075200,farhan.patel711@arthomove-demo.com,"MBBS, DNB Ortho",1000,7,Active
+712,69,SpinePlus Bandra Rehab Institute,209,H069-B01,Dr. Karthik Gupta,Shoulder Specialist,7169806813,karthik.gupta712@arthomove-demo.com,MPT Neuro Rehab,800,4,Active
+713,69,SpinePlus Bandra Rehab Institute,209,H069-B01,Dr. Sanjay Joshi,Knee Specialist,9814848946,sanjay.joshi713@arthomove-demo.com,MPT Neuro Rehab,400,2,Active
+714,69,SpinePlus Bandra Rehab Institute,210,H069-B02,Dr. Ritika Kumar,Pain Management Specialist,9706337874,ritika.kumar714@arthomove-demo.com,"MBBS, Diploma Orthopedics",500,7,Active
+715,69,SpinePlus Bandra Rehab Institute,210,H069-B02,Dr. Karthik Reddy,Shoulder Specialist,9012717209,karthik.reddy715@arthomove-demo.com,"MBBS, Fellowship Spine",1200,3,Active
+716,69,SpinePlus Bandra Rehab Institute,210,H069-B02,Dr. Ritika Thomas,Spine Specialist,8313311270,ritika.thomas716@arthomove-demo.com,PhD Physiotherapy,1000,5,Inactive
+717,69,SpinePlus Bandra Rehab Institute,210,H069-B02,Dr. Arjun Menon,Rehabilitation Consultant,7631059507,arjun.menon717@arthomove-demo.com,PhD Physiotherapy,500,1,Active
+718,69,SpinePlus Bandra Rehab Institute,210,H069-B02,Dr. Rahul Sharma,Pediatric Orthopedist,8989216850,rahul.sharma718@arthomove-demo.com,"MBBS, Fellowship Spine",500,4,Active
+719,70,Prime Rehab Aluva Speciality Clinic,211,H070-B01,Dr. Priya Mehta,Orthopedic Surgeon,8835348584,priya.mehta719@arthomove-demo.com,"MBBS, DNB Ortho",400,7,Inactive
+720,70,Prime Rehab Aluva Speciality Clinic,211,H070-B01,Dr. Nisha Gupta,Shoulder Specialist,8956917207,nisha.gupta720@arthomove-demo.com,"MBBS, MS Ortho",750,8,Active
+721,70,Prime Rehab Aluva Speciality Clinic,211,H070-B01,Dr. Varun Mehta,Neuro Physiotherapist,7739831125,varun.mehta721@arthomove-demo.com,"MBBS, DNB Ortho",1200,2,Active
+722,70,Prime Rehab Aluva Speciality Clinic,212,H070-B02,Dr. Rahul Pillai,Shoulder Specialist,8958607250,rahul.pillai722@arthomove-demo.com,"BPT, MPT Sports",600,4,On Leave
+723,70,Prime Rehab Aluva Speciality Clinic,212,H070-B02,Dr. Amit Jain,Pediatric Orthopedist,8759419045,amit.jain723@arthomove-demo.com,"MBBS, Fellowship Spine",500,1,Active
+724,70,Prime Rehab Aluva Speciality Clinic,212,H070-B02,Dr. Rahul Patel,Neuro Physiotherapist,9900618020,rahul.patel724@arthomove-demo.com,"BPT, MPT Sports",800,0,Active
+725,71,MotionCare Karol Bagh Rehab Institute,213,H071-B01,Dr. Manoj Mehta,Physiotherapist,8807422120,manoj.mehta725@arthomove-demo.com,"BPT, MPT Sports",800,8,Active
+726,71,MotionCare Karol Bagh Rehab Institute,213,H071-B01,Dr. Sanjay Jain,Shoulder Specialist,7759824813,sanjay.jain726@arthomove-demo.com,"MBBS, DNB Ortho",1500,2,Active
+727,71,MotionCare Karol Bagh Rehab Institute,213,H071-B01,Dr. Divya Singh,Spine Specialist,7903826512,divya.singh727@arthomove-demo.com,"MBBS, Fellowship Spine",500,10,Active
+728,71,MotionCare Karol Bagh Rehab Institute,213,H071-B01,Dr. Divya Iyer,Sports Rehab Specialist,7766731552,divya.iyer728@arthomove-demo.com,MPT Neuro Rehab,1200,2,Active
+729,71,MotionCare Karol Bagh Rehab Institute,213,H071-B01,Dr. Karthik Menon,Shoulder Specialist,9700525136,karthik.menon729@arthomove-demo.com,"MBBS, DNB Ortho",600,3,Active
+730,71,MotionCare Karol Bagh Rehab Institute,214,H071-B02,Dr. Neha Rao,Knee Specialist,8561396047,neha.rao730@arthomove-demo.com,MPT Neuro Rehab,500,2,Active
+731,71,MotionCare Karol Bagh Rehab Institute,214,H071-B02,Dr. Sneha Joshi,Orthopedic Surgeon,8140046408,sneha.joshi731@arthomove-demo.com,"MBBS, Diploma Orthopedics",600,2,Active
+732,71,MotionCare Karol Bagh Rehab Institute,214,H071-B02,Dr. Meera Gupta,Rehabilitation Consultant,9798427690,meera.gupta732@arthomove-demo.com,"BPT, MPT Orthopedics",500,1,Inactive
+733,71,MotionCare Karol Bagh Rehab Institute,214,H071-B02,Dr. Priya Singh,Spine Specialist,8296905452,priya.singh733@arthomove-demo.com,"BPT, MPT Orthopedics",1200,10,Active
+734,71,MotionCare Karol Bagh Rehab Institute,215,H071-B03,Dr. Divya Chopra,Shoulder Specialist,7246740094,divya.chopra734@arthomove-demo.com,"MBBS, MS Ortho",800,4,Active
+735,71,MotionCare Karol Bagh Rehab Institute,215,H071-B03,Dr. Suresh Mehta,Shoulder Specialist,8035979780,suresh.mehta735@arthomove-demo.com,"MBBS, Diploma Orthopedics",500,5,Active
+736,72,ApolloCare Banjara Hills Rehab Institute,216,H072-B01,Dr. Amit Singh,Pediatric Orthopedist,7822359634,amit.singh736@arthomove-demo.com,"MBBS, Diploma Orthopedics",750,3,Active
+737,72,ApolloCare Banjara Hills Rehab Institute,216,H072-B01,Dr. Amit Singh,Pediatric Orthopedist,7159038240,amit.singh737@arthomove-demo.com,"BPT, MPT Sports",750,0,Active
+738,72,ApolloCare Banjara Hills Rehab Institute,216,H072-B01,Dr. Karthik Kumar,Rehabilitation Consultant,7644566309,karthik.kumar738@arthomove-demo.com,"MBBS, MS Ortho",750,10,Active
+739,72,ApolloCare Banjara Hills Rehab Institute,217,H072-B02,Dr. Manoj Verma,Physiotherapist,8339092137,manoj.verma739@arthomove-demo.com,"MBBS, MS Ortho",800,0,Active
+740,72,ApolloCare Banjara Hills Rehab Institute,217,H072-B02,Dr. Meera Nair,Neuro Physiotherapist,7169474341,meera.nair740@arthomove-demo.com,"BPT, MPT Orthopedics",800,6,Active
+741,72,ApolloCare Banjara Hills Rehab Institute,217,H072-B02,Dr. Sneha Singh,Rehabilitation Consultant,9609960793,sneha.singh741@arthomove-demo.com,"BPT, MPT Orthopedics",800,0,Active
+742,72,ApolloCare Banjara Hills Rehab Institute,217,H072-B02,Dr. Amit Mehta,Orthopedic Surgeon,9081653598,amit.mehta742@arthomove-demo.com,MPT Neuro Rehab,1500,2,Active
+743,72,ApolloCare Banjara Hills Rehab Institute,218,H072-B03,Dr. Kavya Patel,Physiotherapist,8699300547,kavya.patel743@arthomove-demo.com,PhD Physiotherapy,600,3,On Leave
+744,72,ApolloCare Banjara Hills Rehab Institute,218,H072-B03,Dr. Rohan Patel,Pediatric Orthopedist,7777938640,rohan.patel744@arthomove-demo.com,"MBBS, Fellowship Spine",1500,1,Active
+745,72,ApolloCare Banjara Hills Rehab Institute,218,H072-B03,Dr. Ravi Kumar,Sports Rehab Specialist,8153543187,ravi.kumar745@arthomove-demo.com,"MBBS, MS Ortho",1200,6,Active
+746,72,ApolloCare Banjara Hills Rehab Institute,218,H072-B03,Dr. Varun Das,Orthopedic Surgeon,9443389025,varun.das746@arthomove-demo.com,"MBBS, Fellowship Spine",1200,2,Active
+747,72,ApolloCare Banjara Hills Rehab Institute,218,H072-B03,Dr. Sanjay Thomas,Shoulder Specialist,8142386145,sanjay.thomas747@arthomove-demo.com,"MBBS, MS Ortho",500,2,Active
+748,73,HealWell Gachibowli Wellness Hospital,219,H073-B01,Dr. Rohan Joshi,Pain Management Specialist,8761920297,rohan.joshi748@arthomove-demo.com,PhD Physiotherapy,1200,8,Active
+749,73,HealWell Gachibowli Wellness Hospital,219,H073-B01,Dr. Ritika Singh,Rehabilitation Consultant,9516008044,ritika.singh749@arthomove-demo.com,"BPT, MPT Sports",1200,9,Active
+750,73,HealWell Gachibowli Wellness Hospital,219,H073-B01,Dr. Arjun Rao,Neuro Physiotherapist,7551458850,arjun.rao750@arthomove-demo.com,"BPT, MPT Orthopedics",600,10,Active
+751,73,HealWell Gachibowli Wellness Hospital,220,H073-B02,Dr. Amit Verma,Knee Specialist,7834786264,amit.verma751@arthomove-demo.com,PhD Physiotherapy,1200,7,Active
+752,73,HealWell Gachibowli Wellness Hospital,220,H073-B02,Dr. Amit Khan,Pain Management Specialist,7659811579,amit.khan752@arthomove-demo.com,"BPT, MPT Orthopedics",600,7,Active
+753,73,HealWell Gachibowli Wellness Hospital,220,H073-B02,Dr. Ravi Patel,Orthopedic Surgeon,8096129926,ravi.patel753@arthomove-demo.com,"MBBS, DNB Ortho",1200,4,Active
+754,73,HealWell Gachibowli Wellness Hospital,221,H073-B03,Dr. Ravi Rao,Neuro Physiotherapist,8074952249,ravi.rao754@arthomove-demo.com,"MBBS, Fellowship Spine",800,9,Active
+755,73,HealWell Gachibowli Wellness Hospital,221,H073-B03,Dr. Neha Khan,Pain Management Specialist,7852286198,neha.khan755@arthomove-demo.com,"MBBS, DNB Ortho",800,7,Inactive
+756,73,HealWell Gachibowli Wellness Hospital,221,H073-B03,Dr. Nisha Pillai,Shoulder Specialist,8418500603,nisha.pillai756@arthomove-demo.com,"MBBS, MS Ortho",400,10,Active
+757,74,MotionCare Navi Mumbai Rehab Institute,222,H074-B01,Dr. Karthik Mehta,Spine Specialist,7537094206,karthik.mehta757@arthomove-demo.com,MPT Neuro Rehab,1000,10,Inactive
+758,74,MotionCare Navi Mumbai Rehab Institute,222,H074-B01,Dr. Sneha Chopra,Rehabilitation Consultant,9558281461,sneha.chopra758@arthomove-demo.com,"MBBS, Diploma Orthopedics",800,3,On Leave
+759,74,MotionCare Navi Mumbai Rehab Institute,222,H074-B01,Dr. Sneha Sharma,Shoulder Specialist,8090508345,sneha.sharma759@arthomove-demo.com,"MBBS, MS Ortho",400,8,Active
+760,74,MotionCare Navi Mumbai Rehab Institute,222,H074-B01,Dr. Swetha Joshi,Rehabilitation Consultant,7260297480,swetha.joshi760@arthomove-demo.com,MPT Neuro Rehab,400,7,Active
+761,74,MotionCare Navi Mumbai Rehab Institute,223,H074-B02,Dr. Amit Khan,Neuro Physiotherapist,7664016259,amit.khan761@arthomove-demo.com,MPT Neuro Rehab,1500,5,Active
+762,74,MotionCare Navi Mumbai Rehab Institute,223,H074-B02,Dr. Karthik Menon,Physiotherapist,9891427425,karthik.menon762@arthomove-demo.com,"BPT, MPT Orthopedics",600,10,Active
+763,74,MotionCare Navi Mumbai Rehab Institute,223,H074-B02,Dr. Sanjay Nair,Knee Specialist,7266980327,sanjay.nair763@arthomove-demo.com,"BPT, MPT Sports",750,10,On Leave
+764,74,MotionCare Navi Mumbai Rehab Institute,223,H074-B02,Dr. Isha Verma,Orthopedic Surgeon,9878018716,isha.verma764@arthomove-demo.com,PhD Physiotherapy,1200,10,Active
+765,74,MotionCare Navi Mumbai Rehab Institute,223,H074-B02,Dr. Amit Kumar,Pain Management Specialist,9279065457,amit.kumar765@arthomove-demo.com,"BPT, MPT Sports",750,9,Inactive
+766,74,MotionCare Navi Mumbai Rehab Institute,224,H074-B03,Dr. Aditya Verma,Orthopedic Surgeon,9043024193,aditya.verma766@arthomove-demo.com,MPT Neuro Rehab,1200,0,Active
+767,74,MotionCare Navi Mumbai Rehab Institute,224,H074-B03,Dr. Ritika Patel,Shoulder Specialist,7357415181,ritika.patel767@arthomove-demo.com,"BPT, MPT Sports",800,5,Active
+768,74,MotionCare Navi Mumbai Rehab Institute,225,H074-B04,Dr. Ravi Kumar,Shoulder Specialist,9625255803,ravi.kumar768@arthomove-demo.com,"BPT, MPT Orthopedics",400,4,Active
+769,74,MotionCare Navi Mumbai Rehab Institute,225,H074-B04,Dr. Meera Patel,Knee Specialist,8710578703,meera.patel769@arthomove-demo.com,"MBBS, Diploma Orthopedics",500,0,Active
+770,74,MotionCare Navi Mumbai Rehab Institute,225,H074-B04,Dr. Swetha Iyer,Physiotherapist,7710036660,swetha.iyer770@arthomove-demo.com,PhD Physiotherapy,800,9,Active
+771,74,MotionCare Navi Mumbai Rehab Institute,225,H074-B04,Dr. Varun Patel,Pediatric Orthopedist,9755676134,varun.patel771@arthomove-demo.com,"MBBS, DNB Ortho",400,4,Active
+772,75,ApolloCare Wakad Hospital,226,H075-B01,Dr. Arjun Kumar,Orthopedic Surgeon,7306571287,arjun.kumar772@arthomove-demo.com,MPT Neuro Rehab,1000,4,Active
+773,75,ApolloCare Wakad Hospital,226,H075-B01,Dr. Rahul Verma,Spine Specialist,8351090933,rahul.verma773@arthomove-demo.com,"BPT, MPT Orthopedics",750,9,Active
+774,75,ApolloCare Wakad Hospital,226,H075-B01,Dr. Rohan Kumar,Spine Specialist,7726076124,rohan.kumar774@arthomove-demo.com,"MBBS, DNB Ortho",400,5,Active
+775,75,ApolloCare Wakad Hospital,226,H075-B01,Dr. Karthik Mishra,Orthopedic Surgeon,7439420748,karthik.mishra775@arthomove-demo.com,"MBBS, MS Ortho",600,0,Active
+776,75,ApolloCare Wakad Hospital,227,H075-B02,Dr. Varun Thomas,Rehabilitation Consultant,8009670833,varun.thomas776@arthomove-demo.com,"MBBS, MS Ortho",400,8,Active
+777,75,ApolloCare Wakad Hospital,227,H075-B02,Dr. Aditya Mehta,Rehabilitation Consultant,7350037660,aditya.mehta777@arthomove-demo.com,"MBBS, MS Ortho",750,9,Active
+778,75,ApolloCare Wakad Hospital,227,H075-B02,Dr. Kavya Pillai,Spine Specialist,9022509135,kavya.pillai778@arthomove-demo.com,"MBBS, Diploma Orthopedics",1200,9,Active
+779,76,ApolloCare Borivali Medical Center,228,H076-B01,Dr. Anjali Chopra,Pediatric Orthopedist,7032615187,anjali.chopra779@arthomove-demo.com,"BPT, MPT Orthopedics",400,0,Active
+780,76,ApolloCare Borivali Medical Center,228,H076-B01,Dr. Anjali Reddy,Pain Management Specialist,8389892284,anjali.reddy780@arthomove-demo.com,"MBBS, MS Ortho",1200,5,Active
+781,76,ApolloCare Borivali Medical Center,228,H076-B01,Dr. Priya Sharma,Knee Specialist,8696702589,priya.sharma781@arthomove-demo.com,"BPT, MPT Orthopedics",1500,8,Active
+782,76,ApolloCare Borivali Medical Center,228,H076-B01,Dr. Sneha Iyer,Pediatric Orthopedist,9573515496,sneha.iyer782@arthomove-demo.com,"MBBS, MS Ortho",1200,7,Active
+783,76,ApolloCare Borivali Medical Center,228,H076-B01,Dr. Pooja Thomas,Physiotherapist,8806187001,pooja.thomas783@arthomove-demo.com,"BPT, MPT Sports",1000,2,Active
+784,76,ApolloCare Borivali Medical Center,229,H076-B02,Dr. Lakshmi Gupta,Orthopedic Surgeon,8310025904,lakshmi.gupta784@arthomove-demo.com,"MBBS, Diploma Orthopedics",400,8,Active
+785,76,ApolloCare Borivali Medical Center,229,H076-B02,Dr. Swetha Sharma,Pain Management Specialist,8797273139,swetha.sharma785@arthomove-demo.com,"MBBS, DNB Ortho",600,2,Active
+786,76,ApolloCare Borivali Medical Center,229,H076-B02,Dr. Isha Mishra,Neuro Physiotherapist,8973246057,isha.mishra786@arthomove-demo.com,"MBBS, MS Ortho",1200,3,Active
+787,76,ApolloCare Borivali Medical Center,229,H076-B02,Dr. Nisha Mehta,Spine Specialist,8622792817,nisha.mehta787@arthomove-demo.com,"MBBS, DNB Ortho",800,5,Active
+788,76,ApolloCare Borivali Medical Center,230,H076-B03,Dr. Ravi Mehta,Pain Management Specialist,8874491502,ravi.mehta788@arthomove-demo.com,"MBBS, DNB Ortho",800,10,Active
+789,76,ApolloCare Borivali Medical Center,230,H076-B03,Dr. Sneha Sharma,Rehabilitation Consultant,7110412588,sneha.sharma789@arthomove-demo.com,PhD Physiotherapy,400,5,Active
+790,76,ApolloCare Borivali Medical Center,230,H076-B03,Dr. Farhan Rao,Rehabilitation Consultant,8876824584,farhan.rao790@arthomove-demo.com,MPT Neuro Rehab,600,0,Active
+791,76,ApolloCare Borivali Medical Center,230,H076-B03,Dr. Rohan Nair,Knee Specialist,8548452405,rohan.nair791@arthomove-demo.com,"MBBS, Fellowship Spine",750,7,Active
+792,76,ApolloCare Borivali Medical Center,230,H076-B03,Dr. Rahul Thomas,Orthopedic Surgeon,9291353941,rahul.thomas792@arthomove-demo.com,"BPT, MPT Orthopedics",800,8,Active
+793,76,ApolloCare Borivali Medical Center,231,H076-B04,Dr. Rahul Gupta,Rehabilitation Consultant,9320360960,rahul.gupta793@arthomove-demo.com,"BPT, MPT Sports",500,5,Active
+794,76,ApolloCare Borivali Medical Center,231,H076-B04,Dr. Aditya Iyer,Sports Rehab Specialist,8249148596,aditya.iyer794@arthomove-demo.com,"BPT, MPT Orthopedics",600,5,Active
+795,77,OrthoLife Vyttila Hospital,232,H077-B01,Dr. Neha Thomas,Physiotherapist,8487820795,neha.thomas795@arthomove-demo.com,"MBBS, DNB Ortho",1500,8,Active
+796,77,OrthoLife Vyttila Hospital,232,H077-B01,Dr. Rohan Patel,Neuro Physiotherapist,7637406859,rohan.patel796@arthomove-demo.com,PhD Physiotherapy,1200,6,Active
+797,77,OrthoLife Vyttila Hospital,232,H077-B01,Dr. Ritika Pillai,Neuro Physiotherapist,8421719168,ritika.pillai797@arthomove-demo.com,"MBBS, Fellowship Spine",1000,6,Active
+798,77,OrthoLife Vyttila Hospital,232,H077-B01,Dr. Swetha Reddy,Orthopedic Surgeon,9727406470,swetha.reddy798@arthomove-demo.com,"MBBS, Diploma Orthopedics",600,0,Active
+799,77,OrthoLife Vyttila Hospital,233,H077-B02,Dr. Neha Singh,Spine Specialist,7500094365,neha.singh799@arthomove-demo.com,PhD Physiotherapy,600,8,On Leave
+800,77,OrthoLife Vyttila Hospital,233,H077-B02,Dr. Meera Menon,Pain Management Specialist,7577364140,meera.menon800@arthomove-demo.com,"MBBS, DNB Ortho",1200,10,Active
+801,77,OrthoLife Vyttila Hospital,233,H077-B02,Dr. Neha Reddy,Neuro Physiotherapist,7506715663,neha.reddy801@arthomove-demo.com,PhD Physiotherapy,400,6,Active
+802,77,OrthoLife Vyttila Hospital,233,H077-B02,Dr. Farhan Mehta,Physiotherapist,8394534523,farhan.mehta802@arthomove-demo.com,MPT Neuro Rehab,1000,5,Active
+803,77,OrthoLife Vyttila Hospital,233,H077-B02,Dr. Meera Patel,Sports Rehab Specialist,9513326901,meera.patel803@arthomove-demo.com,"MBBS, Diploma Orthopedics",1500,4,Active
+804,78,Prime Rehab Baner Speciality Clinic,234,H078-B01,Dr. Amit Nair,Pediatric Orthopedist,8034135907,amit.nair804@arthomove-demo.com,"MBBS, MS Ortho",600,8,Active
+805,78,Prime Rehab Baner Speciality Clinic,234,H078-B01,Dr. Priya Menon,Knee Specialist,9159282249,priya.menon805@arthomove-demo.com,PhD Physiotherapy,1200,3,Inactive
+806,78,Prime Rehab Baner Speciality Clinic,234,H078-B01,Dr. Divya Thomas,Shoulder Specialist,9112949040,divya.thomas806@arthomove-demo.com,"BPT, MPT Orthopedics",1200,3,Active
+807,78,Prime Rehab Baner Speciality Clinic,235,H078-B02,Dr. Sneha Rao,Pediatric Orthopedist,9722428234,sneha.rao807@arthomove-demo.com,"MBBS, Fellowship Spine",600,3,Active
+808,78,Prime Rehab Baner Speciality Clinic,235,H078-B02,Dr. Ravi Kumar,Physiotherapist,9282332018,ravi.kumar808@arthomove-demo.com,PhD Physiotherapy,1000,7,Active
+809,78,Prime Rehab Baner Speciality Clinic,235,H078-B02,Dr. Anjali Verma,Knee Specialist,8316956285,anjali.verma809@arthomove-demo.com,"BPT, MPT Orthopedics",600,10,Active
+810,78,Prime Rehab Baner Speciality Clinic,235,H078-B02,Dr. Rohan Reddy,Shoulder Specialist,9903365453,rohan.reddy810@arthomove-demo.com,"BPT, MPT Orthopedics",1000,8,Active
+811,78,Prime Rehab Baner Speciality Clinic,235,H078-B02,Dr. Kavya Menon,Pediatric Orthopedist,8709564629,kavya.menon811@arthomove-demo.com,MPT Neuro Rehab,600,8,Active
+812,79,Prime Rehab Mansarovar Hospital,236,H079-B01,Dr. Isha Menon,Physiotherapist,9515529742,isha.menon812@arthomove-demo.com,PhD Physiotherapy,750,8,Active
+813,79,Prime Rehab Mansarovar Hospital,236,H079-B01,Dr. Vikram Menon,Pain Management Specialist,9240138598,vikram.menon813@arthomove-demo.com,PhD Physiotherapy,1000,5,Active
+814,79,Prime Rehab Mansarovar Hospital,236,H079-B01,Dr. Suresh Mishra,Spine Specialist,9447251212,suresh.mishra814@arthomove-demo.com,"MBBS, MS Ortho",1000,7,Active
+815,79,Prime Rehab Mansarovar Hospital,236,H079-B01,Dr. Neha Joshi,Pediatric Orthopedist,8205506728,neha.joshi815@arthomove-demo.com,"MBBS, DNB Ortho",1200,1,Active
+816,79,Prime Rehab Mansarovar Hospital,237,H079-B02,Dr. Sneha Gupta,Orthopedic Surgeon,8533517496,sneha.gupta816@arthomove-demo.com,"MBBS, Fellowship Spine",1200,9,Active
+817,79,Prime Rehab Mansarovar Hospital,237,H079-B02,Dr. Ravi Patel,Orthopedic Surgeon,7481869559,ravi.patel817@arthomove-demo.com,PhD Physiotherapy,800,2,Active
+818,80,ApolloCare Tambaram Speciality Clinic,238,H080-B01,Dr. Pooja Joshi,Knee Specialist,7573499850,pooja.joshi818@arthomove-demo.com,"BPT, MPT Sports",400,0,Active
+819,80,ApolloCare Tambaram Speciality Clinic,238,H080-B01,Dr. Meera Joshi,Pediatric Orthopedist,8900915422,meera.joshi819@arthomove-demo.com,"BPT, MPT Orthopedics",600,5,Active
+820,80,ApolloCare Tambaram Speciality Clinic,239,H080-B02,Dr. Vikram Gupta,Knee Specialist,9690887757,vikram.gupta820@arthomove-demo.com,"MBBS, Diploma Orthopedics",400,6,Active
+821,80,ApolloCare Tambaram Speciality Clinic,239,H080-B02,Dr. Manoj Gupta,Knee Specialist,9167710866,manoj.gupta821@arthomove-demo.com,"MBBS, Fellowship Spine",600,4,Active
+822,80,ApolloCare Tambaram Speciality Clinic,239,H080-B02,Dr. Farhan Joshi,Orthopedic Surgeon,8762599672,farhan.joshi822@arthomove-demo.com,"BPT, MPT Sports",1200,7,Active
+823,80,ApolloCare Tambaram Speciality Clinic,239,H080-B02,Dr. Rohan Verma,Shoulder Specialist,9563710897,rohan.verma823@arthomove-demo.com,"BPT, MPT Sports",600,6,Active
+824,80,ApolloCare Tambaram Speciality Clinic,240,H080-B03,Dr. Nisha Mishra,Physiotherapist,7498710829,nisha.mishra824@arthomove-demo.com,PhD Physiotherapy,1200,3,Active
+825,80,ApolloCare Tambaram Speciality Clinic,240,H080-B03,Dr. Neha Reddy,Shoulder Specialist,7172785398,neha.reddy825@arthomove-demo.com,"MBBS, Diploma Orthopedics",1000,6,Active
+826,80,ApolloCare Tambaram Speciality Clinic,240,H080-B03,Dr. Pooja Mehta,Physiotherapist,8012740129,pooja.mehta826@arthomove-demo.com,PhD Physiotherapy,1000,8,Active
+827,80,ApolloCare Tambaram Speciality Clinic,240,H080-B03,Dr. Varun Thomas,Neuro Physiotherapist,8894832864,varun.thomas827@arthomove-demo.com,PhD Physiotherapy,750,3,Active
+828,80,ApolloCare Tambaram Speciality Clinic,241,H080-B04,Dr. Ritika Singh,Pediatric Orthopedist,9603562380,ritika.singh828@arthomove-demo.com,"MBBS, DNB Ortho",1000,6,Active
+829,80,ApolloCare Tambaram Speciality Clinic,241,H080-B04,Dr. Meera Verma,Physiotherapist,9962476659,meera.verma829@arthomove-demo.com,"MBBS, MS Ortho",500,4,Inactive
+830,81,CarePlus HSR Layout Healthcare Hub,242,H081-B01,Dr. Ritika Thomas,Rehabilitation Consultant,8425943735,ritika.thomas830@arthomove-demo.com,"BPT, MPT Orthopedics",600,9,Active
+831,81,CarePlus HSR Layout Healthcare Hub,242,H081-B01,Dr. Neha Das,Sports Rehab Specialist,9674130450,neha.das831@arthomove-demo.com,"MBBS, Fellowship Spine",1500,5,Active
+832,81,CarePlus HSR Layout Healthcare Hub,242,H081-B01,Dr. Pooja Verma,Sports Rehab Specialist,9508146358,pooja.verma832@arthomove-demo.com,"MBBS, MS Ortho",1500,1,Active
+833,81,CarePlus HSR Layout Healthcare Hub,242,H081-B01,Dr. Ritika Menon,Rehabilitation Consultant,7180386503,ritika.menon833@arthomove-demo.com,"MBBS, MS Ortho",400,7,On Leave
+834,81,CarePlus HSR Layout Healthcare Hub,242,H081-B01,Dr. Ravi Jain,Shoulder Specialist,7133205737,ravi.jain834@arthomove-demo.com,"BPT, MPT Orthopedics",1000,10,Active
+835,81,CarePlus HSR Layout Healthcare Hub,243,H081-B02,Dr. Sneha Thomas,Neuro Physiotherapist,7455740449,sneha.thomas835@arthomove-demo.com,"MBBS, DNB Ortho",500,2,Active
+836,81,CarePlus HSR Layout Healthcare Hub,243,H081-B02,Dr. Meera Thomas,Orthopedic Surgeon,9245171949,meera.thomas836@arthomove-demo.com,"MBBS, Fellowship Spine",800,6,Active
+837,81,CarePlus HSR Layout Healthcare Hub,244,H081-B03,Dr. Anjali Iyer,Neuro Physiotherapist,7883221974,anjali.iyer837@arthomove-demo.com,"MBBS, MS Ortho",800,3,Active
+838,81,CarePlus HSR Layout Healthcare Hub,244,H081-B03,Dr. Vikram Reddy,Rehabilitation Consultant,9329506081,vikram.reddy838@arthomove-demo.com,"MBBS, MS Ortho",1500,10,Active
+839,81,CarePlus HSR Layout Healthcare Hub,245,H081-B04,Dr. Amit Khan,Sports Rehab Specialist,7751982870,amit.khan839@arthomove-demo.com,"MBBS, Fellowship Spine",600,10,Active
+840,81,CarePlus HSR Layout Healthcare Hub,245,H081-B04,Dr. Varun Thomas,Physiotherapist,8534245912,varun.thomas840@arthomove-demo.com,MPT Neuro Rehab,750,4,Active
+841,82,ARthoMove Edappally Wellness Hospital,246,H082-B01,Dr. Vikram Joshi,Neuro Physiotherapist,9897644331,vikram.joshi841@arthomove-demo.com,"MBBS, DNB Ortho",1200,8,Active
+842,82,ARthoMove Edappally Wellness Hospital,246,H082-B01,Dr. Rahul Verma,Shoulder Specialist,9047994126,rahul.verma842@arthomove-demo.com,"MBBS, Fellowship Spine",1500,9,On Leave
+843,82,ARthoMove Edappally Wellness Hospital,246,H082-B01,Dr. Farhan Thomas,Shoulder Specialist,9510102113,farhan.thomas843@arthomove-demo.com,"BPT, MPT Sports",800,1,Active
+844,82,ARthoMove Edappally Wellness Hospital,246,H082-B01,Dr. Farhan Gupta,Shoulder Specialist,8879963238,farhan.gupta844@arthomove-demo.com,PhD Physiotherapy,1000,5,Active
+845,82,ARthoMove Edappally Wellness Hospital,247,H082-B02,Dr. Neha Kumar,Sports Rehab Specialist,7666064064,neha.kumar845@arthomove-demo.com,PhD Physiotherapy,600,9,Active
+846,82,ARthoMove Edappally Wellness Hospital,247,H082-B02,Dr. Aditya Thomas,Pediatric Orthopedist,7386861183,aditya.thomas846@arthomove-demo.com,"MBBS, Fellowship Spine",400,8,Active
+847,82,ARthoMove Edappally Wellness Hospital,247,H082-B02,Dr. Karthik Reddy,Pediatric Orthopedist,8384887610,karthik.reddy847@arthomove-demo.com,"MBBS, MS Ortho",750,6,Active
+848,82,ARthoMove Edappally Wellness Hospital,247,H082-B02,Dr. Arjun Kumar,Shoulder Specialist,9689055077,arjun.kumar848@arthomove-demo.com,"MBBS, Fellowship Spine",500,10,Active
+849,83,ARthoMove Gandhipuram Wellness Hospital,248,H083-B01,Dr. Farhan Mehta,Orthopedic Surgeon,8709741417,farhan.mehta849@arthomove-demo.com,"MBBS, Fellowship Spine",800,1,Active
+850,83,ARthoMove Gandhipuram Wellness Hospital,248,H083-B01,Dr. Nisha Verma,Rehabilitation Consultant,9443976210,nisha.verma850@arthomove-demo.com,"MBBS, Diploma Orthopedics",1000,9,Active
+851,83,ARthoMove Gandhipuram Wellness Hospital,248,H083-B01,Dr. Nisha Menon,Pain Management Specialist,7961171396,nisha.menon851@arthomove-demo.com,"MBBS, MS Ortho",1500,4,Active
+852,83,ARthoMove Gandhipuram Wellness Hospital,248,H083-B01,Dr. Nisha Menon,Sports Rehab Specialist,7536144380,nisha.menon852@arthomove-demo.com,MPT Neuro Rehab,400,0,Active
+853,83,ARthoMove Gandhipuram Wellness Hospital,248,H083-B01,Dr. Divya Joshi,Pediatric Orthopedist,9277834046,divya.joshi853@arthomove-demo.com,PhD Physiotherapy,1000,5,Inactive
+854,83,ARthoMove Gandhipuram Wellness Hospital,249,H083-B02,Dr. Anjali Iyer,Rehabilitation Consultant,8841708701,anjali.iyer854@arthomove-demo.com,"MBBS, Fellowship Spine",750,7,Active
+855,83,ARthoMove Gandhipuram Wellness Hospital,249,H083-B02,Dr. Isha Mehta,Neuro Physiotherapist,7808163602,isha.mehta855@arthomove-demo.com,"MBBS, MS Ortho",1200,7,Active
+856,83,ARthoMove Gandhipuram Wellness Hospital,249,H083-B02,Dr. Meera Khan,Neuro Physiotherapist,9652844540,meera.khan856@arthomove-demo.com,PhD Physiotherapy,1000,10,Active
+857,83,ARthoMove Gandhipuram Wellness Hospital,249,H083-B02,Dr. Manoj Jain,Orthopedic Surgeon,8401143205,manoj.jain857@arthomove-demo.com,"MBBS, Fellowship Spine",600,1,Inactive
+858,83,ARthoMove Gandhipuram Wellness Hospital,249,H083-B02,Dr. Nisha Mishra,Shoulder Specialist,9675542283,nisha.mishra858@arthomove-demo.com,"MBBS, DNB Ortho",600,3,Active
+859,83,ARthoMove Gandhipuram Wellness Hospital,250,H083-B03,Dr. Lakshmi Kumar,Orthopedic Surgeon,8515895523,lakshmi.kumar859@arthomove-demo.com,"MBBS, MS Ortho",600,2,Active
+860,83,ARthoMove Gandhipuram Wellness Hospital,250,H083-B03,Dr. Swetha Rao,Neuro Physiotherapist,8660380901,swetha.rao860@arthomove-demo.com,"BPT, MPT Sports",600,8,Active
+861,83,ARthoMove Gandhipuram Wellness Hospital,250,H083-B03,Dr. Anjali Das,Rehabilitation Consultant,9176390296,anjali.das861@arthomove-demo.com,"MBBS, Fellowship Spine",1500,0,Active
+862,83,ARthoMove Gandhipuram Wellness Hospital,250,H083-B03,Dr. Kavya Kumar,Physiotherapist,8806459963,kavya.kumar862@arthomove-demo.com,"BPT, MPT Orthopedics",800,9,Active
+863,83,ARthoMove Gandhipuram Wellness Hospital,250,H083-B03,Dr. Pooja Mehta,Physiotherapist,8434592021,pooja.mehta863@arthomove-demo.com,"BPT, MPT Sports",1000,9,Active
+864,83,ARthoMove Gandhipuram Wellness Hospital,251,H083-B04,Dr. Ritika Kumar,Pain Management Specialist,8187987859,ritika.kumar864@arthomove-demo.com,"MBBS, DNB Ortho",400,9,Active
+865,83,ARthoMove Gandhipuram Wellness Hospital,251,H083-B04,Dr. Ritika Iyer,Pain Management Specialist,9401048807,ritika.iyer865@arthomove-demo.com,"MBBS, Fellowship Spine",750,9,Active
+866,84,OrthoLife Hebbal Wellness Hospital,252,H084-B01,Dr. Sanjay Iyer,Spine Specialist,7843661135,sanjay.iyer866@arthomove-demo.com,"MBBS, Fellowship Spine",500,8,On Leave
+867,84,OrthoLife Hebbal Wellness Hospital,252,H084-B01,Dr. Manoj Verma,Physiotherapist,7757898687,manoj.verma867@arthomove-demo.com,"MBBS, Diploma Orthopedics",400,2,Active
+868,84,OrthoLife Hebbal Wellness Hospital,252,H084-B01,Dr. Suresh Jain,Orthopedic Surgeon,7746222254,suresh.jain868@arthomove-demo.com,"MBBS, Fellowship Spine",1500,4,Active
+869,84,OrthoLife Hebbal Wellness Hospital,252,H084-B01,Dr. Priya Reddy,Pediatric Orthopedist,7281605960,priya.reddy869@arthomove-demo.com,MPT Neuro Rehab,1000,8,Active
+870,84,OrthoLife Hebbal Wellness Hospital,253,H084-B02,Dr. Lakshmi Khan,Spine Specialist,7734856758,lakshmi.khan870@arthomove-demo.com,"MBBS, Fellowship Spine",750,10,Active
+871,84,OrthoLife Hebbal Wellness Hospital,253,H084-B02,Dr. Isha Mishra,Spine Specialist,8589913546,isha.mishra871@arthomove-demo.com,PhD Physiotherapy,1200,3,On Leave
+872,84,OrthoLife Hebbal Wellness Hospital,254,H084-B03,Dr. Kavya Pillai,Rehabilitation Consultant,9118588533,kavya.pillai872@arthomove-demo.com,"MBBS, DNB Ortho",500,6,Active
+873,84,OrthoLife Hebbal Wellness Hospital,254,H084-B03,Dr. Meera Nair,Sports Rehab Specialist,9127499391,meera.nair873@arthomove-demo.com,"MBBS, MS Ortho",400,2,Active
+874,84,OrthoLife Hebbal Wellness Hospital,254,H084-B03,Dr. Ritika Singh,Pediatric Orthopedist,9170015919,ritika.singh874@arthomove-demo.com,"MBBS, Diploma Orthopedics",500,8,Active
+875,84,OrthoLife Hebbal Wellness Hospital,254,H084-B03,Dr. Aditya Thomas,Spine Specialist,8253786307,aditya.thomas875@arthomove-demo.com,"MBBS, MS Ortho",600,0,Active
+876,84,OrthoLife Hebbal Wellness Hospital,254,H084-B03,Dr. Lakshmi Menon,Physiotherapist,9897803323,lakshmi.menon876@arthomove-demo.com,"BPT, MPT Orthopedics",1200,10,Inactive
+877,84,OrthoLife Hebbal Wellness Hospital,255,H084-B04,Dr. Pooja Rao,Rehabilitation Consultant,7493167550,pooja.rao877@arthomove-demo.com,"BPT, MPT Sports",500,2,Inactive
+878,84,OrthoLife Hebbal Wellness Hospital,255,H084-B04,Dr. Lakshmi Reddy,Orthopedic Surgeon,7112596679,lakshmi.reddy878@arthomove-demo.com,MPT Neuro Rehab,1500,2,Active
+879,84,OrthoLife Hebbal Wellness Hospital,255,H084-B04,Dr. Rahul Pillai,Knee Specialist,8181366206,rahul.pillai879@arthomove-demo.com,PhD Physiotherapy,400,2,Active
+880,84,OrthoLife Hebbal Wellness Hospital,255,H084-B04,Dr. Nisha Das,Shoulder Specialist,9513222665,nisha.das880@arthomove-demo.com,"MBBS, MS Ortho",1000,9,Active
+881,85,ApolloCare Ameerpet Healthcare Hub,256,H085-B01,Dr. Rohan Sharma,Spine Specialist,9278157584,rohan.sharma881@arthomove-demo.com,"MBBS, Diploma Orthopedics",1200,6,Active
+882,85,ApolloCare Ameerpet Healthcare Hub,256,H085-B01,Dr. Ritika Verma,Shoulder Specialist,8249298961,ritika.verma882@arthomove-demo.com,"MBBS, Diploma Orthopedics",1000,9,Active
+883,85,ApolloCare Ameerpet Healthcare Hub,256,H085-B01,Dr. Swetha Joshi,Pediatric Orthopedist,8638956089,swetha.joshi883@arthomove-demo.com,"MBBS, Diploma Orthopedics",750,4,Inactive
+884,85,ApolloCare Ameerpet Healthcare Hub,257,H085-B02,Dr. Suresh Sharma,Knee Specialist,8306738750,suresh.sharma884@arthomove-demo.com,"MBBS, DNB Ortho",1200,9,Active
+885,85,ApolloCare Ameerpet Healthcare Hub,257,H085-B02,Dr. Sanjay Khan,Shoulder Specialist,7480810262,sanjay.khan885@arthomove-demo.com,"BPT, MPT Sports",750,4,On Leave
+886,85,ApolloCare Ameerpet Healthcare Hub,257,H085-B02,Dr. Rahul Pillai,Rehabilitation Consultant,8524882652,rahul.pillai886@arthomove-demo.com,"BPT, MPT Sports",800,1,Active
+887,85,ApolloCare Ameerpet Healthcare Hub,257,H085-B02,Dr. Sanjay Reddy,Pain Management Specialist,9958185012,sanjay.reddy887@arthomove-demo.com,"MBBS, MS Ortho",1500,9,Active
+888,85,ApolloCare Ameerpet Healthcare Hub,257,H085-B02,Dr. Rahul Rao,Pain Management Specialist,9102697428,rahul.rao888@arthomove-demo.com,"MBBS, MS Ortho",600,10,Active
+889,85,ApolloCare Ameerpet Healthcare Hub,258,H085-B03,Dr. Lakshmi Verma,Pain Management Specialist,8720439345,lakshmi.verma889@arthomove-demo.com,"BPT, MPT Sports",600,0,Active
+890,85,ApolloCare Ameerpet Healthcare Hub,258,H085-B03,Dr. Aditya Mehta,Physiotherapist,9787139503,aditya.mehta890@arthomove-demo.com,MPT Neuro Rehab,800,4,Active
+891,85,ApolloCare Ameerpet Healthcare Hub,258,H085-B03,Dr. Divya Mehta,Pediatric Orthopedist,7299315230,divya.mehta891@arthomove-demo.com,"MBBS, MS Ortho",750,2,Active
+892,85,ApolloCare Ameerpet Healthcare Hub,258,H085-B03,Dr. Rohan Nair,Shoulder Specialist,8128094930,rohan.nair892@arthomove-demo.com,MPT Neuro Rehab,1000,6,Inactive
+893,85,ApolloCare Ameerpet Healthcare Hub,259,H085-B04,Dr. Divya Sharma,Rehabilitation Consultant,8860678449,divya.sharma893@arthomove-demo.com,PhD Physiotherapy,750,2,Inactive
+894,85,ApolloCare Ameerpet Healthcare Hub,259,H085-B04,Dr. Lakshmi Verma,Neuro Physiotherapist,8021970206,lakshmi.verma894@arthomove-demo.com,"BPT, MPT Sports",800,9,Active
+895,85,ApolloCare Ameerpet Healthcare Hub,259,H085-B04,Dr. Ravi Kumar,Orthopedic Surgeon,8746544806,ravi.kumar895@arthomove-demo.com,"BPT, MPT Sports",600,5,Active
+896,86,NeuroOrtho RS Puram Hospital,260,H086-B01,Dr. Aditya Das,Shoulder Specialist,7106908840,aditya.das896@arthomove-demo.com,"BPT, MPT Sports",1200,6,Active
+897,86,NeuroOrtho RS Puram Hospital,260,H086-B01,Dr. Farhan Thomas,Pain Management Specialist,7507958532,farhan.thomas897@arthomove-demo.com,PhD Physiotherapy,800,7,Active
+898,86,NeuroOrtho RS Puram Hospital,260,H086-B01,Dr. Isha Verma,Spine Specialist,9341170272,isha.verma898@arthomove-demo.com,"BPT, MPT Sports",500,6,Active
+899,86,NeuroOrtho RS Puram Hospital,260,H086-B01,Dr. Pooja Thomas,Knee Specialist,8236923822,pooja.thomas899@arthomove-demo.com,"MBBS, MS Ortho",400,6,Active
+900,86,NeuroOrtho RS Puram Hospital,261,H086-B02,Dr. Sanjay Khan,Shoulder Specialist,8583649289,sanjay.khan900@arthomove-demo.com,PhD Physiotherapy,600,9,Active
+901,86,NeuroOrtho RS Puram Hospital,261,H086-B02,Dr. Divya Nair,Pain Management Specialist,8413237153,divya.nair901@arthomove-demo.com,MPT Neuro Rehab,400,8,Active
+902,87,ARthoMove Yelahanka Wellness Hospital,262,H087-B01,Dr. Nisha Mishra,Shoulder Specialist,7081184650,nisha.mishra902@arthomove-demo.com,"BPT, MPT Sports",800,1,Active
+903,87,ARthoMove Yelahanka Wellness Hospital,262,H087-B01,Dr. Kavya Singh,Knee Specialist,9348630188,kavya.singh903@arthomove-demo.com,"MBBS, Fellowship Spine",750,1,Active
+904,87,ARthoMove Yelahanka Wellness Hospital,263,H087-B02,Dr. Ravi Singh,Sports Rehab Specialist,9113277342,ravi.singh904@arthomove-demo.com,"BPT, MPT Orthopedics",750,7,Active
+905,87,ARthoMove Yelahanka Wellness Hospital,263,H087-B02,Dr. Rahul Chopra,Spine Specialist,8418146950,rahul.chopra905@arthomove-demo.com,"MBBS, Diploma Orthopedics",1000,5,Active
+906,87,ARthoMove Yelahanka Wellness Hospital,263,H087-B02,Dr. Suresh Reddy,Pain Management Specialist,7003153912,suresh.reddy906@arthomove-demo.com,"MBBS, MS Ortho",750,5,Active
+907,87,ARthoMove Yelahanka Wellness Hospital,263,H087-B02,Dr. Manoj Patel,Spine Specialist,8271224639,manoj.patel907@arthomove-demo.com,"MBBS, Fellowship Spine",600,2,Active
+908,87,ARthoMove Yelahanka Wellness Hospital,264,H087-B03,Dr. Anjali Gupta,Neuro Physiotherapist,8586959467,anjali.gupta908@arthomove-demo.com,"BPT, MPT Sports",1500,6,Active
+909,87,ARthoMove Yelahanka Wellness Hospital,264,H087-B03,Dr. Ravi Menon,Spine Specialist,8860615048,ravi.menon909@arthomove-demo.com,MPT Neuro Rehab,500,8,Active
+910,88,CarePlus Anna Nagar Speciality Clinic,265,H088-B01,Dr. Divya Jain,Sports Rehab Specialist,9595197539,divya.jain910@arthomove-demo.com,MPT Neuro Rehab,1200,8,Active
+911,88,CarePlus Anna Nagar Speciality Clinic,265,H088-B01,Dr. Rahul Iyer,Pain Management Specialist,8446902466,rahul.iyer911@arthomove-demo.com,PhD Physiotherapy,750,5,Active
+912,88,CarePlus Anna Nagar Speciality Clinic,266,H088-B02,Dr. Divya Mishra,Pain Management Specialist,9277913450,divya.mishra912@arthomove-demo.com,"MBBS, Fellowship Spine",1500,4,Active
+913,88,CarePlus Anna Nagar Speciality Clinic,266,H088-B02,Dr. Anjali Nair,Pediatric Orthopedist,8559042168,anjali.nair913@arthomove-demo.com,MPT Neuro Rehab,400,0,Active
+914,88,CarePlus Anna Nagar Speciality Clinic,266,H088-B02,Dr. Ravi Thomas,Spine Specialist,8208979188,ravi.thomas914@arthomove-demo.com,"BPT, MPT Sports",1000,7,Active
+915,88,CarePlus Anna Nagar Speciality Clinic,267,H088-B03,Dr. Suresh Mishra,Neuro Physiotherapist,8768020347,suresh.mishra915@arthomove-demo.com,"MBBS, DNB Ortho",400,4,Active
+916,88,CarePlus Anna Nagar Speciality Clinic,267,H088-B03,Dr. Vikram Iyer,Spine Specialist,7774284285,vikram.iyer916@arthomove-demo.com,"BPT, MPT Orthopedics",750,8,Active
+917,88,CarePlus Anna Nagar Speciality Clinic,267,H088-B03,Dr. Manoj Gupta,Spine Specialist,9769113188,manoj.gupta917@arthomove-demo.com,"BPT, MPT Sports",750,6,Active
+918,89,OrthoLife Prahlad Nagar Hospital,268,H089-B01,Dr. Isha Sharma,Sports Rehab Specialist,9067048038,isha.sharma918@arthomove-demo.com,"BPT, MPT Sports",1500,4,Active
+919,89,OrthoLife Prahlad Nagar Hospital,268,H089-B01,Dr. Aditya Iyer,Rehabilitation Consultant,7147959938,aditya.iyer919@arthomove-demo.com,PhD Physiotherapy,1000,9,Inactive
+920,89,OrthoLife Prahlad Nagar Hospital,268,H089-B01,Dr. Sneha Joshi,Physiotherapist,7105215627,sneha.joshi920@arthomove-demo.com,"BPT, MPT Sports",500,0,Active
+921,89,OrthoLife Prahlad Nagar Hospital,268,H089-B01,Dr. Sneha Gupta,Pain Management Specialist,9926476965,sneha.gupta921@arthomove-demo.com,"MBBS, MS Ortho",600,1,Active
+922,89,OrthoLife Prahlad Nagar Hospital,268,H089-B01,Dr. Isha Rao,Shoulder Specialist,7464446274,isha.rao922@arthomove-demo.com,"BPT, MPT Orthopedics",500,10,Active
+923,89,OrthoLife Prahlad Nagar Hospital,269,H089-B02,Dr. Aditya Patel,Knee Specialist,8563352526,aditya.patel923@arthomove-demo.com,"BPT, MPT Orthopedics",1000,9,Active
+924,89,OrthoLife Prahlad Nagar Hospital,269,H089-B02,Dr. Vikram Das,Knee Specialist,9139475943,vikram.das924@arthomove-demo.com,"MBBS, Fellowship Spine",1000,8,On Leave
+925,90,Medicare OMR Healthcare Hub,270,H090-B01,Dr. Suresh Mehta,Rehabilitation Consultant,8380024126,suresh.mehta925@arthomove-demo.com,"MBBS, MS Ortho",600,5,Active
+926,90,Medicare OMR Healthcare Hub,270,H090-B01,Dr. Priya Mehta,Neuro Physiotherapist,7585309226,priya.mehta926@arthomove-demo.com,PhD Physiotherapy,1500,9,Active
+927,90,Medicare OMR Healthcare Hub,270,H090-B01,Dr. Ravi Das,Pain Management Specialist,7072923657,ravi.das927@arthomove-demo.com,"BPT, MPT Orthopedics",750,9,Active
+928,90,Medicare OMR Healthcare Hub,271,H090-B02,Dr. Swetha Reddy,Shoulder Specialist,7158228258,swetha.reddy928@arthomove-demo.com,MPT Neuro Rehab,400,8,Active
+929,90,Medicare OMR Healthcare Hub,271,H090-B02,Dr. Amit Chopra,Shoulder Specialist,8251338639,amit.chopra929@arthomove-demo.com,"MBBS, Diploma Orthopedics",750,7,Active
+930,90,Medicare OMR Healthcare Hub,272,H090-B03,Dr. Isha Mehta,Spine Specialist,8746402305,isha.mehta930@arthomove-demo.com,MPT Neuro Rehab,800,2,Active
+931,90,Medicare OMR Healthcare Hub,272,H090-B03,Dr. Ritika Chopra,Orthopedic Surgeon,7709867951,ritika.chopra931@arthomove-demo.com,"MBBS, Fellowship Spine",1200,2,Active
+932,90,Medicare OMR Healthcare Hub,272,H090-B03,Dr. Suresh Verma,Physiotherapist,8049396411,suresh.verma932@arthomove-demo.com,"MBBS, Diploma Orthopedics",400,5,Active
+933,90,Medicare OMR Healthcare Hub,273,H090-B04,Dr. Suresh Jain,Physiotherapist,8176137988,suresh.jain933@arthomove-demo.com,PhD Physiotherapy,750,8,Active
+934,90,Medicare OMR Healthcare Hub,273,H090-B04,Dr. Nisha Rao,Spine Specialist,8228981085,nisha.rao934@arthomove-demo.com,"MBBS, MS Ortho",1000,1,Active
+935,91,ARthoMove Indiranagar Healthcare Hub,274,H091-B01,Dr. Arjun Nair,Neuro Physiotherapist,8664441061,arjun.nair935@arthomove-demo.com,"MBBS, DNB Ortho",800,0,Active
+936,91,ARthoMove Indiranagar Healthcare Hub,274,H091-B01,Dr. Kavya Reddy,Physiotherapist,7038767384,kavya.reddy936@arthomove-demo.com,"MBBS, DNB Ortho",600,2,Active
+937,91,ARthoMove Indiranagar Healthcare Hub,274,H091-B01,Dr. Arjun Gupta,Physiotherapist,8423972801,arjun.gupta937@arthomove-demo.com,"MBBS, Diploma Orthopedics",1500,0,On Leave
+938,91,ARthoMove Indiranagar Healthcare Hub,274,H091-B01,Dr. Divya Nair,Rehabilitation Consultant,7115870791,divya.nair938@arthomove-demo.com,"MBBS, Fellowship Spine",800,2,Active
+939,91,ARthoMove Indiranagar Healthcare Hub,275,H091-B02,Dr. Ravi Singh,Rehabilitation Consultant,9402294830,ravi.singh939@arthomove-demo.com,"MBBS, DNB Ortho",1200,3,On Leave
+940,91,ARthoMove Indiranagar Healthcare Hub,275,H091-B02,Dr. Lakshmi Chopra,Pain Management Specialist,7061943485,lakshmi.chopra940@arthomove-demo.com,"MBBS, DNB Ortho",600,0,Active
+941,91,ARthoMove Indiranagar Healthcare Hub,276,H091-B03,Dr. Meera Sharma,Orthopedic Surgeon,7735353244,meera.sharma941@arthomove-demo.com,"MBBS, Fellowship Spine",1000,10,On Leave
+942,91,ARthoMove Indiranagar Healthcare Hub,276,H091-B03,Dr. Amit Mishra,Sports Rehab Specialist,7880677224,amit.mishra942@arthomove-demo.com,"BPT, MPT Sports",800,1,Active
+943,91,ARthoMove Indiranagar Healthcare Hub,276,H091-B03,Dr. Ritika Verma,Pediatric Orthopedist,7022427931,ritika.verma943@arthomove-demo.com,PhD Physiotherapy,400,3,Active
+944,91,ARthoMove Indiranagar Healthcare Hub,276,H091-B03,Dr. Swetha Pillai,Pain Management Specialist,7476330112,swetha.pillai944@arthomove-demo.com,"MBBS, MS Ortho",600,5,On Leave
+945,92,OrthoLife Secunderabad Healthcare Hub,277,H092-B01,Dr. Divya Gupta,Pediatric Orthopedist,8970328840,divya.gupta945@arthomove-demo.com,"MBBS, Fellowship Spine",750,7,Active
+946,92,OrthoLife Secunderabad Healthcare Hub,277,H092-B01,Dr. Suresh Mehta,Pain Management Specialist,8041587904,suresh.mehta946@arthomove-demo.com,"MBBS, MS Ortho",1000,1,Active
+947,92,OrthoLife Secunderabad Healthcare Hub,277,H092-B01,Dr. Arjun Jain,Rehabilitation Consultant,9940943474,arjun.jain947@arthomove-demo.com,"MBBS, Diploma Orthopedics",800,8,Active
+948,92,OrthoLife Secunderabad Healthcare Hub,277,H092-B01,Dr. Sanjay Mishra,Neuro Physiotherapist,9768519329,sanjay.mishra948@arthomove-demo.com,PhD Physiotherapy,1500,8,Active
+949,92,OrthoLife Secunderabad Healthcare Hub,277,H092-B01,Dr. Karthik Mehta,Sports Rehab Specialist,8606792688,karthik.mehta949@arthomove-demo.com,"BPT, MPT Sports",1200,6,Active
+950,92,OrthoLife Secunderabad Healthcare Hub,278,H092-B02,Dr. Arjun Singh,Sports Rehab Specialist,7209210283,arjun.singh950@arthomove-demo.com,"MBBS, Fellowship Spine",500,7,Active
+951,92,OrthoLife Secunderabad Healthcare Hub,278,H092-B02,Dr. Lakshmi Jain,Knee Specialist,9795536064,lakshmi.jain951@arthomove-demo.com,PhD Physiotherapy,600,2,Active
+952,92,OrthoLife Secunderabad Healthcare Hub,279,H092-B03,Dr. Rohan Joshi,Orthopedic Surgeon,8137592612,rohan.joshi952@arthomove-demo.com,PhD Physiotherapy,750,1,Active
+953,92,OrthoLife Secunderabad Healthcare Hub,279,H092-B03,Dr. Nisha Nair,Orthopedic Surgeon,7113871270,nisha.nair953@arthomove-demo.com,"BPT, MPT Sports",1500,2,Active
+954,93,NeuroOrtho Hadapsar Wellness Hospital,280,H093-B01,Dr. Sneha Thomas,Pediatric Orthopedist,9871069562,sneha.thomas954@arthomove-demo.com,MPT Neuro Rehab,500,2,Active
+955,93,NeuroOrtho Hadapsar Wellness Hospital,280,H093-B01,Dr. Swetha Reddy,Pediatric Orthopedist,7110290366,swetha.reddy955@arthomove-demo.com,"MBBS, Fellowship Spine",800,0,Active
+956,93,NeuroOrtho Hadapsar Wellness Hospital,280,H093-B01,Dr. Manoj Reddy,Physiotherapist,8731879878,manoj.reddy956@arthomove-demo.com,"BPT, MPT Orthopedics",750,0,Active
+957,93,NeuroOrtho Hadapsar Wellness Hospital,280,H093-B01,Dr. Meera Nair,Neuro Physiotherapist,9210626126,meera.nair957@arthomove-demo.com,"MBBS, DNB Ortho",1000,9,Active
+958,93,NeuroOrtho Hadapsar Wellness Hospital,281,H093-B02,Dr. Pooja Jain,Sports Rehab Specialist,8042787711,pooja.jain958@arthomove-demo.com,"MBBS, DNB Ortho",400,9,Active
+959,93,NeuroOrtho Hadapsar Wellness Hospital,281,H093-B02,Dr. Arjun Mishra,Spine Specialist,7907671462,arjun.mishra959@arthomove-demo.com,"BPT, MPT Sports",400,2,Active
+960,93,NeuroOrtho Hadapsar Wellness Hospital,281,H093-B02,Dr. Sanjay Pillai,Sports Rehab Specialist,7994038097,sanjay.pillai960@arthomove-demo.com,"MBBS, Diploma Orthopedics",750,2,Active
+961,93,NeuroOrtho Hadapsar Wellness Hospital,282,H093-B03,Dr. Karthik Menon,Knee Specialist,8691757840,karthik.menon961@arthomove-demo.com,"BPT, MPT Orthopedics",800,7,Active
+962,93,NeuroOrtho Hadapsar Wellness Hospital,282,H093-B03,Dr. Arjun Pillai,Neuro Physiotherapist,9190174993,arjun.pillai962@arthomove-demo.com,"BPT, MPT Sports",1200,8,Active
+963,93,NeuroOrtho Hadapsar Wellness Hospital,282,H093-B03,Dr. Sanjay Rao,Physiotherapist,9019084853,sanjay.rao963@arthomove-demo.com,"BPT, MPT Sports",800,0,On Leave
+964,93,NeuroOrtho Hadapsar Wellness Hospital,282,H093-B03,Dr. Lakshmi Mishra,Pediatric Orthopedist,8179436553,lakshmi.mishra964@arthomove-demo.com,"MBBS, DNB Ortho",1000,8,Active
+965,93,NeuroOrtho Hadapsar Wellness Hospital,282,H093-B03,Dr. Sneha Nair,Shoulder Specialist,8648413269,sneha.nair965@arthomove-demo.com,"MBBS, Diploma Orthopedics",500,8,Active
+966,93,NeuroOrtho Hadapsar Wellness Hospital,283,H093-B04,Dr. Kavya Mehta,Sports Rehab Specialist,7413270439,kavya.mehta966@arthomove-demo.com,"BPT, MPT Orthopedics",1200,9,Active
+967,93,NeuroOrtho Hadapsar Wellness Hospital,283,H093-B04,Dr. Rahul Iyer,Shoulder Specialist,7675201860,rahul.iyer967@arthomove-demo.com,"BPT, MPT Sports",1000,2,On Leave
+968,93,NeuroOrtho Hadapsar Wellness Hospital,283,H093-B04,Dr. Rahul Patel,Rehabilitation Consultant,7804589542,rahul.patel968@arthomove-demo.com,MPT Neuro Rehab,400,2,Active
+969,94,Medicare Mansarovar Healthcare Hub,284,H094-B01,Dr. Meera Kumar,Knee Specialist,9827688150,meera.kumar969@arthomove-demo.com,MPT Neuro Rehab,1000,0,Active
+970,94,Medicare Mansarovar Healthcare Hub,284,H094-B01,Dr. Rahul Nair,Pediatric Orthopedist,8658280727,rahul.nair970@arthomove-demo.com,"BPT, MPT Sports",400,7,Active
+971,94,Medicare Mansarovar Healthcare Hub,284,H094-B01,Dr. Aditya Pillai,Physiotherapist,9343471135,aditya.pillai971@arthomove-demo.com,"BPT, MPT Orthopedics",1000,6,Active
+972,94,Medicare Mansarovar Healthcare Hub,284,H094-B01,Dr. Vikram Khan,Neuro Physiotherapist,7929146968,vikram.khan972@arthomove-demo.com,MPT Neuro Rehab,600,0,Active
+973,94,Medicare Mansarovar Healthcare Hub,285,H094-B02,Dr. Rahul Nair,Shoulder Specialist,9400353244,rahul.nair973@arthomove-demo.com,MPT Neuro Rehab,1000,9,Active
+974,94,Medicare Mansarovar Healthcare Hub,285,H094-B02,Dr. Priya Singh,Pediatric Orthopedist,9090539040,priya.singh974@arthomove-demo.com,"MBBS, MS Ortho",500,5,Active
+975,94,Medicare Mansarovar Healthcare Hub,285,H094-B02,Dr. Pooja Das,Neuro Physiotherapist,7408341585,pooja.das975@arthomove-demo.com,"BPT, MPT Sports",1000,7,Active
+976,94,Medicare Mansarovar Healthcare Hub,285,H094-B02,Dr. Rahul Patel,Knee Specialist,7229698931,rahul.patel976@arthomove-demo.com,"MBBS, Fellowship Spine",400,7,Active
+977,94,Medicare Mansarovar Healthcare Hub,286,H094-B03,Dr. Ravi Singh,Pain Management Specialist,7048689063,ravi.singh977@arthomove-demo.com,"MBBS, Diploma Orthopedics",800,7,Active
+978,94,Medicare Mansarovar Healthcare Hub,286,H094-B03,Dr. Sanjay Jain,Rehabilitation Consultant,9227789348,sanjay.jain978@arthomove-demo.com,"MBBS, Fellowship Spine",750,4,Active
+979,94,Medicare Mansarovar Healthcare Hub,287,H094-B04,Dr. Karthik Rao,Spine Specialist,8401166289,karthik.rao979@arthomove-demo.com,"MBBS, DNB Ortho",600,4,Active
+980,94,Medicare Mansarovar Healthcare Hub,287,H094-B04,Dr. Suresh Chopra,Sports Rehab Specialist,9722340287,suresh.chopra980@arthomove-demo.com,MPT Neuro Rehab,500,7,Active
+981,95,SpinePlus Navi Mumbai Wellness Hospital,288,H095-B01,Dr. Aditya Nair,Sports Rehab Specialist,7461919878,aditya.nair981@arthomove-demo.com,"MBBS, Diploma Orthopedics",500,6,Active
+982,95,SpinePlus Navi Mumbai Wellness Hospital,288,H095-B01,Dr. Sanjay Menon,Shoulder Specialist,7592076679,sanjay.menon982@arthomove-demo.com,PhD Physiotherapy,500,3,Inactive
+983,95,SpinePlus Navi Mumbai Wellness Hospital,289,H095-B02,Dr. Isha Joshi,Physiotherapist,7353048476,isha.joshi983@arthomove-demo.com,"MBBS, Diploma Orthopedics",400,4,Active
+984,95,SpinePlus Navi Mumbai Wellness Hospital,289,H095-B02,Dr. Ritika Mishra,Sports Rehab Specialist,7359161365,ritika.mishra984@arthomove-demo.com,"MBBS, Diploma Orthopedics",600,0,Active
+985,95,SpinePlus Navi Mumbai Wellness Hospital,289,H095-B02,Dr. Divya Pillai,Pain Management Specialist,9298478350,divya.pillai985@arthomove-demo.com,"BPT, MPT Orthopedics",600,10,On Leave
+986,95,SpinePlus Navi Mumbai Wellness Hospital,289,H095-B02,Dr. Karthik Patel,Pediatric Orthopedist,8746399043,karthik.patel986@arthomove-demo.com,"BPT, MPT Sports",800,0,Active
+987,95,SpinePlus Navi Mumbai Wellness Hospital,290,H095-B03,Dr. Pooja Iyer,Spine Specialist,9271339745,pooja.iyer987@arthomove-demo.com,"MBBS, MS Ortho",800,5,Active
+988,95,SpinePlus Navi Mumbai Wellness Hospital,290,H095-B03,Dr. Anjali Thomas,Rehabilitation Consultant,9444687174,anjali.thomas988@arthomove-demo.com,"MBBS, MS Ortho",1500,6,Active
+989,95,SpinePlus Navi Mumbai Wellness Hospital,291,H095-B04,Dr. Sneha Patel,Orthopedic Surgeon,8263632618,sneha.patel989@arthomove-demo.com,"MBBS, Fellowship Spine",600,1,On Leave
+990,95,SpinePlus Navi Mumbai Wellness Hospital,291,H095-B04,Dr. Vikram Iyer,Orthopedic Surgeon,7815180496,vikram.iyer990@arthomove-demo.com,"BPT, MPT Sports",1200,1,Inactive
+991,95,SpinePlus Navi Mumbai Wellness Hospital,291,H095-B04,Dr. Rohan Das,Knee Specialist,7850388536,rohan.das991@arthomove-demo.com,"MBBS, Diploma Orthopedics",400,2,Active
+992,96,ApolloCare RS Puram Hospital,292,H096-B01,Dr. Kavya Das,Spine Specialist,7438311410,kavya.das992@arthomove-demo.com,"MBBS, MS Ortho",500,6,Active
+993,96,ApolloCare RS Puram Hospital,292,H096-B01,Dr. Swetha Gupta,Pain Management Specialist,8110234770,swetha.gupta993@arthomove-demo.com,"MBBS, Fellowship Spine",750,3,Active
+994,96,ApolloCare RS Puram Hospital,293,H096-B02,Dr. Pooja Iyer,Pain Management Specialist,8614266053,pooja.iyer994@arthomove-demo.com,"BPT, MPT Sports",1200,3,Active
+995,96,ApolloCare RS Puram Hospital,293,H096-B02,Dr. Vikram Nair,Orthopedic Surgeon,7539654027,vikram.nair995@arthomove-demo.com,PhD Physiotherapy,600,6,Active
+996,96,ApolloCare RS Puram Hospital,293,H096-B02,Dr. Lakshmi Jain,Pediatric Orthopedist,8124909218,lakshmi.jain996@arthomove-demo.com,"MBBS, MS Ortho",600,0,Active
+997,96,ApolloCare RS Puram Hospital,293,H096-B02,Dr. Anjali Pillai,Physiotherapist,7531129047,anjali.pillai997@arthomove-demo.com,"MBBS, DNB Ortho",750,8,Inactive
+998,96,ApolloCare RS Puram Hospital,293,H096-B02,Dr. Kavya Nair,Pain Management Specialist,8533284093,kavya.nair998@arthomove-demo.com,"MBBS, Fellowship Spine",500,4,Active
+999,96,ApolloCare RS Puram Hospital,294,H096-B03,Dr. Anjali Das,Shoulder Specialist,9426021812,anjali.das999@arthomove-demo.com,MPT Neuro Rehab,750,9,Active
+1000,96,ApolloCare RS Puram Hospital,294,H096-B03,Dr. Nisha Gupta,Neuro Physiotherapist,7256981104,nisha.gupta1000@arthomove-demo.com,"MBBS, Diploma Orthopedics",750,9,Active
+1001,96,ApolloCare RS Puram Hospital,294,H096-B03,Dr. Ravi Sharma,Orthopedic Surgeon,9298809288,ravi.sharma1001@arthomove-demo.com,"MBBS, DNB Ortho",500,0,Active
+1002,96,ApolloCare RS Puram Hospital,295,H096-B04,Dr. Karthik Thomas,Physiotherapist,7168280816,karthik.thomas1002@arthomove-demo.com,"MBBS, DNB Ortho",750,0,Active
+1003,96,ApolloCare RS Puram Hospital,295,H096-B04,Dr. Vikram Patel,Orthopedic Surgeon,7346253844,vikram.patel1003@arthomove-demo.com,"BPT, MPT Sports",600,6,Active
+1004,96,ApolloCare RS Puram Hospital,295,H096-B04,Dr. Sanjay Khan,Sports Rehab Specialist,9370082512,sanjay.khan1004@arthomove-demo.com,"BPT, MPT Sports",1000,2,Active
+1005,96,ApolloCare RS Puram Hospital,295,H096-B04,Dr. Meera Mishra,Sports Rehab Specialist,8936528998,meera.mishra1005@arthomove-demo.com,MPT Neuro Rehab,800,6,Active
+1006,96,ApolloCare RS Puram Hospital,295,H096-B04,Dr. Pooja Sharma,Rehabilitation Consultant,9578800459,pooja.sharma1006@arthomove-demo.com,"BPT, MPT Sports",500,10,Active
+1007,97,ARthoMove Saibaba Colony Medical Center,296,H097-B01,Dr. Ravi Kumar,Rehabilitation Consultant,9550563530,ravi.kumar1007@arthomove-demo.com,PhD Physiotherapy,800,8,Active
+1008,97,ARthoMove Saibaba Colony Medical Center,296,H097-B01,Dr. Sanjay Kumar,Neuro Physiotherapist,9780324097,sanjay.kumar1008@arthomove-demo.com,"BPT, MPT Orthopedics",400,9,Active
+1009,97,ARthoMove Saibaba Colony Medical Center,297,H097-B02,Dr. Divya Patel,Physiotherapist,9416993077,divya.patel1009@arthomove-demo.com,"BPT, MPT Orthopedics",800,3,Active
+1010,97,ARthoMove Saibaba Colony Medical Center,297,H097-B02,Dr. Vikram Jain,Orthopedic Surgeon,7934923067,vikram.jain1010@arthomove-demo.com,"MBBS, Fellowship Spine",1000,8,Active
+1011,97,ARthoMove Saibaba Colony Medical Center,297,H097-B02,Dr. Lakshmi Singh,Pediatric Orthopedist,7467932367,lakshmi.singh1011@arthomove-demo.com,"MBBS, MS Ortho",400,4,Active
+1012,97,ARthoMove Saibaba Colony Medical Center,297,H097-B02,Dr. Sneha Joshi,Pediatric Orthopedist,8609189442,sneha.joshi1012@arthomove-demo.com,"MBBS, MS Ortho",500,3,Active
+1013,97,ARthoMove Saibaba Colony Medical Center,297,H097-B02,Dr. Isha Menon,Physiotherapist,8117353777,isha.menon1013@arthomove-demo.com,"BPT, MPT Orthopedics",400,10,Active
+1014,97,ARthoMove Saibaba Colony Medical Center,298,H097-B03,Dr. Farhan Verma,Sports Rehab Specialist,9491792280,farhan.verma1014@arthomove-demo.com,"BPT, MPT Sports",1000,2,Active
+1015,97,ARthoMove Saibaba Colony Medical Center,298,H097-B03,Dr. Ravi Thomas,Rehabilitation Consultant,8860042749,ravi.thomas1015@arthomove-demo.com,PhD Physiotherapy,800,0,Active
+1016,97,ARthoMove Saibaba Colony Medical Center,298,H097-B03,Dr. Lakshmi Gupta,Neuro Physiotherapist,9040450673,lakshmi.gupta1016@arthomove-demo.com,PhD Physiotherapy,400,5,Active
+1017,97,ARthoMove Saibaba Colony Medical Center,298,H097-B03,Dr. Swetha Patel,Shoulder Specialist,8301468212,swetha.patel1017@arthomove-demo.com,"MBBS, Fellowship Spine",600,4,Active
+1018,97,ARthoMove Saibaba Colony Medical Center,298,H097-B03,Dr. Meera Rao,Orthopedic Surgeon,7309966229,meera.rao1018@arthomove-demo.com,"MBBS, MS Ortho",1200,5,Active
+1019,97,ARthoMove Saibaba Colony Medical Center,299,H097-B04,Dr. Kavya Gupta,Pain Management Specialist,9383483037,kavya.gupta1019@arthomove-demo.com,"BPT, MPT Orthopedics",750,9,Active
+1020,97,ARthoMove Saibaba Colony Medical Center,299,H097-B04,Dr. Isha Patel,Rehabilitation Consultant,9508237838,isha.patel1020@arthomove-demo.com,MPT Neuro Rehab,500,7,Active
+1021,97,ARthoMove Saibaba Colony Medical Center,299,H097-B04,Dr. Farhan Mehta,Physiotherapist,8182313007,farhan.mehta1021@arthomove-demo.com,"BPT, MPT Orthopedics",1500,6,Active
+1022,97,ARthoMove Saibaba Colony Medical Center,299,H097-B04,Dr. Divya Reddy,Neuro Physiotherapist,7806392823,divya.reddy1022@arthomove-demo.com,"MBBS, DNB Ortho",400,7,Active
+1023,97,ARthoMove Saibaba Colony Medical Center,299,H097-B04,Dr. Anjali Sharma,Knee Specialist,9434517929,anjali.sharma1023@arthomove-demo.com,PhD Physiotherapy,500,8,Active
+1024,98,Prime Rehab Vaishali Nagar Hospital,300,H098-B01,Dr. Neha Chopra,Sports Rehab Specialist,8041215068,neha.chopra1024@arthomove-demo.com,"MBBS, Fellowship Spine",400,9,Active
+1025,98,Prime Rehab Vaishali Nagar Hospital,300,H098-B01,Dr. Priya Joshi,Sports Rehab Specialist,9810733673,priya.joshi1025@arthomove-demo.com,"BPT, MPT Sports",600,2,Active
+1026,98,Prime Rehab Vaishali Nagar Hospital,300,H098-B01,Dr. Lakshmi Jain,Neuro Physiotherapist,7567539527,lakshmi.jain1026@arthomove-demo.com,"MBBS, Fellowship Spine",1000,4,Inactive
+1027,98,Prime Rehab Vaishali Nagar Hospital,301,H098-B02,Dr. Vikram Khan,Physiotherapist,7394925839,vikram.khan1027@arthomove-demo.com,"BPT, MPT Orthopedics",400,8,Active
+1028,98,Prime Rehab Vaishali Nagar Hospital,301,H098-B02,Dr. Priya Iyer,Physiotherapist,9406350878,priya.iyer1028@arthomove-demo.com,PhD Physiotherapy,1000,8,Active
+1029,98,Prime Rehab Vaishali Nagar Hospital,301,H098-B02,Dr. Manoj Menon,Shoulder Specialist,8775760188,manoj.menon1029@arthomove-demo.com,PhD Physiotherapy,800,8,On Leave
+1030,98,Prime Rehab Vaishali Nagar Hospital,302,H098-B03,Dr. Pooja Pillai,Spine Specialist,8427979251,pooja.pillai1030@arthomove-demo.com,PhD Physiotherapy,800,8,Active
+1031,98,Prime Rehab Vaishali Nagar Hospital,302,H098-B03,Dr. Varun Jain,Physiotherapist,7594728412,varun.jain1031@arthomove-demo.com,MPT Neuro Rehab,500,9,Active
+1032,98,Prime Rehab Vaishali Nagar Hospital,302,H098-B03,Dr. Nisha Sharma,Spine Specialist,8702613761,nisha.sharma1032@arthomove-demo.com,"MBBS, MS Ortho",750,6,Active
+1033,98,Prime Rehab Vaishali Nagar Hospital,302,H098-B03,Dr. Isha Chopra,Shoulder Specialist,7699717450,isha.chopra1033@arthomove-demo.com,"BPT, MPT Sports",600,6,Active
+1034,98,Prime Rehab Vaishali Nagar Hospital,302,H098-B03,Dr. Neha Gupta,Pediatric Orthopedist,9213255170,neha.gupta1034@arthomove-demo.com,"BPT, MPT Orthopedics",400,4,Active
+1035,99,OrthoLife Kothrud Wellness Hospital,303,H099-B01,Dr. Rahul Das,Pediatric Orthopedist,8951212869,rahul.das1035@arthomove-demo.com,"MBBS, DNB Ortho",1500,1,Active
+1036,99,OrthoLife Kothrud Wellness Hospital,303,H099-B01,Dr. Meera Rao,Rehabilitation Consultant,9032821427,meera.rao1036@arthomove-demo.com,"MBBS, Diploma Orthopedics",800,2,Active
+1037,99,OrthoLife Kothrud Wellness Hospital,303,H099-B01,Dr. Varun Reddy,Sports Rehab Specialist,7618328489,varun.reddy1037@arthomove-demo.com,"BPT, MPT Sports",600,6,Active
+1038,99,OrthoLife Kothrud Wellness Hospital,304,H099-B02,Dr. Manoj Menon,Orthopedic Surgeon,9374753435,manoj.menon1038@arthomove-demo.com,"MBBS, Diploma Orthopedics",800,7,Active
+1039,99,OrthoLife Kothrud Wellness Hospital,304,H099-B02,Dr. Suresh Reddy,Spine Specialist,7643809327,suresh.reddy1039@arthomove-demo.com,"MBBS, Fellowship Spine",1200,1,On Leave
+1040,99,OrthoLife Kothrud Wellness Hospital,305,H099-B03,Dr. Aditya Chopra,Rehabilitation Consultant,9534448590,aditya.chopra1040@arthomove-demo.com,"MBBS, MS Ortho",500,8,Active
+1041,99,OrthoLife Kothrud Wellness Hospital,305,H099-B03,Dr. Isha Singh,Pediatric Orthopedist,8527961242,isha.singh1041@arthomove-demo.com,"MBBS, DNB Ortho",1500,4,Active
+1042,99,OrthoLife Kothrud Wellness Hospital,305,H099-B03,Dr. Sneha Kumar,Shoulder Specialist,8119726317,sneha.kumar1042@arthomove-demo.com,"MBBS, DNB Ortho",1000,3,Active
+1043,99,OrthoLife Kothrud Wellness Hospital,305,H099-B03,Dr. Meera Gupta,Physiotherapist,8503820527,meera.gupta1043@arthomove-demo.com,"MBBS, MS Ortho",1200,0,Active
+1044,99,OrthoLife Kothrud Wellness Hospital,306,H099-B04,Dr. Divya Pillai,Shoulder Specialist,7106891105,divya.pillai1044@arthomove-demo.com,"BPT, MPT Sports",500,0,Active
+1045,99,OrthoLife Kothrud Wellness Hospital,306,H099-B04,Dr. Manoj Joshi,Spine Specialist,8298857744,manoj.joshi1045@arthomove-demo.com,"BPT, MPT Sports",400,0,Active
+1046,99,OrthoLife Kothrud Wellness Hospital,306,H099-B04,Dr. Varun Verma,Shoulder Specialist,9485923138,varun.verma1046@arthomove-demo.com,"MBBS, Diploma Orthopedics",1000,0,Active
+1047,100,Prime Rehab Kukatpally Healthcare Hub,307,H100-B01,Dr. Priya Das,Neuro Physiotherapist,7900464567,priya.das1047@arthomove-demo.com,"MBBS, Diploma Orthopedics",400,7,Active
+1048,100,Prime Rehab Kukatpally Healthcare Hub,307,H100-B01,Dr. Divya Das,Physiotherapist,9276769941,divya.das1048@arthomove-demo.com,"MBBS, Diploma Orthopedics",750,8,Active
+1049,100,Prime Rehab Kukatpally Healthcare Hub,307,H100-B01,Dr. Sneha Jain,Neuro Physiotherapist,7624878485,sneha.jain1049@arthomove-demo.com,PhD Physiotherapy,1000,3,Active
+1050,100,Prime Rehab Kukatpally Healthcare Hub,308,H100-B02,Dr. Manoj Iyer,Pain Management Specialist,8282515408,manoj.iyer1050@arthomove-demo.com,"BPT, MPT Sports",750,4,Active
+1051,100,Prime Rehab Kukatpally Healthcare Hub,308,H100-B02,Dr. Anjali Singh,Physiotherapist,8741440221,anjali.singh1051@arthomove-demo.com,"BPT, MPT Orthopedics",600,9,Active
+1052,100,Prime Rehab Kukatpally Healthcare Hub,309,H100-B03,Dr. Pooja Menon,Sports Rehab Specialist,7474938827,pooja.menon1052@arthomove-demo.com,PhD Physiotherapy,800,1,Inactive
+1053,100,Prime Rehab Kukatpally Healthcare Hub,309,H100-B03,Dr. Rohan Mishra,Spine Specialist,8131169135,rohan.mishra1053@arthomove-demo.com,"BPT, MPT Orthopedics",750,7,Active
+1054,100,Prime Rehab Kukatpally Healthcare Hub,309,H100-B03,Dr. Rahul Menon,Pediatric Orthopedist,8080710159,rahul.menon1054@arthomove-demo.com,MPT Neuro Rehab,400,2,Active
+1055,100,Prime Rehab Kukatpally Healthcare Hub,309,H100-B03,Dr. Meera Jain,Pediatric Orthopedist,9849513413,meera.jain1055@arthomove-demo.com,"MBBS, MS Ortho",1500,4,Active
+1056,100,Prime Rehab Kukatpally Healthcare Hub,309,H100-B03,Dr. Nisha Kumar,Shoulder Specialist,8267390413,nisha.kumar1056@arthomove-demo.com,"BPT, MPT Orthopedics",500,5,Active

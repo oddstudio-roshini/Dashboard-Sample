@@ -2,10 +2,14 @@ package com.medicare.service;
 
 import com.medicare.config.JwtUtil;
 import com.medicare.dto.DTOs.*;
+import com.medicare.dto.ClinicDTOs;
+import com.medicare.entity.ClinicDoctor;
+import com.medicare.entity.ClinicPatient;
 import com.medicare.entity.Doctor;
 import com.medicare.entity.Doctor.DoctorStatus;
 import com.medicare.entity.DoctorLog;
 import com.medicare.entity.DoctorLog.LogAction;
+import com.medicare.repository.ClinicDoctorRepository;
 import com.medicare.repository.DoctorRepository;
 import com.medicare.repository.DoctorLogRepository;
 import lombok.RequiredArgsConstructor;
@@ -25,7 +29,7 @@ import java.util.stream.Collectors;
  *
  * 1. autoInactiveDoctors() — runs every hour.
  *    Marks a doctor INACTIVE only if:
- *      - lastLogin is more than 3 days ago (or has never logged in but was created > 3 days ago)
+ *      - lastLogin is more than 15 days ago (or has never logged in but was created > 15 days ago)
  *      - doctor is NOT currently online (isOnline = false)
  *      - doctor is NOT suspended (isSuspended = false)
  *      - current status is ACTIVE (don't touch BLOCKED doctors)
@@ -49,13 +53,15 @@ public class DoctorService {
     private final DoctorRepository doctorRepository;
     private final DoctorLogRepository doctorLogRepository;
     private final PasswordEncoder passwordEncoder;
+    private final com.medicare.repository.ClinicPatientRepository clinicPatientRepository;
+    private final ClinicDoctorRepository clinicDoctorRepository;
     private final JwtUtil jwtUtil;
 
-    // ─── SCHEDULED: AUTO-DEACTIVATE AFTER 3 DAYS OF INACTIVITY ──────────────
+    // ─── SCHEDULED: AUTO-DEACTIVATE AFTER 15 DAYS OF INACTIVITY ─────────────
 
     /**
      * Runs every hour.
-     * Deactivates doctors who haven't logged in for 3+ days and are not currently active.
+     * Deactivates doctors who haven't logged in for 15+ days and are not currently active.
      * Does NOT touch suspended (BLOCKED) doctors.
      */
     @Scheduled(cron = "0 0 * * * *")
@@ -64,7 +70,7 @@ public class DoctorService {
     }
 
     public void updateInactiveDoctors() {
-        LocalDateTime cutoff = LocalDateTime.now().minusDays(3);
+        LocalDateTime cutoff = LocalDateTime.now().minusDays(15);
         List<Doctor> doctors = doctorRepository.findAll();
 
         for (Doctor doctor : doctors) {
@@ -91,7 +97,7 @@ public class DoctorService {
                         .action(LogAction.DEACTIVATED) // new action for system auto-deactivation
                         .performedBy("SYSTEM")
                         .clinic(doctor.getClinicHospital())
-                        .notes("Account auto-deactivated: no login for 3+ days")
+                        .notes("Account auto-deactivated: no login for 15+ days")
                         .timestamp(LocalDateTime.now())
                         .build();
                 doctorLogRepository.save(log);
@@ -418,7 +424,90 @@ public class DoctorService {
         saveLog(doctor, action, notes, ipAddress, "ADMIN");
     }
 
+    // ─── CLINIC PROFILE & PATIENTS (email-matched ClinicDoctor) ─────────────────
+
+    public ClinicDTOs.ClinicDoctorResponse getClinicProfile(Long doctorId) {
+        Doctor doctor = doctorRepository.findById(doctorId)
+                .orElseThrow(() -> new RuntimeException("Doctor not found"));
+
+        ClinicDoctor cd = findClinicDoctor(doctor.getEmail());
+        if (cd == null) throw new RuntimeException("No clinic profile found for this doctor");
+
+        long patCount = clinicPatientRepository.countByClinicDoctorId(cd.getId());
+        return ClinicDTOs.ClinicDoctorResponse.builder()
+                .id(cd.getId())
+                .branchId(cd.getBranch() != null ? cd.getBranch().getId() : null)
+                .branchName(cd.getBranch() != null ? cd.getBranch().getBranchName() : null)
+                .hospitalId(cd.getHospital() != null ? cd.getHospital().getId() : null)
+                .hospitalName(cd.getHospital() != null ? cd.getHospital().getName() : null)
+                .firstName(cd.getFirstName())
+                .lastName(cd.getLastName())
+                .fullName(cd.getFirstName() + " " + cd.getLastName())
+                .specialization(cd.getSpecialization())
+                .highestQualification(cd.getHighestQualification())
+                .registrationNumber(cd.getRegistrationNumber())
+                .experienceYears(cd.getExperienceYears())
+                .contactPhone(cd.getContactPhone())
+                .contactEmail(cd.getContactEmail())
+                .consultationFee(cd.getConsultationFee())
+                .availableDays(cd.getAvailableDays())
+                .consultationHours(cd.getConsultationHours())
+                .status(cd.getStatus() != null ? cd.getStatus().name() : "ACTIVE")
+                .patientCount(patCount)
+                .build();
+    }
+
+    public List<ClinicDTOs.PatientResponse> getDoctorPatients(
+            Long doctorId, String search, String gender, String status) {
+
+        Doctor doctor = doctorRepository.findById(doctorId)
+                .orElseThrow(() -> new RuntimeException("Doctor not found"));
+
+        ClinicDoctor cd = findClinicDoctor(doctor.getEmail());
+        if (cd == null) return List.of();
+
+        List<ClinicPatient> patients = clinicPatientRepository.searchByDoctor(
+                cd.getId(),
+                (status != null && !status.isBlank()) ? status : null,
+                (gender != null && !gender.isBlank()) ? gender : null,
+                (search != null && !search.isBlank()) ? search : null
+        );
+
+        return patients.stream().map(p -> ClinicDTOs.PatientResponse.builder()
+                .id(p.getId())
+                .clinicDoctorId(cd.getId())
+                .doctorName(cd.getFirstName() + " " + cd.getLastName())
+                .firstName(p.getFirstName())
+                .lastName(p.getLastName())
+                .fullName(p.getFirstName() + " " + p.getLastName())
+                .age(p.getAge())
+                .gender(p.getGender())
+                .contactPhone(p.getContactPhone())
+                .contactEmail(p.getContactEmail())
+                .address(p.getAddress())
+                .diagnosis(p.getDiagnosis())
+                .appointmentDate(p.getAppointmentDate())
+                .appointmentStatus(p.getAppointmentStatus() != null ? p.getAppointmentStatus().name() : null)
+                .visitType(p.getVisitType())
+                .notes(p.getNotes())
+                .build()
+        ).collect(Collectors.toList());
+    }
+
+    private ClinicDoctor findClinicDoctor(String email) {
+        if (email == null || email.isBlank()) return null;
+        return clinicDoctorRepository.findByContactEmailIgnoreCase(email).orElse(null);
+    }
+
     private DoctorResponse mapToResponse(Doctor doctor) {
+        // Count patients whose ClinicDoctor email matches this Doctor's email
+        long patientCount = 0;
+        try {
+            if (doctor.getEmail() != null && !doctor.getEmail().isBlank()) {
+                patientCount = clinicPatientRepository.countByDoctorEmail(doctor.getEmail());
+            }
+        } catch (Exception ignored) {}
+
         return DoctorResponse.builder()
                 .id(doctor.getId())
                 .arthomoveId(String.format("ARTH-%03d", doctor.getId()))
@@ -443,6 +532,7 @@ public class DoctorService {
                 .createdAt(doctor.getCreatedAt())
                 .isSuspended(doctor.getIsSuspended())
                 .isOnline(doctor.getIsOnline())
+                .patientCount(patientCount)
                 .build();
     }
 

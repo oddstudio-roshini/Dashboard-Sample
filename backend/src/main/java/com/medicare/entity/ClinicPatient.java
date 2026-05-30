@@ -109,6 +109,19 @@ public class ClinicPatient {
     }
 
     public enum AppointmentStatus { SCHEDULED, COMPLETED, CANCELLED }
-    // INACTIVE kept for DB backward-compatibility; ensurePatientStatusDistribution() replaces it on startup
-    public enum PatientStatus { ACTIVE, INACTIVE, COMPLETED, PAYMENT_FAILURE }
+
+    public enum PatientStatus {
+        /** User is subscribed and active */
+        ACTIVE,
+        /** Subscription expired — renewal required */
+        RENEWAL_DUE,
+        /** All sessions completed */
+        COMPLETED,
+        /** Doctor paused treatment or hasn't sent exercise modules */
+        ON_HOLD,
+        /** Subscription ending soon */
+        EXPIRING_SOON,
+        // Legacy — kept for DB migration only, replaced on startup
+        INACTIVE, PAYMENT_FAILURE
+    }
 }

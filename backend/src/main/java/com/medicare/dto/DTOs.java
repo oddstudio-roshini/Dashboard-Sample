@@ -259,6 +259,7 @@ public class DTOs {
         private LocalDateTime createdAt;
         private Boolean isSuspended;
         private Boolean isOnline;
+        private long patientCount;
     }
 
     // ─── RESET PASSWORD RESPONSE ──────────────────────────────────────────────

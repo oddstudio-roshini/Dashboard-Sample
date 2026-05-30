@@ -9,6 +9,7 @@ import {
   Users,
   Building2,
   Dumbbell,
+  ShoppingCart,
   BarChart2,
   Bell,
   Settings,
@@ -31,6 +32,7 @@ const sections = [
       { icon: Users,        label: 'Patients',        href: '/dashboard/patients' },
       { icon: Building2,    label: 'Clinics',         href: '/dashboard/clinics' },
       { icon: Dumbbell,     label: 'Exercise Library', href: '/dashboard/exercises' },
+      { icon: ShoppingCart, label: 'Sales',            href: '/dashboard/sales' },
     ],
   },
   {

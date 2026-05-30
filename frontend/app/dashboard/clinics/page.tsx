@@ -1476,7 +1476,7 @@ export default function ClinicsPage() {
       {/* Stats */}
       {stats && (
         <div className="flex-none grid grid-cols-2 lg:grid-cols-4 gap-4">
-          <StatCard icon={<Building2 className="w-5 h-5 text-blue-600" />}    value={stats.totalHospitals}        label="Hospitals" color="blue"   />
+          <StatCard icon={<Building2 className="w-5 h-5 text-blue-600" />}    value={stats.totalHospitals + stats.totalBranches}        label="Hospitals" color="blue"   />
           <StatCard icon={<LayoutGrid className="w-5 h-5 text-green-600" />}  value={stats.totalBranches}         label="Branches"  color="green"  />
           <StatCard icon={<Stethoscope className="w-5 h-5 text-purple-600" />} value={`${stats.totalDoctors}`}  label="Doctors"   color="purple" />
           <StatCard icon={<Users className="w-5 h-5 text-orange-600" />}      value={stats.totalPatients}         label="Patients"  color="orange" />
@@ -1610,7 +1610,7 @@ export default function ClinicsPage() {
                   <Building2 className="w-6 h-6 text-blue-600" />
                 </div>
                 <span className="bg-blue-100 text-blue-700 text-xs px-2.5 py-1 rounded-full font-semibold">
-                  {stats?.totalHospitals ?? "—"} Hospitals
+                  {stats ? stats.totalHospitals + stats.totalBranches : "—"} Hospitals
                 </span>
               </div>
               <h3 className="text-lg font-bold text-gray-900 mb-1">Hospitals Directory</h3>

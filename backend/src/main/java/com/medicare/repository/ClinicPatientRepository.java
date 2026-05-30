@@ -12,6 +12,17 @@ public interface ClinicPatientRepository extends JpaRepository<ClinicPatient, Lo
     List<ClinicPatient> findByClinicDoctorId(Long clinicDoctorId);
     java.util.Optional<ClinicPatient> findByContactEmailIgnoreCase(String email);
 
+    /** Count patients whose assigned ClinicDoctor has the given contact email (links Doctor ↔ ClinicDoctor by email) */
+    @Query(value = """
+        SELECT COUNT(*) FROM clinic_patients cp
+        JOIN clinic_doctors cd ON cp.clinic_doctor_id = cd.id
+        WHERE LOWER(cd.contact_email) = LOWER(:email)
+    """, nativeQuery = true)
+    long countByDoctorEmail(@Param("email") String email);
+
+    /** Count all patients assigned to a specific clinic_doctor_id */
+    long countByClinicDoctorId(Long clinicDoctorId);
+
 //    @Query("SELECT p FROM ClinicPatient p WHERE p.clinicDoctor.id = :doctorId AND " +
 //           "(:status IS NULL OR p.appointmentStatus = :status) AND " +
 //           "(:gender IS NULL OR LOWER(p.gender) = LOWER(:gender)) AND " +

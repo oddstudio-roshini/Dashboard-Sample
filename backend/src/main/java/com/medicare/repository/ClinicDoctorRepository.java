@@ -10,6 +10,8 @@ public interface ClinicDoctorRepository extends JpaRepository<ClinicDoctor, Long
 
     List<ClinicDoctor> findByBranchId(Long branchId);
 
+    java.util.Optional<ClinicDoctor> findByContactEmailIgnoreCase(String contactEmail);
+
 //    @Query("SELECT d FROM ClinicDoctor d WHERE d.branch.id = :branchId AND " +
 //           "(:status IS NULL OR d.status = :status) AND " +
 //           "(:search IS NULL OR " +

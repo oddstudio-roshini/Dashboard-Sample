@@ -678,16 +678,19 @@ public class PatientService {
 
     /**
      * Derives a payment status for display:
-     *  PAYMENT_FAILURE / INACTIVE → FAILED
-     *  COMPLETED                  → PAID
-     *  ACTIVE                     → PAID (even IDs) or PENDING (odd IDs)
+     *  RENEWAL_DUE  → FAILED  (subscription expired, payment needed)
+     *  ON_HOLD      → PENDING (paused, no active billing)
+     *  everything else → PAID
      */
     private String computePaymentStatus(ClinicPatient p) {
         ClinicPatient.PatientStatus s = p.getPatientStatus();
-        if (s == ClinicPatient.PatientStatus.PAYMENT_FAILURE) {
+        if (s == ClinicPatient.PatientStatus.RENEWAL_DUE || s == ClinicPatient.PatientStatus.PAYMENT_FAILURE) {
             return "FAILED";
         }
-        return "PAID"; // ACTIVE, INACTIVE, and COMPLETED
+        if (s == ClinicPatient.PatientStatus.ON_HOLD) {
+            return "PENDING";
+        }
+        return "PAID";
     }
 
     private String fullName(ClinicPatient p) { return safe(p.getFirstName()) + " " + safe(p.getLastName()); }
@@ -800,8 +803,9 @@ public class PatientService {
     @Scheduled(cron = "0 0 * * * *")
     @Transactional
     public void autoMarkInactivePatients() {
-        int updated = jdbcTemplate.update(
-            "UPDATE clinic_patients SET patient_status = 'INACTIVE' " +
+        // Patients whose exercise plan ended but were never renewed → ON_HOLD
+        int onHold = jdbcTemplate.update(
+            "UPDATE clinic_patients SET patient_status = 'ON_HOLD' " +
             "WHERE patient_status = 'ACTIVE' " +
             "AND EXISTS (" +
             "  SELECT 1 FROM patient_body_part_library pbl " +
@@ -814,9 +818,7 @@ public class PatientService {
             "  AND pe.exercise_status = 'ACTIVE'" +
             ")"
         );
-        if (updated > 0) {
-            log.info("Auto-marked {} patients as INACTIVE (exercise subscription ended)", updated);
-        }
+        if (onHold > 0) log.info("Auto-marked {} patients as ON_HOLD (no active exercises)", onHold);
     }
 
     // ─── WEEKLY PAYMENT FAILURE REFRESH ──────────────────────────────────────
@@ -833,32 +835,41 @@ public class PatientService {
         LocalDate thisMonday = LocalDate.now().with(TemporalAdjusters.previousOrSame(DayOfWeek.MONDAY));
         List<ClinicPatient> all = clinicPatientRepository.findAll();
 
-        // Step 1 — restore previous week's PAYMENT_FAILURE patients to ACTIVE
-        // (keep paymentFailureDate intact so history is preserved)
-        List<ClinicPatient> previousFailures = all.stream()
-                .filter(p -> p.getPatientStatus() == ClinicPatient.PatientStatus.PAYMENT_FAILURE)
+        // Step 1 — restore previous week's RENEWAL_DUE patients back to ACTIVE
+        List<ClinicPatient> previousRenewal = all.stream()
+                .filter(p -> p.getPatientStatus() == ClinicPatient.PatientStatus.RENEWAL_DUE)
                 .collect(Collectors.toList());
-        previousFailures.forEach(p -> p.setPatientStatus(ClinicPatient.PatientStatus.ACTIVE));
-        clinicPatientRepository.saveAll(previousFailures);
+        previousRenewal.forEach(p -> p.setPatientStatus(ClinicPatient.PatientStatus.ACTIVE));
+        clinicPatientRepository.saveAll(previousRenewal);
 
-        // Step 2 — pick a fresh ~10% of ACTIVE patients as this week's failures
+        // Step 2 — pick ~8% of ACTIVE patients → RENEWAL_DUE (expired subscriptions)
         List<ClinicPatient> active = clinicPatientRepository.findAll().stream()
                 .filter(p -> p.getPatientStatus() == ClinicPatient.PatientStatus.ACTIVE)
                 .collect(Collectors.toList());
+        if (!active.isEmpty()) {
+            Collections.shuffle(active, new Random());
+            int renewalCount = Math.max(1, active.size() / 12);
+            List<ClinicPatient> toRenew = active.subList(0, renewalCount);
+            toRenew.forEach(p -> {
+                p.setPatientStatus(ClinicPatient.PatientStatus.RENEWAL_DUE);
+                p.setPaymentFailureDate(thisMonday);
+            });
+            clinicPatientRepository.saveAll(toRenew);
+        }
 
-        if (active.isEmpty()) return;
+        // Step 3 — pick ~5% of ACTIVE patients → EXPIRING_SOON (subscription ending this week)
+        List<ClinicPatient> stillActive = clinicPatientRepository.findAll().stream()
+                .filter(p -> p.getPatientStatus() == ClinicPatient.PatientStatus.ACTIVE)
+                .collect(Collectors.toList());
+        if (!stillActive.isEmpty()) {
+            Collections.shuffle(stillActive, new Random());
+            int expiringCount = Math.max(1, stillActive.size() / 20);
+            stillActive.subList(0, expiringCount)
+                    .forEach(p -> p.setPatientStatus(ClinicPatient.PatientStatus.EXPIRING_SOON));
+            clinicPatientRepository.saveAll(stillActive.subList(0, expiringCount));
+        }
 
-        Collections.shuffle(active, new Random());
-        int failureCount = Math.max(1, active.size() / 10);
-        List<ClinicPatient> toFail = active.subList(0, failureCount);
-        toFail.forEach(p -> {
-            p.setPatientStatus(ClinicPatient.PatientStatus.PAYMENT_FAILURE);
-            p.setPaymentFailureDate(thisMonday);   // record which week this failure belongs to
-        });
-        clinicPatientRepository.saveAll(toFail);
-
-        log.info("Weekly payment failure refresh (week of {}): cleared {} old, marked {} new.",
-                thisMonday, previousFailures.size(), toFail.size());
+        log.info("Weekly refresh (week of {}): cleared {} renewal-due, re-evaluated active patients.", thisMonday, previousRenewal.size());
     }
 
     // ─── WEEKLY PAYMENT FAILURE STATS ────────────────────────────────────────

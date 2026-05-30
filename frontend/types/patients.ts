@@ -1,4 +1,11 @@
-export type PatientStatus = 'ACTIVE' | 'INACTIVE' | 'COMPLETED' | 'PAYMENT_FAILURE';
+export type PatientStatus =
+  | 'ACTIVE'         // user is subscribed
+  | 'RENEWAL_DUE'    // subscription expired — needs renewal
+  | 'COMPLETED'      // all sessions done
+  | 'ON_HOLD'        // doctor paused or hasn't sent exercise modules
+  | 'EXPIRING_SOON'  // subscription ending in a few days
+  | 'INACTIVE'       // legacy
+  | 'PAYMENT_FAILURE'; // legacy
 export type LibraryStatus = 'ACTIVE' | 'INACTIVE';
 export type PurchaseType = 'NONE' | 'SINGLE' | 'BUNDLE';
 export type ExerciseStatus = 'ACTIVE' | 'INACTIVE';

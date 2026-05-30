@@ -897,83 +897,70 @@ public class ClinicDataInitializer implements CommandLineRunner {
     //   2. Drops the old CHECK constraint and recreates it without SUSPENDED.
     private void fixPatientStatusConstraint() {
         try {
-            // Step 1 — migrate SUSPENDED rows at SQL level before JPA ever sees them
-            int migrated = jdbcTemplate.update(
-                "UPDATE clinic_patients SET patient_status = 'ACTIVE' WHERE patient_status = 'SUSPENDED'"
-            );
-            if (migrated > 0) log.info("Migrated {} SUSPENDED patients → ACTIVE", migrated);
+            // Migrate legacy statuses to new ones
+            jdbcTemplate.update("UPDATE clinic_patients SET patient_status = 'ACTIVE'       WHERE patient_status = 'SUSPENDED'");
+            jdbcTemplate.update("UPDATE clinic_patients SET patient_status = 'RENEWAL_DUE'  WHERE patient_status = 'PAYMENT_FAILURE'");
+            jdbcTemplate.update("UPDATE clinic_patients SET patient_status = 'ACTIVE'       WHERE patient_status = 'INACTIVE'");
 
-            // Step 2 — rebuild the CHECK constraint without SUSPENDED
-            jdbcTemplate.execute(
-                "ALTER TABLE clinic_patients DROP CONSTRAINT IF EXISTS clinic_patients_patient_status_check"
-            );
+            // Drop old constraint and recreate with all 5 statuses
+            jdbcTemplate.execute("ALTER TABLE clinic_patients DROP CONSTRAINT IF EXISTS clinic_patients_patient_status_check");
             jdbcTemplate.execute(
                 "ALTER TABLE clinic_patients ADD CONSTRAINT clinic_patients_patient_status_check " +
-                "CHECK (patient_status IN ('ACTIVE','INACTIVE','COMPLETED','PAYMENT_FAILURE'))"
+                "CHECK (patient_status IN ('ACTIVE','RENEWAL_DUE','COMPLETED','ON_HOLD','EXPIRING_SOON','INACTIVE','PAYMENT_FAILURE'))"
             );
-            log.info("patient_status check constraint updated (ACTIVE/INACTIVE/COMPLETED/PAYMENT_FAILURE).");
+            log.info("patient_status constraint updated with 5 subscription statuses.");
         } catch (Exception e) {
             log.warn("Could not update patient_status constraint: {}", e.getMessage());
         }
     }
 
-    // ── Patient status distribution ───────────────────────────────────────────
-    // 65% ACTIVE · 10% INACTIVE · 18% COMPLETED · 7% PAYMENT_FAILURE
-    // Counts for 2024 patients → Active ≈1456, Inactive ≈203, Completed ≈365, PaymentFailure ≈142
-    // INACTIVE  = subscription ended, patient not buying new exercises.
-    // PAYMENT_FAILURE patients are spread across the last 4 Mondays so the
-    // weekly chart shows pre-populated history on first run.
+    // ── Patient status distribution ────────────────────────────────────────────
+    // 55% ACTIVE · 12% RENEWAL_DUE · 15% COMPLETED · 10% ON_HOLD · 8% EXPIRING_SOON
     private void ensurePatientStatusDistribution() {
         List<ClinicPatient> patients = clinicPatientRepository.findAllByOrderByIdAsc();
         if (patients.isEmpty()) return;
-        int total = patients.size();
+        int total   = patients.size();
         int updated = 0;
 
-        // Build 4 past Monday dates (oldest first) for backfilling history
         LocalDate thisMonday = LocalDate.now().with(TemporalAdjusters.previousOrSame(DayOfWeek.MONDAY));
         LocalDate[] pastMondays = {
-            thisMonday.minusWeeks(3),
-            thisMonday.minusWeeks(2),
-            thisMonday.minusWeeks(1),
-            thisMonday
+            thisMonday.minusWeeks(3), thisMonday.minusWeeks(2),
+            thisMonday.minusWeeks(1), thisMonday
         };
-
-        int paymentFailureIndex = 0; // rotates patients across the 4 weeks
+        int renewalIdx = 0;
 
         for (int i = 0; i < total; i++) {
             ClinicPatient p = patients.get(i);
             ClinicPatient.PatientStatus target;
-            // First 4 rows pinned to guarantee every status is visible immediately
+
+            // First 5 rows pinned — one of each status guaranteed on first load
             if      (i == 0) target = ClinicPatient.PatientStatus.ACTIVE;
             else if (i == 1) target = ClinicPatient.PatientStatus.COMPLETED;
-            else if (i == 2) target = ClinicPatient.PatientStatus.PAYMENT_FAILURE;
-            else if (i == 3) target = ClinicPatient.PatientStatus.INACTIVE;
+            else if (i == 2) target = ClinicPatient.PatientStatus.RENEWAL_DUE;
+            else if (i == 3) target = ClinicPatient.PatientStatus.ON_HOLD;
+            else if (i == 4) target = ClinicPatient.PatientStatus.EXPIRING_SOON;
             else {
-                // 65% ACTIVE · 10% INACTIVE · 18% COMPLETED · 7% PAYMENT_FAILURE
-                int pct = (int)((long)(i - 4) * 100 / (total - 4));
-                if      (pct < 65) target = ClinicPatient.PatientStatus.ACTIVE;
-                else if (pct < 75) target = ClinicPatient.PatientStatus.INACTIVE;
-                else if (pct < 93) target = ClinicPatient.PatientStatus.COMPLETED;
-                else               target = ClinicPatient.PatientStatus.PAYMENT_FAILURE;
+                // 55% ACTIVE · 12% RENEWAL_DUE · 15% COMPLETED · 10% ON_HOLD · 8% EXPIRING_SOON
+                int pct = (int)((long)(i - 5) * 100 / (total - 5));
+                if      (pct < 55) target = ClinicPatient.PatientStatus.ACTIVE;
+                else if (pct < 67) target = ClinicPatient.PatientStatus.RENEWAL_DUE;
+                else if (pct < 82) target = ClinicPatient.PatientStatus.COMPLETED;
+                else if (pct < 92) target = ClinicPatient.PatientStatus.ON_HOLD;
+                else               target = ClinicPatient.PatientStatus.EXPIRING_SOON;
             }
 
             boolean changed = false;
-            if (p.getPatientStatus() != target) {
-                p.setPatientStatus(target);
+            if (p.getPatientStatus() != target) { p.setPatientStatus(target); changed = true; }
+
+            // Backfill paymentFailureDate for RENEWAL_DUE (replaces old PAYMENT_FAILURE logic)
+            if (target == ClinicPatient.PatientStatus.RENEWAL_DUE && p.getPaymentFailureDate() == null) {
+                p.setPaymentFailureDate(pastMondays[renewalIdx % 4]);
+                renewalIdx++;
                 changed = true;
             }
-            // Backfill paymentFailureDate for PAYMENT_FAILURE patients that don't have one yet
-            if (target == ClinicPatient.PatientStatus.PAYMENT_FAILURE && p.getPaymentFailureDate() == null) {
-                p.setPaymentFailureDate(pastMondays[paymentFailureIndex % 4]);
-                paymentFailureIndex++;
-                changed = true;
-            }
-            if (changed) {
-                clinicPatientRepository.save(p);
-                updated++;
-            }
+            if (changed) { clinicPatientRepository.save(p); updated++; }
         }
-        if (updated > 0) log.info("Updated patient status distribution for {} patients", updated);
+        if (updated > 0) log.info("Updated patient status distribution for {} patients.", updated);
     }
 
     // ── Utility: count data rows in a resource CSV ─────────────────────────────
