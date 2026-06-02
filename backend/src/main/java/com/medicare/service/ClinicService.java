@@ -277,7 +277,7 @@ public class ClinicService {
                 .totalHospitals(hospitalRepository.count())
                 .totalBranches(branchRepository.count())
                 .totalDoctors(clinicDoctorRepository.count())
-                .totalPatients(clinicPatientRepository.count())
+                .totalPatients(clinicPatientRepository.countAllPatients())
                 .build();
     }
 
@@ -458,13 +458,23 @@ public class ClinicService {
             String gender,
             String search) {
 
-        return clinicPatientRepository.searchByDoctor(
-                        doctorId,
-                        blank(status),
-                        blank(gender),
-                        blank(search)
-                )
-                .stream()
+        // Fetch all patients for this doctor, then filter in Java to avoid
+        // PostgreSQL CAST(null AS TEXT) inconsistencies in native queries
+        List<com.medicare.entity.ClinicPatient> all =
+                clinicPatientRepository.findByClinicDoctorId(doctorId);
+
+        String s = blank(status);
+        String g = blank(gender);
+        String q = blank(search);
+
+        return all.stream()
+                .filter(p -> s == null || (p.getAppointmentStatus() != null && p.getAppointmentStatus().name().equalsIgnoreCase(s)))
+                .filter(p -> g == null || (p.getGender() != null && p.getGender().equalsIgnoreCase(g)))
+                .filter(p -> q == null ||
+                        (p.getFirstName()    != null && p.getFirstName().toLowerCase().contains(q.toLowerCase())) ||
+                        (p.getLastName()     != null && p.getLastName().toLowerCase().contains(q.toLowerCase()))  ||
+                        (p.getContactPhone() != null && p.getContactPhone().contains(q))                          ||
+                        (p.getContactEmail() != null && p.getContactEmail().toLowerCase().contains(q.toLowerCase())))
                 .map(ClinicDTOs::toPatientResponse)
                 .collect(Collectors.toList());
     }

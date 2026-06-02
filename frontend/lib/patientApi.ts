@@ -81,4 +81,7 @@ export const patientApi = {
 
   getPublishedExercises: (patientId: number): Promise<ExerciseItem[]> =>
     api.get(`/api/patients/${patientId}/published-exercises`).then((r) => r.data),
+
+  updateStatus: (patientId: number, status: string): Promise<PatientListItem> =>
+    api.patch(`/api/patients/${patientId}/status`, { status }).then((r) => r.data),
 };

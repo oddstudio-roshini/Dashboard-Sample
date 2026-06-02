@@ -320,22 +320,32 @@ public class ClinicDTOs {
                 .contactPhone(d.getContactPhone()).contactEmail(d.getContactEmail())
                 .consultationFee(d.getConsultationFee())
                 .availableDays(d.getAvailableDays()).consultationHours(d.getConsultationHours())
-                .status(d.getStatus().name()).patientCount(patientCount)
+                .status(d.getStatus() != null ? d.getStatus().name() : "ACTIVE").patientCount(patientCount)
                 .build();
     }
 
     public static PatientResponse toPatientResponse(ClinicPatient p) {
+        ClinicDoctor doc = p.getClinicDoctor();
+        String firstName = p.getFirstName() != null ? p.getFirstName() : "";
+        String lastName  = p.getLastName()  != null ? p.getLastName()  : "";
         return PatientResponse.builder()
-                .id(p.getId()).clinicDoctorId(p.getClinicDoctor().getId())
-                .doctorName(p.getClinicDoctor().getFirstName() + " " + p.getClinicDoctor().getLastName())
-                .firstName(p.getFirstName()).lastName(p.getLastName())
-                .fullName(p.getFirstName() + " " + p.getLastName())
-                .age(p.getAge()).gender(p.getGender())
-                .contactPhone(p.getContactPhone()).contactEmail(p.getContactEmail())
-                .address(p.getAddress()).diagnosis(p.getDiagnosis())
+                .id(p.getId())
+                .clinicDoctorId(doc != null ? doc.getId() : null)
+                .doctorName(doc != null ? doc.getFirstName() + " " + doc.getLastName() : "")
+                .firstName(firstName)
+                .lastName(lastName)
+                .fullName((firstName + " " + lastName).trim())
+                .age(p.getAge())
+                .gender(p.getGender())
+                .contactPhone(p.getContactPhone())
+                .contactEmail(p.getContactEmail())
+                .address(p.getAddress())
+                .diagnosis(p.getDiagnosis())
                 .appointmentDate(p.getAppointmentDate())
-                .appointmentStatus(p.getAppointmentStatus().name())
-                .visitType(p.getVisitType()).notes(p.getNotes())
+                .appointmentStatus(p.getAppointmentStatus() != null
+                        ? p.getAppointmentStatus().name() : "SCHEDULED")
+                .visitType(p.getVisitType())
+                .notes(p.getNotes())
                 .build();
     }
 

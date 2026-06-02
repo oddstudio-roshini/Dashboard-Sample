@@ -13,8 +13,15 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(RuntimeException.class)
     public ResponseEntity<Map<String, String>> handleRuntime(RuntimeException ex) {
-        log.error("Unhandled runtime exception: {}", ex.getMessage(), ex);
         String message = ex.getMessage() != null ? ex.getMessage() : "Internal server error";
+
+        // "not found" errors → 404 (e.g. "Patient not found: 261746", "Doctor not found with id: 5")
+        if (message.toLowerCase().contains("not found")) {
+            log.warn("Resource not found: {}", message);
+            return ResponseEntity.status(404).body(Map.of("error", message, "message", message));
+        }
+
+        log.error("Unhandled runtime exception: {}", ex.getMessage(), ex);
         return ResponseEntity.status(500).body(Map.of("error", message, "message", message));
     }
 

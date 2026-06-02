@@ -21,6 +21,21 @@ public class PatientController {
         return ResponseEntity.ok(patientService.getPatients());
     }
 
+    /** PATCH /api/patients/{id}/status — change a patient's subscription status */
+    @PatchMapping("/{id}/status")
+    public ResponseEntity<PatientDTOs.PatientListItem> updateStatus(
+            @PathVariable Long id,
+            @RequestBody PatientDTOs.UpdateStatusRequest req) {
+        return ResponseEntity.ok(patientService.updateStatus(id, req.getStatus()));
+    }
+
+    /** One-time trigger: seeds 15 dummy INACTIVE patients if none exist yet. */
+    @PostMapping("/seed-inactive")
+    public ResponseEntity<String> seedInactive() {
+        int count = patientService.seedInactivePatients();
+        return ResponseEntity.ok("Inactive patients: " + count);
+    }
+
     /** Weekly payment failure counts — used by the admin dashboard payment failure panel. */
     @GetMapping("/payment-failure-weekly")
     public ResponseEntity<List<PatientDTOs.WeeklyPaymentStat>> getWeeklyPaymentStats() {

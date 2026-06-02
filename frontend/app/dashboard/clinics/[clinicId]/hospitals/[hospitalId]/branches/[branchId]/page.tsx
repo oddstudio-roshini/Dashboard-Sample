@@ -83,9 +83,6 @@ export default function BranchPage() {
             <div className="flex-1">
               <div className="flex flex-wrap items-start gap-2 mb-1">
                 <h1 className="text-xl font-bold text-gray-900">{branch.branchName}</h1>
-                <span className={`text-xs px-2 py-0.5 rounded-full font-medium mt-0.5 ${
-                  branch.status === 'ACTIVE' ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-500'
-                }`}>{branch.status}</span>
                 <span className="bg-gray-100 text-gray-600 text-xs px-2 py-0.5 rounded font-mono mt-0.5">{branch.branchCode}</span>
               </div>
               <div className="flex flex-wrap gap-4 text-sm text-gray-500 mt-2">
@@ -158,7 +155,6 @@ export default function BranchPage() {
                   <th className="px-4 py-3 text-left font-medium">Email ID</th>
                   <th className="px-4 py-3 text-left font-medium">Highest Qualification</th>
                   <th className="px-4 py-3 text-left font-medium">Consultation Fee</th>
-                  <th className="px-4 py-3 text-left font-medium">Registration No.</th>
                   <th className="px-4 py-3 text-left font-medium">Patients</th>
                   <th className="px-4 py-3 text-left font-medium"></th>
                 </tr>
@@ -189,11 +185,6 @@ export default function BranchPage() {
                       <div className="flex items-center gap-0.5 text-gray-700 font-medium text-xs whitespace-nowrap">
                         <IndianRupee className="w-3 h-3" />{d.consultationFee}
                       </div>
-                    </td>
-                    <td className="px-4 py-3.5">
-                      <span className="bg-gray-100 text-gray-600 text-xs px-2 py-0.5 rounded font-mono whitespace-nowrap">
-                        {d.registrationNumber}
-                      </span>
                     </td>
                     <td className="px-4 py-3.5">
                       <span className="bg-orange-50 text-orange-700 text-xs px-2 py-0.5 rounded-full font-medium whitespace-nowrap">

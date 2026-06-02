@@ -47,6 +47,7 @@ export interface Doctor {
   mobileNumber?: string;
   specialization?: string;
   clinicHospital?: string;
+  hospitalId?: string;      // e.g. HOSP-001
   status: string;
   notes?: string;
   requirePasswordChange?: boolean;

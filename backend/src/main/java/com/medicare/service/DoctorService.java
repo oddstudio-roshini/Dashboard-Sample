@@ -9,7 +9,9 @@ import com.medicare.entity.Doctor;
 import com.medicare.entity.Doctor.DoctorStatus;
 import com.medicare.entity.DoctorLog;
 import com.medicare.entity.DoctorLog.LogAction;
+import com.medicare.entity.DoctorPasswordToken;
 import com.medicare.repository.ClinicDoctorRepository;
+import com.medicare.repository.DoctorPasswordTokenRepository;
 import com.medicare.repository.DoctorRepository;
 import com.medicare.repository.DoctorLogRepository;
 import lombok.RequiredArgsConstructor;
@@ -20,6 +22,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 /**
@@ -52,6 +55,8 @@ public class DoctorService {
 
     private final DoctorRepository doctorRepository;
     private final DoctorLogRepository doctorLogRepository;
+    private final DoctorPasswordTokenRepository tokenRepository;
+    private final EmailService emailService;
     private final PasswordEncoder passwordEncoder;
     private final com.medicare.repository.ClinicPatientRepository clinicPatientRepository;
     private final ClinicDoctorRepository clinicDoctorRepository;
@@ -113,29 +118,24 @@ public class DoctorService {
             throw new RuntimeException("Email already registered: " + request.getEmail());
         }
 
-        // Auto-generate Doctor ID (username) — DR + 8 random digits, no dash  e.g. DR63151126
+        // Auto-generate username: DR + 8 random digits
         String username;
         do {
             long randomNum = (long) (Math.random() * 100_000_000);
             username = String.format("DR%08d", randomNum);
         } while (doctorRepository.existsByUsername(username));
 
-        int randomPart = (int)(Math.random() * 9000000) + 1000000;
-        String plainTempPassword = "Doctor#" + randomPart;
-        String hashedTempPassword = passwordEncoder.encode(plainTempPassword);
-
         DoctorStatus status = request.getStatus() != null ? request.getStatus() : DoctorStatus.ACTIVE;
 
-        // Step 1: Save with a temporary unique clinicalId placeholder (satisfies NOT NULL + UNIQUE)
-        // We use the username as placeholder since it is already unique.
+        // Save with a temporary clinicalId placeholder (replaced after getting the DB id)
         Doctor doctor = Doctor.builder()
-                .clinicalId("TMP-" + username)   // replaced in step 2
+                .clinicalId("TMP-" + username)
                 .firstName(request.getFirstName())
                 .lastName(request.getLastName())
                 .birthYear(request.getBirthYear())
                 .username(username)
-                .temporaryPassword(plainTempPassword)
-                .password(hashedTempPassword)
+                .temporaryPassword("")   // no plain-text password stored — doctor sets their own
+                .password("")            // blank until doctor completes setup via email link
                 .email(request.getEmail())
                 .mobileNumber(request.getMobileNumber())
                 .specialization(request.getSpecialization())
@@ -147,18 +147,103 @@ public class DoctorService {
 
         Doctor saved = doctorRepository.save(doctor);
 
-        // Step 2: Now that we have the DB-generated primary key, set the real Clinical ID → CLN-001
+        // Set the real Clinical ID after getting the auto-generated DB primary key
         saved.setClinicalId(String.format("CLN-%03d", saved.getId()));
         saved = doctorRepository.save(saved);
 
-        System.out.println("===== CREATE DOCTOR DEBUG =====");
-        System.out.println("Doctor ID (username): " + username);
-        System.out.println("Clinical ID: " + saved.getClinicalId());
-        System.out.println("Plain Temp Password: " + plainTempPassword);
+        // Generate a secure setup token (valid 48 hours)
+        String token = UUID.randomUUID().toString();
+        tokenRepository.save(DoctorPasswordToken.builder()
+                .doctorId(saved.getId())
+                .token(token)
+                .expiresAt(LocalDateTime.now().plusHours(48))
+                .build());
 
+        // Send setup email — if SMTP is not configured, the link is logged to console
+        emailService.sendPasswordSetupEmail(
+                saved.getEmail(),
+                saved.getFirstName() + " " + saved.getLastName(),
+                token
+        );
+
+        // Return the setup link in the response so admin can also share it manually
         DoctorResponse response = mapToResponse(saved);
-        response.setTemporaryPassword(plainTempPassword);
+        response.setTemporaryPassword("SETUP_LINK:/setup-password?token=" + token);
         return response;
+    }
+
+    // ─── PASSWORD SETUP (token-based) ─────────────────────────────────────────
+
+    public java.util.Map<String, String> validateSetupToken(String token) {
+        DoctorPasswordToken t = tokenRepository.findByToken(token)
+                .orElseThrow(() -> new RuntimeException("Invalid or expired link."));
+
+        if (t.isUsed())
+            throw new RuntimeException("This link has already been used. Contact admin for a new one.");
+        if (t.getExpiresAt().isBefore(LocalDateTime.now()))
+            throw new RuntimeException("This link has expired. Contact admin for a new one.");
+
+        Doctor doctor = doctorRepository.findById(t.getDoctorId())
+                .orElseThrow(() -> new RuntimeException("Doctor account not found."));
+
+        java.util.Map<String, String> info = new java.util.LinkedHashMap<>();
+        info.put("doctorId",   String.valueOf(doctor.getId()));
+        info.put("fullName",   doctor.getFirstName() + " " + doctor.getLastName());
+        info.put("username",   doctor.getUsername());
+        info.put("clinicalId", doctor.getClinicalId());
+        info.put("email",      doctor.getEmail());
+        return info;
+    }
+
+    @Transactional
+    public void completePasswordSetup(String token, String newPassword) {
+        DoctorPasswordToken t = tokenRepository.findByToken(token)
+                .orElseThrow(() -> new RuntimeException("Invalid or expired link."));
+
+        if (t.isUsed())
+            throw new RuntimeException("This link has already been used.");
+        if (t.getExpiresAt().isBefore(LocalDateTime.now()))
+            throw new RuntimeException("This link has expired. Contact admin for a new one.");
+        if (newPassword == null || newPassword.length() < 8)
+            throw new RuntimeException("Password must be at least 8 characters.");
+
+        Doctor doctor = doctorRepository.findById(t.getDoctorId())
+                .orElseThrow(() -> new RuntimeException("Doctor account not found."));
+
+        doctor.setPassword(passwordEncoder.encode(newPassword));
+        doctor.setTemporaryPassword("");
+        doctor.setRequirePasswordChange(false);
+        doctorRepository.save(doctor);
+
+        // Mark token as used — cannot be reused
+        t.setUsed(true);
+        tokenRepository.save(t);
+
+        saveLog(doctor, LogAction.PASSWORD_RESET, "Doctor set their own password via setup link", null, "DOCTOR");
+    }
+
+    /** Regenerate a fresh setup link for a doctor (admin action for resending). */
+    @Transactional
+    public String regenerateSetupLink(Long doctorId) {
+        Doctor doctor = findById(doctorId);
+
+        // Invalidate all existing tokens for this doctor
+        tokenRepository.deleteByDoctorId(doctorId);
+
+        String token = UUID.randomUUID().toString();
+        tokenRepository.save(DoctorPasswordToken.builder()
+                .doctorId(doctorId)
+                .token(token)
+                .expiresAt(LocalDateTime.now().plusHours(48))
+                .build());
+
+        emailService.sendPasswordSetupEmail(
+                doctor.getEmail(),
+                doctor.getFirstName() + " " + doctor.getLastName(),
+                token
+        );
+
+        return "/setup-password?token=" + token;
     }
 
     // ─── UPDATE (EDIT PROFILE) ────────────────────────────────────────────────
@@ -266,12 +351,12 @@ public class DoctorService {
         Doctor doctor = doctorRepository.findByUsername(request.getUsername())
                 .orElseThrow(() -> new RuntimeException("Invalid username or password"));
 
-        if (!passwordEncoder.matches(request.getPassword(), doctor.getPassword())) {
+        if (!verifyAndHealPassword(doctor, request.getPassword())) {
             throw new RuntimeException("Invalid username or password");
         }
 
         if (Boolean.TRUE.equals(doctor.getIsSuspended())) {
-            throw new RuntimeException("Doctor account suspended");
+            throw new RuntimeException("Your account has been suspended. Contact admin.");
         }
 
         doctor.setLastLogin(LocalDateTime.now());
@@ -345,6 +430,10 @@ public class DoctorService {
 
     // ─── LIST / SEARCH ────────────────────────────────────────────────────────
 
+    public DoctorResponse getDoctorById(Long id) {
+        return mapToResponse(findById(id));
+    }
+
     public List<DoctorResponse> getAllDoctors() {
         return doctorRepository.findAll()
                 .stream()
@@ -393,7 +482,63 @@ public class DoctorService {
         doctorRepository.deleteById(id);
     }
 
+    // ─── DEBUG / ADMIN TOOLS ─────────────────────────────────────────────────
+
+    public java.util.Map<String, String> getDebugCredentials(String username) {
+        Doctor doctor = doctorRepository.findByUsername(username)
+                .orElseThrow(() -> new RuntimeException("Doctor not found: " + username));
+
+        java.util.Map<String, String> info = new java.util.LinkedHashMap<>();
+        info.put("username",             doctor.getUsername());
+        info.put("clinicalId",           doctor.getClinicalId());
+        info.put("fullName",             doctor.getFirstName() + " " + doctor.getLastName());
+        info.put("email",                doctor.getEmail());
+        info.put("temporaryPassword",    doctor.getTemporaryPassword() != null ? doctor.getTemporaryPassword() : "NOT_SET");
+        info.put("hasHashedPassword",    (doctor.getPassword() != null && !doctor.getPassword().isBlank()) ? "YES" : "NO");
+        info.put("requirePasswordChange",String.valueOf(doctor.getRequirePasswordChange()));
+        info.put("status",               doctor.getStatus() != null ? doctor.getStatus().name() : "UNKNOWN");
+        return info;
+    }
+
     // ─── HELPERS ─────────────────────────────────────────────────────────────
+
+    /**
+     * Verifies the entered password against the doctor's stored credentials.
+     * Handles three cases robustly:
+     *
+     *  1. Normal — doctor.password is a valid BCrypt hash → standard match.
+     *  2. Legacy — doctor.password is null/blank but doctor.temporaryPassword holds
+     *              plain text → matches plain text, then self-heals by writing the
+     *              proper BCrypt hash to doctor.password.
+     *  3. Broken — both fields are null/blank → returns false (admin must reset).
+     *
+     * Returns true if credentials are valid, false otherwise.
+     */
+    private boolean verifyAndHealPassword(Doctor doctor, String enteredPassword) {
+        if (enteredPassword == null || enteredPassword.isBlank()) return false;
+
+        // ── Case 1: Proper BCrypt hash stored ────────────────────────────────
+        String storedHash = doctor.getPassword();
+        if (storedHash != null && !storedHash.isBlank()) {
+            try {
+                if (passwordEncoder.matches(enteredPassword, storedHash)) return true;
+            } catch (Exception ignored) {}
+            // BCrypt didn't match — fall through to plain-text fallback
+        }
+
+        // ── Case 2: Plain-text temporaryPassword fallback (legacy / broken accounts)
+        String plain = doctor.getTemporaryPassword();
+        if (plain != null && !plain.isBlank()) {
+            if (enteredPassword.equals(plain)) {
+                // Self-heal: persist a proper BCrypt hash so future logins are hashed
+                doctor.setPassword(passwordEncoder.encode(plain));
+                doctorRepository.save(doctor);
+                return true;
+            }
+        }
+
+        return false;
+    }
 
     private Doctor findById(Long id) {
         return doctorRepository.findById(id)
@@ -508,6 +653,17 @@ public class DoctorService {
             }
         } catch (Exception ignored) {}
 
+        // Derive hospitalId from linked ClinicDoctor → Hospital
+        String hospitalId = null;
+        try {
+            if (doctor.getEmail() != null && !doctor.getEmail().isBlank()) {
+                ClinicDoctor cd = clinicDoctorRepository.findByContactEmailIgnoreCase(doctor.getEmail()).orElse(null);
+                if (cd != null && cd.getHospital() != null) {
+                    hospitalId = String.format("HOSP-%03d", cd.getHospital().getId());
+                }
+            }
+        } catch (Exception ignored) {}
+
         return DoctorResponse.builder()
                 .id(doctor.getId())
                 .arthomoveId(String.format("ARTH-%03d", doctor.getId()))
@@ -522,6 +678,7 @@ public class DoctorService {
                 .mobileNumber(doctor.getMobileNumber())
                 .specialization(doctor.getSpecialization())
                 .clinicHospital(doctor.getClinicHospital())
+                .hospitalId(hospitalId)
                 .status(doctor.getStatus())
                 .notes(doctor.getNotes())
                 .requirePasswordChange(doctor.getRequirePasswordChange())

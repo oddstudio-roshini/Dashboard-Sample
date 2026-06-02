@@ -5,7 +5,7 @@ import { useParams, useRouter } from 'next/navigation';
 import {
   ChevronLeft, Stethoscope, Phone, Mail, Calendar,
   Users, Activity, Search, User, FileText, Clock,
-  Pencil, Trash2, ScrollText,
+  Pencil, Trash2, AlertTriangle, X,
 } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { doctorsAPI } from '@/lib/api';
@@ -13,7 +13,6 @@ import { clinicsApi } from '@/lib/clinicsApi';
 import type { Doctor } from '@/types';
 import type { ClinicDoctor, ClinicPatient } from '@/types/clinics';
 import EditDoctorModal from '@/components/EditDoctorModal';
-import ViewLogsModal from '@/components/ViewLogsModal';
 
 export default function DoctorProfilePage() {
   const router   = useRouter();
@@ -26,23 +25,28 @@ export default function DoctorProfilePage() {
   const [loading,       setLoading]       = useState(true);
   const [search,        setSearch]        = useState('');
   const [genderFilter,  setGenderFilter]  = useState('');
+  const [statusFilter,  setStatusFilter]  = useState('');
   const [showEdit,      setShowEdit]      = useState(false);
-  const [showLogs,      setShowLogs]      = useState(false);
+  const [showDelete,    setShowDelete]    = useState(false);
+  const [deleting,      setDeleting]      = useState(false);
 
-  const refreshDoctor = () => {
+  const refreshDoctor = useCallback(() => {
     doctorsAPI.getById(doctorId)
       .then(res => { if (res.success) setDoctor(res.data); })
       .catch(() => {});
-  };
+  }, [doctorId]);
 
   const handleDelete = async () => {
     if (!doctor) return;
-    if (!confirm(`Delete Dr. ${doctor.fullName}? This cannot be undone.`)) return;
+    setDeleting(true);
     try {
       await doctorsAPI.delete(doctor.id);
       toast.success('Doctor deleted');
       router.push('/dashboard/doctors');
-    } catch { toast.error('Failed to delete doctor'); }
+    } catch {
+      toast.error('Failed to delete doctor');
+      setDeleting(false);
+    }
   };
 
   // Step 1 — load admin Doctor account
@@ -91,10 +95,14 @@ export default function DoctorProfilePage() {
 
   const scheduled = patients.filter(p => p.appointmentStatus === 'SCHEDULED').length;
   const completed  = patients.filter(p => p.appointmentStatus === 'COMPLETED').length;
+  const filteredPatients = statusFilter
+    ? patients.filter(p => p.appointmentStatus === statusFilter)
+    : patients;
 
-  // Display data — prefer ClinicDoctor fields, fall back to admin Doctor
+  // Display data — name comes from the editable admin Doctor record (always up-to-date after edit).
+  // Clinic-specific fields (phone, email, specialization, hospital) prefer the richer ClinicDoctor profile.
   const cd = clinicDoctor as any; // ClinicDoctorResponse from backend
-  const displayName  = cd ? `Dr. ${cd.fullName}` : (doctor ? `Dr. ${doctor.fullName}` : 'Doctor');
+  const displayName  = doctor ? `Dr. ${doctor.fullName}` : (cd ? `Dr. ${cd.fullName}` : 'Doctor');
   const displayPhone = cd?.contactPhone || doctor?.mobileNumber;
   const displayEmail = cd?.contactEmail || doctor?.email;
   const displaySpec  = cd?.specialization || doctor?.specialization;
@@ -122,19 +130,13 @@ export default function DoctorProfilePage() {
         {/* Action buttons — top right of card */}
         <div className="flex justify-end gap-2 mb-4">
           <button
-            onClick={() => setShowLogs(true)}
-            className="flex items-center gap-1.5 px-3 py-1.5 text-xs rounded-lg bg-green-50 text-green-700 hover:bg-green-100 font-medium transition-colors"
-          >
-            <ScrollText className="w-3.5 h-3.5" /> Logs
-          </button>
-          <button
             onClick={() => setShowEdit(true)}
             className="flex items-center gap-1.5 px-3 py-1.5 text-xs rounded-lg bg-blue-50 text-blue-600 hover:bg-blue-100 font-medium transition-colors"
           >
             <Pencil className="w-3.5 h-3.5" /> Edit
           </button>
           <button
-            onClick={handleDelete}
+            onClick={() => setShowDelete(true)}
             className="flex items-center gap-1.5 px-3 py-1.5 text-xs rounded-lg bg-red-50 text-red-600 hover:bg-red-100 font-medium transition-colors"
           >
             <Trash2 className="w-3.5 h-3.5" /> Delete
@@ -152,11 +154,6 @@ export default function DoctorProfilePage() {
           <div className="flex-1 min-w-0">
             <div className="flex flex-wrap items-center gap-2 mb-1">
               <h1 className="text-xl font-bold text-gray-900">{displayName}</h1>
-              <span className={`text-xs px-2.5 py-0.5 rounded-full font-semibold ${
-                displayStatus === 'ACTIVE'   ? 'bg-green-100 text-green-700'  :
-                displayStatus === 'INACTIVE' ? 'bg-yellow-100 text-yellow-700' :
-                                               'bg-red-100 text-red-700'
-              }`}>{displayStatus}</span>
               {displaySpec && (
                 <span className="bg-blue-100 text-blue-700 text-xs px-2.5 py-0.5 rounded-full font-medium">
                   {displaySpec}
@@ -169,9 +166,11 @@ export default function DoctorProfilePage() {
               )}
             </div>
 
-            <p className="text-sm text-gray-500 mb-3">
-              • {cd?.experienceYears ?? '—'} years experience
-            </p>
+            {(cd?.experienceYears !== undefined && cd?.experienceYears !== null && cd?.experienceYears !== '') && (
+              <p className="text-sm text-gray-500 mb-3">
+                • {cd.experienceYears} years experience
+              </p>
+            )}
 
             <div className="flex flex-wrap gap-5 text-sm text-gray-500">
               {displayPhone && (
@@ -184,10 +183,11 @@ export default function DoctorProfilePage() {
                   <Mail className="w-4 h-4 text-gray-400" />{displayEmail}
                 </div>
               )}
-              {cd?.availableDays && (
+              {cd?.availableDays?.trim() && (
                 <div className="flex items-center gap-1.5">
                   <Calendar className="w-4 h-4 text-gray-400" />
-                  {cd.availableDays}{cd.consultationHours ? ` | ${cd.consultationHours}` : ''}
+                  {cd.availableDays.trim()}
+                  {cd?.consultationHours?.trim() ? ` | ${cd.consultationHours.trim()}` : ''}
                 </div>
               )}
               {doctor?.lastLogin && (
@@ -237,12 +237,18 @@ export default function DoctorProfilePage() {
                 className="pl-9 pr-3 py-2 text-sm border border-gray-200 rounded-lg w-48 focus:outline-none focus:border-purple-400"
               />
             </div>
+            <select value={statusFilter} onChange={e => setStatusFilter(e.target.value)}
+              className="text-sm border border-gray-200 rounded-lg px-3 py-2 focus:outline-none focus:border-purple-400 bg-white">
+              <option value="">All Status</option>
+              <option value="SCHEDULED">Scheduled</option>
+              <option value="COMPLETED">Completed</option>
+              <option value="CANCELLED">Cancelled</option>
+            </select>
             <select value={genderFilter} onChange={e => setGenderFilter(e.target.value)}
               className="text-sm border border-gray-200 rounded-lg px-3 py-2 focus:outline-none focus:border-purple-400 bg-white">
               <option value="">All Genders</option>
               <option value="Male">Male</option>
               <option value="Female">Female</option>
-              <option value="Other">Other</option>
             </select>
           </div>
         </div>
@@ -252,7 +258,7 @@ export default function DoctorProfilePage() {
             <div className="flex items-center justify-center py-16 text-gray-400 text-sm">
               <Activity className="w-4 h-4 mr-2 animate-spin" /> Loading patients...
             </div>
-          ) : patients.length === 0 ? (
+          ) : filteredPatients.length === 0 ? (
             <div className="flex flex-col items-center justify-center py-16 text-gray-400">
               <Users className="w-10 h-10 mb-2 opacity-30" />
               <p className="text-sm font-medium">No patients found</p>
@@ -271,12 +277,17 @@ export default function DoctorProfilePage() {
                   <th className="px-5 py-3 text-left font-medium">Contact</th>
                   <th className="px-5 py-3 text-left font-medium">Appointment</th>
                   <th className="px-5 py-3 text-left font-medium">Visit Type</th>
+                  <th className="px-5 py-3 text-left font-medium">Status</th>
                   <th className="px-5 py-3 text-left font-medium">Notes</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-50">
-                {patients.map((p, i) => (
-                  <tr key={p.id} className="hover:bg-gray-50/60 transition-colors">
+                {filteredPatients.map((p, i) => (
+                  <tr
+                    key={p.id}
+                    onClick={() => router.push(`/dashboard/patients/${p.id}/library`)}
+                    className="hover:bg-purple-50/50 cursor-pointer transition-colors"
+                  >
                     <td className="px-5 py-4 text-gray-400 text-xs">{i + 1}</td>
                     <td className="px-5 py-4 font-semibold text-gray-900 whitespace-nowrap">{p.fullName}</td>
                     <td className="px-5 py-4">
@@ -293,17 +304,28 @@ export default function DoctorProfilePage() {
                       {p.contactEmail && <div className="text-gray-400 text-xs mt-0.5">{p.contactEmail}</div>}
                     </td>
                     <td className="px-5 py-4">
-                      {p.appointmentDate && (
-                        <div className="flex items-center gap-1.5 text-gray-700 text-xs whitespace-nowrap">
-                          <Calendar className="w-3.5 h-3.5 text-gray-400" />{p.appointmentDate}
-                        </div>
-                      )}
+                      {p.appointmentDate
+                        ? <div className="flex items-center gap-1.5 text-gray-700 text-xs whitespace-nowrap">
+                            <Calendar className="w-3.5 h-3.5 text-gray-400" />{p.appointmentDate}
+                          </div>
+                        : <span className="text-gray-300 text-xs">—</span>
+                      }
                     </td>
                     <td className="px-5 py-4">
                       {p.visitType
                         ? <span className="bg-gray-100 text-gray-600 text-xs px-2.5 py-1 rounded-lg font-medium whitespace-nowrap">{p.visitType}</span>
-                        : <span className="text-gray-300">—</span>
+                        : <span className="text-gray-300 text-xs">—</span>
                       }
+                    </td>
+                    <td className="px-5 py-4">
+                      <span className={`text-xs font-semibold px-2.5 py-1 rounded-full whitespace-nowrap ${
+                        p.appointmentStatus === 'COMPLETED' ? 'bg-green-50 text-green-600'  :
+                        p.appointmentStatus === 'SCHEDULED' ? 'bg-blue-50 text-blue-600'    :
+                        p.appointmentStatus === 'CANCELLED' ? 'bg-red-50 text-red-500'      :
+                        'bg-gray-100 text-gray-400'
+                      }`}>
+                        {p.appointmentStatus || '—'}
+                      </span>
                     </td>
                     <td className="px-5 py-4 max-w-[180px]">
                       {p.notes
@@ -329,18 +351,86 @@ export default function DoctorProfilePage() {
         isOpen={showEdit}
         onClose={() => setShowEdit(false)}
         doctor={doctor}
-        onSuccess={() => { setShowEdit(false); refreshDoctor(); }}
+        onSuccess={(updated) => { setDoctor(updated); }}
       />
     )}
 
-    {/* Logs Modal */}
-    {doctor && (
-      <ViewLogsModal
-        isOpen={showLogs}
-        onClose={() => setShowLogs(false)}
-        doctor={doctor}
-      />
+    {/* Delete Confirmation Modal */}
+    {showDelete && doctor && (
+      <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+        {/* Backdrop */}
+        <div
+          className="absolute inset-0 bg-black/50 backdrop-blur-sm"
+          onClick={() => !deleting && setShowDelete(false)}
+        />
+
+        {/* Dialog */}
+        <div className="relative bg-white rounded-2xl shadow-xl w-full max-w-md p-6 z-10">
+
+          {/* Close button */}
+          <button
+            onClick={() => setShowDelete(false)}
+            disabled={deleting}
+            className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors disabled:opacity-40"
+          >
+            <X className="w-4 h-4" />
+          </button>
+
+          {/* Icon + heading */}
+          <div className="flex flex-col items-center text-center mb-6">
+            <div className="w-14 h-14 rounded-full bg-red-50 flex items-center justify-center mb-4">
+              <AlertTriangle className="w-7 h-7 text-red-500" />
+            </div>
+            <h2 className="text-lg font-bold text-gray-900">Delete Doctor</h2>
+            <p className="text-sm text-gray-500 mt-1.5 leading-relaxed">
+              Are you sure you want to delete{' '}
+              <span className="font-semibold text-gray-800">Dr. {doctor.fullName}</span>?
+              <br />
+              This action <span className="font-semibold text-red-500">cannot be undone</span>.
+            </p>
+          </div>
+
+          {/* Doctor summary */}
+          <div className="bg-gray-50 rounded-xl p-3.5 mb-6 flex items-center gap-3">
+            <div className="w-9 h-9 rounded-full bg-purple-100 flex items-center justify-center flex-shrink-0">
+              <Stethoscope className="w-4.5 h-4.5 text-purple-600" />
+            </div>
+            <div className="min-w-0">
+              <p className="text-sm font-semibold text-gray-900 truncate">Dr. {doctor.fullName}</p>
+              <p className="text-xs text-gray-400 truncate">{displayEmail || displaySpec || 'Doctor'}</p>
+            </div>
+          </div>
+
+          {/* Actions */}
+          <div className="flex gap-3">
+            <button
+              onClick={() => setShowDelete(false)}
+              disabled={deleting}
+              className="flex-1 py-2.5 rounded-xl border border-gray-200 text-sm font-semibold text-gray-600 hover:bg-gray-50 transition-colors disabled:opacity-40"
+            >
+              Cancel
+            </button>
+            <button
+              onClick={handleDelete}
+              disabled={deleting}
+              className="flex-1 py-2.5 rounded-xl bg-red-600 hover:bg-red-700 text-white text-sm font-semibold transition-colors disabled:opacity-60 flex items-center justify-center gap-2"
+            >
+              {deleting ? (
+                <>
+                  <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                  Deleting…
+                </>
+              ) : (
+                <>
+                  <Trash2 className="w-4 h-4" /> Delete Doctor
+                </>
+              )}
+            </button>
+          </div>
+        </div>
+      </div>
     )}
+
     </>
   );
 }

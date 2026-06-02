@@ -42,11 +42,64 @@ public class PatientService {
             "Upper legs / Thighs", "Knees", "Lower legs / Calves", "Ankles", "Feet"
     );
 
+    @Transactional
+    public int seedInactivePatients() {
+        Integer existing = jdbcTemplate.queryForObject(
+            "SELECT COUNT(*) FROM clinic_patients WHERE patient_status = 'INACTIVE'", Integer.class);
+        if (existing != null && existing > 0) return existing;
+
+        Long doctorId = jdbcTemplate.queryForObject(
+            "SELECT id FROM clinic_doctors ORDER BY id ASC LIMIT 1", Long.class);
+        if (doctorId == null) return 0;
+
+        String hashed = "$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lh7y";
+        Object[][] seed = {
+            {"Arjun",   "Verma",    45, "Male",   "9876543210", "Back Pain",               3},
+            {"Sunita",  "Rao",      52, "Female", "9876543211", "Knee Osteoarthritis",      4},
+            {"Rajan",   "Sharma",   60, "Male",   "9876543212", "Shoulder Impingement",     5},
+            {"Meena",   "Pillai",   38, "Female", "9876543213", "Cervical Spondylosis",     6},
+            {"Deepak",  "Joshi",    47, "Male",   "9876543214", "Tennis Elbow",             7},
+            {"Kavitha", "Nair",     55, "Female", "9876543215", "Hip Replacement Rehab",    8},
+            {"Suresh",  "Iyer",     63, "Male",   "9876543216", "Post Fracture Rehab",      9},
+            {"Anita",   "Bose",     41, "Female", "9876543217", "Wrist Pain",              10},
+            {"Mohan",   "Reddy",    50, "Male",   "9876543218", "Sciatica",                11},
+            {"Lakshmi", "Menon",    35, "Female", "9876543219", "Rotator Cuff Injury",     12},
+            {"Vikram",  "Singh",    58, "Male",   "9876543220", "Ankle Sprain",            13},
+            {"Preethi", "Kumar",    44, "Female", "9876543221", "Plantar Fasciitis",       14},
+            {"Harish",  "Naidu",    67, "Male",   "9876543222", "Lumbar Disc Herniation",  15},
+            {"Divya",   "Krishnan", 33, "Female", "9876543223", "Frozen Shoulder",         16},
+            {"Santosh", "Yadav",    56, "Male",   "9876543224", "Hip Mobility Restriction",17},
+        };
+        for (Object[] row : seed) {
+            java.time.LocalDate joinDate = java.time.LocalDate.now().minusMonths((int) row[6]);
+            jdbcTemplate.update(
+                "INSERT INTO clinic_patients (clinic_doctor_id, first_name, last_name, age, gender, " +
+                "contact_phone, diagnosis, injury, join_date, patient_status, mobile_password, created_at) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 'INACTIVE', ?, NOW())",
+                doctorId, row[0], row[1], row[2], row[3], row[4], row[5], row[5], joinDate, hashed);
+        }
+        return seed.length;
+    }
+
     @Transactional(readOnly = true)
     public List<PatientDTOs.PatientListItem> getPatients() {
         return clinicPatientRepository.findAllByOrderByIdAsc().stream()
                 .map(this::toPatientListItem)
                 .collect(Collectors.toList());
+    }
+
+    @Transactional
+    public PatientDTOs.PatientListItem updateStatus(Long id, String statusStr) {
+        ClinicPatient patient = getPatient(id);
+        ClinicPatient.PatientStatus newStatus;
+        try {
+            newStatus = ClinicPatient.PatientStatus.valueOf(statusStr.toUpperCase());
+        } catch (IllegalArgumentException e) {
+            throw new RuntimeException("Invalid status: " + statusStr);
+        }
+        patient.setPatientStatus(newStatus);
+        clinicPatientRepository.save(patient);
+        return toPatientListItem(patient);
     }
 
     @Transactional
@@ -379,9 +432,18 @@ public class PatientService {
                 // Backfill: update if library type changed (e.g. NONE→SINGLE/BUNDLE),
                 // or completedReps is null/zero for a purchased exercise (stale seed data)
                 boolean purchasedChanged = !Boolean.valueOf(purchased).equals(existing.getPurchased());
+                // Only treat 0 completedReps as stale when the exercise is ACTIVE —
+                // INACTIVE exercises with 0 reps are intentionally "Not Started" and must not be overwritten.
                 boolean repsStale = existing.getCompletedReps() == null
-                        || (Boolean.TRUE.equals(purchased) && existing.getCompletedReps() == 0);
-                if (purchasedChanged || repsStale) {
+                        || (Boolean.TRUE.equals(purchased)
+                            && existing.getCompletedReps() == 0
+                            && existing.getStatus() == PatientExercise.PatientExerciseStatus.ACTIVE);
+                // Correct exercises that were wrongly seeded with reps > 0 but should be "Not Started"
+                boolean notStartedCorrection = status == PatientExercise.PatientExerciseStatus.INACTIVE
+                        && exercise.getId() % 3 == 0
+                        && existing.getCompletedReps() != null
+                        && existing.getCompletedReps() > 0;
+                if (purchasedChanged || repsStale || notStartedCorrection) {
                     existing.setPurchased(purchased);
                     existing.setStatus(status);
                     existing.setCompletedReps(computeCompletedReps(purchased, status, exercise));
@@ -398,19 +460,96 @@ public class PatientService {
         if (status == PatientExercise.PatientExerciseStatus.ACTIVE) {
             return (exercise.getId() % 3 == 0) ? Math.max(10, target / 2) : target;
         } else {
-            return (int)(exercise.getId() % 8) + 1; // 1–8, always < 10
+            // INACTIVE exercises: split into "Not Started" (0 reps) and "Inactive" (some reps done).
+            // Every 3rd exercise (by id) is Not Started — patient was assigned but never touched it.
+            if (exercise.getId() % 3 == 0) return 0;          // Not Started
+            return (int)(exercise.getId() % 8) + 1;            // Inactive — 1–8 reps done then stopped
         }
     }
 
     private void ensurePatientHistoryAndSchedules(ClinicPatient patient) {
-        if (historyRepository.countByPatientId(patient.getId()) == 0) {
-            addHistory(patient, "CREATED", "Patient profile created", "Patient was added to the rehabilitation dashboard.");
-            addHistory(patient, "ASSESSMENT", "Initial assessment", "Injury recorded as " + safe(injury(patient)) + ".");
+        try {
+            ensurePatientHistoryAndSchedulesInternal(patient);
+        } catch (Exception e) {
+            log.warn("History/schedule seeding skipped for patient {}: {}", patient.getId(), e.getMessage());
+        }
+    }
+
+    private void ensurePatientHistoryAndSchedulesInternal(ClinicPatient patient) {
+        // Join date is the earliest valid date for any history entry
+        LocalDate joinDate = patient.getJoinDate() != null ? patient.getJoinDate() : LocalDate.now();
+
+        long histCount = historyRepository.countByPatientId(patient.getId());
+        if (histCount == 0) {
+            // Profile created + initial assessment — both on/after join date
+            addHistoryAt(patient, "CREATED",    "Patient profile created", "Patient was added to the rehabilitation dashboard.", joinDate.atStartOfDay());
+            addHistoryAt(patient, "ASSESSMENT", "Initial assessment",      "Injury recorded as " + safe(injury(patient)) + ".", joinDate.atStartOfDay().plusHours(2));
+            // Doctor assigns exercises shortly after join — this is the first "Exercises Assigned" calendar marker
+            addHistoryAt(patient, "PUBLISH",    "Exercises assigned",      "Initial exercise plan assigned by the doctor.", joinDate.plusDays(3).atStartOfDay());
+        }
+
+        // ── Ensure initial exercise assignment event exists near join date ──────
+        // This is the first "Exercises Assigned" calendar milestone. Without it,
+        // no assignment marker appears and sessions look like they precede assignment.
+        boolean hasInitialPublish = historyRepository.findByPatientIdOrderByCreatedAtDesc(patient.getId())
+                .stream().anyMatch(h -> "PUBLISH".equals(h.getEventType())
+                        && h.getCreatedAt() != null
+                        && !h.getCreatedAt().toLocalDate().isAfter(joinDate.plusDays(7)));
+        if (!hasInitialPublish) {
+            addHistoryAt(patient, "PUBLISH", "Exercises assigned",
+                    "Initial exercise plan assigned by the doctor.",
+                    joinDate.plusDays(3).atStartOfDay());
+        }
+
+        // ── Last-week backfill — only seed if patient was with us 9+ days ago ──
+        boolean hasLastWeek = historyRepository.findByPatientIdOrderByCreatedAtDesc(patient.getId())
+                .stream().anyMatch(h -> h.getCreatedAt() != null
+                        && h.getCreatedAt().isAfter(LocalDateTime.now().minusDays(14))
+                        && h.getCreatedAt().isBefore(LocalDateTime.now().minusDays(4)));
+        if (!hasLastWeek && !LocalDate.now().minusDays(9).isBefore(joinDate)) {
+            addHistoryAt(patient, "NOTE",      "Progress noted",      "Patient showing improvement in range of motion.",        LocalDateTime.now().minusDays(5));
+            addHistoryAt(patient, "ASSESSMENT","Weekly assessment",   "Pain score reduced from 7 to 5 after exercise sessions.", LocalDateTime.now().minusDays(6));
+            addHistoryAt(patient, "UPLOAD",    "Report uploaded",     "Weekly physiotherapy report submitted by doctor.",        LocalDateTime.now().minusDays(8));
+            addHistoryAt(patient, "NOTE",      "Exercise update",     "Doctor reviewed and updated the exercise plan.",          LocalDateTime.now().minusDays(9));
+        }
+
+        // ── Last-month backfill — only seed if patient was with us 50+ days ago ──
+        boolean hasLastMonth = historyRepository.findByPatientIdOrderByCreatedAtDesc(patient.getId())
+                .stream().anyMatch(h -> h.getCreatedAt() != null
+                        && h.getCreatedAt().isAfter(LocalDateTime.now().minusDays(60))
+                        && h.getCreatedAt().isBefore(LocalDateTime.now().minusDays(30)));
+        if (!hasLastMonth && !LocalDate.now().minusDays(50).isBefore(joinDate)) {
+            addHistoryAt(patient, "CREATED",   "Prescription added",    "Initial prescription uploaded for " + safe(injury(patient)) + " treatment.", LocalDateTime.now().minusDays(35));
+            addHistoryAt(patient, "ASSESSMENT","Monthly review",        "Monthly progress review completed. Treatment plan updated.",                  LocalDateTime.now().minusDays(38));
+            addHistoryAt(patient, "NOTE",      "Doctor observation",    "Doctor noted consistent compliance with home exercise program.",              LocalDateTime.now().minusDays(42));
+            addHistoryAt(patient, "UPLOAD",    "Report uploaded",       "Monthly physiotherapy progress report uploaded.",                            LocalDateTime.now().minusDays(45));
+            addHistoryAt(patient, "NOTE",      "Exercise plan reviewed","Exercise bundle reviewed based on monthly assessment findings.",             LocalDateTime.now().minusDays(50));
+        }
+
+        // Backfill: ensure every active purchased exercise has at least 1 session record
+        try {
+            List<PatientExercise> allExercises = patientExerciseRepository.findByPatientId(patient.getId());
+            for (PatientExercise pe : allExercises) {
+                if (!Boolean.TRUE.equals(pe.getPurchased())) continue;
+                if (pe.getStatus() != PatientExercise.PatientExerciseStatus.ACTIVE) continue;
+                if (scheduleRepository.countByPatientExerciseId(pe.getId()) > 0) continue;
+                int sessionCount = (int)((pe.getId() % 3) + 1);
+                for (int s = 1; s <= sessionCount; s++) {
+                    scheduleRepository.save(PatientExerciseSchedule.builder()
+                            .patient(patient)
+                            .patientExercise(pe)
+                            .scheduledDate(LocalDate.now().minusDays(s * 3L))
+                            .status(PatientExerciseSchedule.ScheduleStatus.COMPLETED)
+                            .notes("Completed session")
+                            .completedAt(LocalDateTime.now().minusDays(s * 3L))
+                            .build());
+                }
+            }
+        } catch (Exception e) {
+            log.warn("Session backfill skipped for patient {}: {}", patient.getId(), e.getMessage());
         }
 
         if (scheduleRepository.countByPatientId(patient.getId()) == 0) {
-            // Create sessions for EVERY active body part so sessionCount shows
-            // realistic per-body-part numbers in the exercise library view.
             List<PatientBodyPartLibrary> activeLibs = libraryRepository
                     .findByPatientIdOrderByBodyPartDisplayOrderAsc(patient.getId())
                     .stream()
@@ -424,33 +563,34 @@ public class PatientService {
                         .stream()
                         .filter(pe -> Boolean.TRUE.equals(pe.getPurchased())
                                    && pe.getStatus() == PatientExercise.PatientExerciseStatus.ACTIVE)
-                        .limit(2)
-                        .collect(Collectors.toList());
+                        .collect(Collectors.toList()); // all active exercises, not just first 2
 
                 if (exercises.isEmpty()) continue;
 
-                // Vary past sessions per body part: 1–3 based on library id
-                int pastCount = (int)(lib.getId() % 3) + 1;
-                for (int p = 1; p <= pastCount; p++) {
-                    PatientExercise pe = exercises.get((p - 1) % exercises.size());
+                // Seed 1–3 completed sessions per exercise so sessionCount is accurate per exercise
+                for (int i = 0; i < exercises.size(); i++) {
+                    PatientExercise pe = exercises.get(i);
+                    int sessionCount = (int)((pe.getId() % 3) + 1); // 1, 2 or 3 sessions
+                    for (int s = 1; s <= sessionCount; s++) {
+                        scheduleRepository.save(PatientExerciseSchedule.builder()
+                                .patient(patient)
+                                .patientExercise(pe)
+                                .scheduledDate(LocalDate.now().minusDays(dayCounter + s))
+                                .status(PatientExerciseSchedule.ScheduleStatus.COMPLETED)
+                                .notes("Completed session")
+                                .completedAt(LocalDateTime.now().minusDays(dayCounter + s))
+                                .build());
+                    }
+                    // 1 upcoming session per exercise
                     scheduleRepository.save(PatientExerciseSchedule.builder()
                             .patient(patient)
                             .patientExercise(pe)
-                            .scheduledDate(LocalDate.now().minusDays(dayCounter + p))
-                            .status(PatientExerciseSchedule.ScheduleStatus.COMPLETED)
-                            .notes("Completed session")
-                            .completedAt(LocalDateTime.now().minusDays(dayCounter + p))
+                            .scheduledDate(LocalDate.now().plusDays(dayCounter + i))
+                            .status(PatientExerciseSchedule.ScheduleStatus.UPCOMING)
+                            .notes("Upcoming home exercise")
                             .build());
+                    dayCounter++;
                 }
-                // 1 upcoming session per body part
-                scheduleRepository.save(PatientExerciseSchedule.builder()
-                        .patient(patient)
-                        .patientExercise(exercises.get(0))
-                        .scheduledDate(LocalDate.now().plusDays(dayCounter))
-                        .status(PatientExerciseSchedule.ScheduleStatus.UPCOMING)
-                        .notes("Upcoming home exercise")
-                        .build());
-                dayCounter++;
             }
         }
     }
@@ -470,6 +610,17 @@ public class PatientService {
                 .title(title)
                 .description(description)
                 .build());
+    }
+
+    private PatientHistory addHistoryAt(ClinicPatient patient, String type, String title, String description, LocalDateTime at) {
+        PatientHistory h = PatientHistory.builder()
+                .patient(patient)
+                .eventType(type)
+                .title(title)
+                .description(description)
+                .createdAt(at)
+                .build();
+        return historyRepository.save(h);
     }
 
     private PatientDTOs.PatientListItem toPatientListItem(ClinicPatient p) {
@@ -550,11 +701,21 @@ public class PatientService {
                          * (ex.getRepsCount()  != null ? ex.getRepsCount()  : 10);
                 }).sum();
 
-        long purchasedCount = patientExercises.stream().filter(pe -> Boolean.TRUE.equals(pe.getPurchased())).count();
+        // completedSets = sum of (completedReps / repsPerSet) per exercise — accurate per exercise
+        int completedSets = patientExercises.stream()
+                .filter(pe -> Boolean.TRUE.equals(pe.getPurchased()) && pe.getCompletedReps() != null)
+                .mapToInt(pe -> {
+                    int rps = pe.getExercise().getRepsCount() != null ? pe.getExercise().getRepsCount() : 10;
+                    return rps > 0 ? pe.getCompletedReps() / rps : 0;
+                }).sum();
 
-        // completedSets = how many full sets the patient has done
-        int completedSets = prescribedReps > 0 ? (int)(totalCompletedReps / prescribedReps) : 0;
-        int targetSets    = (int)(prescribedSets * Math.max(purchasedCount, 1));
+        // targetSets = sum of prescribed sets across all purchased exercises
+        int targetSets = patientExercises.stream()
+                .filter(pe -> Boolean.TRUE.equals(pe.getPurchased()))
+                .mapToInt(pe -> pe.getExercise().getSetsCount() != null ? pe.getExercise().getSetsCount() : 3)
+                .sum();
+
+        long purchasedCount = patientExercises.stream().filter(pe -> Boolean.TRUE.equals(pe.getPurchased())).count();
 
         // completedDurationMins = actual time based on progress ratio
         int completedDurMins = totalTargetReps > 0
@@ -615,8 +776,8 @@ public class PatientService {
         int targetReps      = prescribedSets * repsPerSet;
         int completedRepsVal= pe.getCompletedReps() != null ? pe.getCompletedReps() : 0;
 
-        // Patient progress derived from completedReps
-        int completedSets    = repsPerSet > 0 ? completedRepsVal / repsPerSet : 0;
+        // Patient progress derived from completedReps — use round for accuracy
+        int completedSets    = repsPerSet > 0 ? (int) Math.round((double) completedRepsVal / repsPerSet) : 0;
         int prescribedDurMins= parseDurationMins(e.getDuration());
         int completedDurMins = targetReps > 0
                 ? (int) Math.round((double) completedRepsVal / targetReps * prescribedDurMins)
@@ -644,6 +805,7 @@ public class PatientService {
                 .publishedToApp(Boolean.TRUE.equals(pe.getPublishedToApp()))
                 .publishedAt(pe.getPublishedAt())
                 .videoUrl(e.getVideoUrl())
+                .sessionCount(scheduleRepository.countByPatientExerciseId(pe.getId()))
                 .build();
     }
 
@@ -707,32 +869,52 @@ public class PatientService {
      * Weekdays get ~2-3 sessions; weekends ~0-1 session.
      */
     private void ensurePatientActivityLogs(ClinicPatient patient) {
-        if (activityLogRepository.countByPatientId(patient.getId()) > 0) return;
+        long existingCount = activityLogRepository.countByPatientId(patient.getId());
+        if (existingCount > 0) {
+            // Re-seed if any log has a future timestamp (stale data from old seeding)
+            boolean hasFutureLogs = !activityLogRepository
+                    .findByPatientIdAndLoggedAtAfterOrderByLoggedAtDesc(patient.getId(), LocalDateTime.now())
+                    .isEmpty();
+            if (!hasFutureLogs) return;
+            jdbcTemplate.update("DELETE FROM patient_activity_logs WHERE patient_id = ?", patient.getId());
+        }
 
-        Random rng = new Random(patient.getId() * 31L); // deterministic per patient
-        LocalDateTime now = LocalDateTime.now();
+        Random rng      = new Random(patient.getId() * 31L); // deterministic per patient
         String[] devices = {"Mobile App", "Mobile App", "Mobile App", "Web Browser", "Tablet"};
+        LocalDateTime now = LocalDateTime.now();
 
-        for (int daysAgo = 29; daysAgo >= 0; daysAgo--) {
+        for (int daysAgo = 59; daysAgo >= 0; daysAgo--) {
             LocalDate day = LocalDate.now().minusDays(daysAgo);
             DayOfWeek dow = day.getDayOfWeek();
             boolean isWeekend = (dow == DayOfWeek.SATURDAY || dow == DayOfWeek.SUNDAY);
 
-            // Probability of activity: 80% weekdays, 40% weekends
-            if (rng.nextDouble() > (isWeekend ? 0.40 : 0.80)) continue;
+            // Probability of activity: 85% weekdays, 50% weekends
+            if (rng.nextDouble() > (isWeekend ? 0.50 : 0.85)) continue;
 
-            // 1-2 sessions on active days
-            int sessionsToday = isWeekend ? 1 : (1 + rng.nextInt(2));
-            int startHour = 7;
-            for (int s = 0; s < sessionsToday; s++) {
-                // Space sessions across the day
-                int hour = startHour + rng.nextInt(isWeekend ? 10 : 12);
-                int minute = rng.nextInt(60);
-                int duration = 15 + rng.nextInt(46); // 15-60 min
+            // 1-3 sessions on active days; realistic time slots (morning / afternoon / evening)
+            int sessionsToday = isWeekend ? 1 : (rng.nextInt(10) < 3 ? 3 : 1 + rng.nextInt(2));
+            int[][] slots = {
+                {7  + rng.nextInt(3), rng.nextInt(60)},  // 07:00–09:59
+                {12 + rng.nextInt(3), rng.nextInt(60)},  // 12:00–14:59
+                {16 + rng.nextInt(2), rng.nextInt(60)},  // 16:00–17:59
+            };
+
+            for (int s = 0; s < Math.min(sessionsToday, slots.length); s++) {
+                int hour   = slots[s][0];
+                int minute = slots[s][1];
+                int duration = 15 + rng.nextInt(46); // 15–60 min
                 String device = devices[rng.nextInt(devices.length)];
 
-                LocalDateTime loginTime  = day.atTime(Math.min(hour, 22), minute);
+                LocalDateTime loginTime  = day.atTime(hour, minute);
                 LocalDateTime logoutTime = loginTime.plusMinutes(duration);
+
+                // Never log future events
+                if (loginTime.isAfter(now)) continue;
+                if (logoutTime.isAfter(now)) {
+                    logoutTime = now.minusMinutes(5 + rng.nextInt(20));
+                    duration   = (int) java.time.Duration.between(loginTime, logoutTime).toMinutes();
+                    if (duration <= 0) continue;
+                }
 
                 activityLogRepository.save(PatientActivityLog.builder()
                         .patient(patient).eventType("LOGIN")
@@ -740,23 +922,77 @@ public class PatientService {
                 activityLogRepository.save(PatientActivityLog.builder()
                         .patient(patient).eventType("LOGOUT")
                         .loggedAt(logoutTime).sessionDurationMins(duration).device(device).build());
-
-                startHour = hour + duration / 60 + 2; // gap before next session
             }
         }
     }
 
     /** Builds activity stats: recent logs + 7-day active dates + 30-day count map. */
     private PatientDTOs.ActivityStats buildActivityStats(Long patientId) {
-        LocalDateTime since = LocalDateTime.now().minusDays(30);
+        DateTimeFormatter dateFmt = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+        // ── Load patient to get join date ─────────────────────────────────────
+        ClinicPatient cp = clinicPatientRepository.findById(patientId).orElse(null);
+        LocalDate joinDateLocal = (cp != null && cp.getJoinDate() != null) ? cp.getJoinDate() : null;
+        String joinDateStr = joinDateLocal != null ? joinDateLocal.format(dateFmt) : null;
+
+        // Fetch all logs in last 60 days.
+        // Activity heatmap and logs show the full 60-day history regardless of join date
+        // (a patient may have been exercising for months before the admin joined them to this system).
+        // Join-date filtering applies only to calendar milestone markers (blue/amber/purple boxes).
+        LocalDateTime since = LocalDateTime.now().minusDays(60);
         List<PatientActivityLog> logs = activityLogRepository
                 .findByPatientIdAndLoggedAtAfterOrderByLoggedAtDesc(patientId, since);
 
-        DateTimeFormatter dateFmt = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        // ── Completed exercise sessions (last 60 days) ───────────────────────
+        LocalDate from60 = LocalDate.now().minusDays(59);
+        List<PatientExerciseSchedule> completedSchedules = scheduleRepository
+                .findByPatientIdAndStatusAndScheduledDateBetweenOrderByScheduledDateDesc(
+                        patientId, PatientExerciseSchedule.ScheduleStatus.COMPLETED,
+                        from60, LocalDate.now());
 
-        // Recent events (last 30, newest first)
-        List<PatientDTOs.ActivityLogItem> recentLogs = logs.stream()
-                .limit(30)
+        // Build exercise log items (eventType = "EXERCISE") — one entry per completed session
+        // Exercise completions are historical data — show all regardless of join date
+        List<PatientDTOs.ActivityLogItem> exerciseLogs = completedSchedules.stream()
+                .map(s -> {
+                    String name = s.getPatientExercise() != null && s.getPatientExercise().getExercise() != null
+                            ? s.getPatientExercise().getExercise().getExerciseName() : "Exercise";
+                    String bodyPart = s.getPatientExercise() != null && s.getPatientExercise().getBodyPart() != null
+                            ? s.getPatientExercise().getBodyPart().getName() : "";
+                    String detail = bodyPart.isEmpty() ? name : name + " · " + bodyPart;
+                    LocalDateTime loggedAt = s.getCompletedAt() != null
+                            ? s.getCompletedAt() : s.getScheduledDate().atTime(8, 0);
+                    return PatientDTOs.ActivityLogItem.builder()
+                            .id(s.getId())
+                            .eventType("EXERCISE")
+                            .loggedAt(loggedAt)
+                            .device(detail)
+                            .build();
+                })
+                .collect(Collectors.toList());
+
+        // Find the earliest exercise assignment date (first PUBLISH history event on/after join date).
+        // Patients can only log in to do exercises AFTER the doctor first assigns them.
+        List<com.medicare.entity.PatientHistory> allHistory =
+                historyRepository.findByPatientIdOrderByCreatedAtDesc(patientId);
+        LocalDate firstAssignDate = allHistory.stream()
+                .filter(h -> "PUBLISH".equals(h.getEventType()) && h.getCreatedAt() != null)
+                .filter(h -> joinDateLocal == null || !h.getCreatedAt().toLocalDate().isBefore(joinDateLocal))
+                .map(h -> h.getCreatedAt().toLocalDate())
+                .min(LocalDate::compareTo)
+                .orElse(joinDateLocal); // fall back to join date if no PUBLISH event exists
+
+        // Filter login/logout events to the first exercise assignment date onwards —
+        // sessions before exercise assignment are meaningless (nothing to do yet).
+        List<PatientActivityLog> logsAfterJoin = firstAssignDate != null
+                ? logs.stream()
+                    .filter(l -> !l.getLoggedAt().toLocalDate().isBefore(firstAssignDate))
+                    .collect(Collectors.toList())
+                : logs;
+
+        // Merge login/logout + exercise logs, newest first
+        List<PatientDTOs.ActivityLogItem> recentLogs = new java.util.ArrayList<>();
+        recentLogs.addAll(logsAfterJoin.stream()
+                .limit(60)
                 .map(l -> PatientDTOs.ActivityLogItem.builder()
                         .id(l.getId())
                         .eventType(l.getEventType())
@@ -764,32 +1000,54 @@ public class PatientService {
                         .sessionDurationMins(l.getSessionDurationMins())
                         .device(l.getDevice())
                         .build())
-                .collect(Collectors.toList());
+                .collect(Collectors.toList()));
+        recentLogs.addAll(exerciseLogs);
+        recentLogs.sort((a, b) -> b.getLoggedAt().compareTo(a.getLoggedAt())); // newest first
 
-        // 30-day activity map (LOGIN count per date), all 30 days initialised to 0
+        // 60-day activity map: LOGIN events + completed exercise sessions per date
         Map<String, Integer> activityMap30 = new TreeMap<>();
-        for (int i = 29; i >= 0; i--) {
+        for (int i = 59; i >= 0; i--) {
             activityMap30.put(LocalDate.now().minusDays(i).format(dateFmt), 0);
         }
-        logs.stream()
+        // Count logins from first assignment date onwards (patient can only exercise after assignment)
+        logsAfterJoin.stream()
                 .filter(l -> "LOGIN".equals(l.getEventType()))
                 .forEach(l -> {
                     String d = l.getLoggedAt().toLocalDate().format(dateFmt);
                     activityMap30.merge(d, 1, Integer::sum);
                 });
+        // Count all completed exercise sessions (always on/after assignment by definition)
+        completedSchedules.forEach(s -> {
+            String d = s.getScheduledDate().format(dateFmt);
+            if (activityMap30.containsKey(d)) activityMap30.merge(d, 1, Integer::sum);
+        });
 
-        // Active days in last 7
+        // Active days in last 7 (login OR exercise, on or after join date)
         LocalDateTime since7 = LocalDateTime.now().minusDays(7);
-        List<String> activeDays7 = logs.stream()
-                .filter(l -> "LOGIN".equals(l.getEventType()) && l.getLoggedAt().isAfter(since7))
+        List<String> activeDays7 = recentLogs.stream()
+                .filter(l -> ("LOGIN".equals(l.getEventType()) || "EXERCISE".equals(l.getEventType()))
+                        && l.getLoggedAt().isAfter(since7))
                 .map(l -> l.getLoggedAt().toLocalDate().format(dateFmt))
                 .distinct()
                 .collect(Collectors.toList());
+
+        // ── Calendar milestone dates ──────────────────────────────────────────
+        // Only the EARLIEST PUBLISH event on/after join date is shown as the "Exercises Assigned"
+        // calendar marker. Extra PUBLISH rows (from old seeder runs or updates) are ignored.
+        List<String> exerciseDates = allHistory.stream()
+                .filter(h -> "PUBLISH".equals(h.getEventType()) && h.getCreatedAt() != null)
+                .filter(h -> joinDateLocal == null || !h.getCreatedAt().toLocalDate().isBefore(joinDateLocal))
+                .map(h -> h.getCreatedAt().toLocalDate())
+                .min(LocalDate::compareTo)
+                .map(d -> java.util.Collections.singletonList(d.format(dateFmt)))
+                .orElse(java.util.Collections.emptyList());
 
         return PatientDTOs.ActivityStats.builder()
                 .recentLogs(recentLogs)
                 .activeDays7(activeDays7)
                 .activityMap30(activityMap30)
+                .joinDate(joinDateStr)
+                .exerciseDates(exerciseDates)
                 .build();
     }
 

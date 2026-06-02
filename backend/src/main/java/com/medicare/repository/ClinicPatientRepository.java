@@ -23,6 +23,10 @@ public interface ClinicPatientRepository extends JpaRepository<ClinicPatient, Lo
     /** Count all patients assigned to a specific clinic_doctor_id */
     long countByClinicDoctorId(Long clinicDoctorId);
 
+    /** Direct count of all rows in clinic_patients table */
+    @Query(value = "SELECT COUNT(*) FROM clinic_patients", nativeQuery = true)
+    long countAllPatients();
+
 //    @Query("SELECT p FROM ClinicPatient p WHERE p.clinicDoctor.id = :doctorId AND " +
 //           "(:status IS NULL OR p.appointmentStatus = :status) AND " +
 //           "(:gender IS NULL OR LOWER(p.gender) = LOWER(:gender)) AND " +

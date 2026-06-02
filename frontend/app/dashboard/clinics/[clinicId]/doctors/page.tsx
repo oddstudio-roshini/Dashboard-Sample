@@ -98,7 +98,6 @@ export default function HospitalDoctorsPage() {
                   <th className="px-4 py-3 text-left font-medium">Consultation Fee</th>
                   <th className="px-4 py-3 text-left font-medium">Registration No.</th>
                   <th className="px-4 py-3 text-left font-medium">Patients</th>
-                  <th className="px-4 py-3 text-left font-medium">Status</th>
                   <th className="px-4 py-3 text-left font-medium"></th>
                 </tr>
               </thead>
@@ -138,11 +137,6 @@ export default function HospitalDoctorsPage() {
                       <span className="bg-orange-50 text-orange-700 text-xs px-2 py-0.5 rounded-full font-medium whitespace-nowrap">
                         {d.patientCount} patients
                       </span>
-                    </td>
-                    <td className="px-4 py-3.5">
-                      <span className={`text-xs px-2 py-0.5 rounded-full font-medium ${
-                        d.status === 'ACTIVE' ? 'bg-green-50 text-green-700' : 'bg-gray-100 text-gray-500'
-                      }`}>{d.status}</span>
                     </td>
                     <td className="px-4 py-3.5"><ChevronRight className="w-4 h-4 text-gray-400" /></td>
                   </tr>

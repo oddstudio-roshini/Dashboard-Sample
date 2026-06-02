@@ -132,13 +132,13 @@ export default function LoginPage() {
           </div>
 
           {/* Card */}
-          <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
-            <div className="mb-7">
+          <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-10">
+            <div className="mb-8">
               <h2 className="text-2xl font-bold text-gray-900">Welcome back</h2>
-              <p className="text-gray-500 text-sm mt-1">Sign in to your admin account to continue</p>
+              <p className="text-gray-500 text-sm mt-1.5">Sign in to your admin account to continue</p>
             </div>
 
-            <form onSubmit={handleLogin} className="space-y-4">
+            <form onSubmit={handleLogin} className="space-y-5">
               {/* Email */}
               <div>
                 <label className="block text-xs font-semibold text-gray-600 uppercase tracking-wider mb-2">
@@ -151,7 +151,7 @@ export default function LoginPage() {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="admin@arthomove.com"
-                    className="w-full pl-10 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm text-gray-900 placeholder-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent focus:bg-white transition-all"
+                    className="w-full pl-10 pr-4 py-3.5 bg-gray-50 border border-gray-200 rounded-xl text-sm text-gray-900 placeholder-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent focus:bg-white transition-all"
                     disabled={loading}
                   />
                 </div>
@@ -169,7 +169,7 @@ export default function LoginPage() {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="Enter your password"
-                    className="w-full pl-10 pr-12 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm text-gray-900 placeholder-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent focus:bg-white transition-all"
+                    className="w-full pl-10 pr-12 py-3.5 bg-gray-50 border border-gray-200 rounded-xl text-sm text-gray-900 placeholder-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent focus:bg-white transition-all"
                     disabled={loading}
                   />
                   <button
@@ -186,7 +186,7 @@ export default function LoginPage() {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full py-3 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 disabled:opacity-60 disabled:cursor-not-allowed text-white font-semibold rounded-xl text-sm transition-all shadow-md shadow-purple-200 hover:shadow-purple-300 flex items-center justify-center gap-2 mt-2"
+                className="w-full py-3.5 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 disabled:opacity-60 disabled:cursor-not-allowed text-white font-semibold rounded-xl text-sm transition-all shadow-md shadow-purple-200 hover:shadow-purple-300 flex items-center justify-center gap-2 mt-1"
               >
                 {loading ? (
                   <>
@@ -200,36 +200,37 @@ export default function LoginPage() {
             </form>
 
             {/* Divider */}
-            <div className="flex items-center gap-3 my-5">
+            <div className="flex items-center gap-3 my-7">
               <div className="flex-1 h-px bg-gray-100" />
               <span className="text-xs text-gray-400 font-medium">or continue with</span>
               <div className="flex-1 h-px bg-gray-100" />
             </div>
 
-            {/* Passkey */}
-            <PasskeyButton
-              email={email}
-              onSuccess={handlePasskeySuccess}
-              onError={(msg) => toast.error(msg)}
-            />
+            {/* Passkey buttons */}
+            <div className="space-y-3">
+              <PasskeyButton
+                email={email}
+                onSuccess={handlePasskeySuccess}
+                onError={(msg) => toast.error(msg)}
+              />
 
-            <PasskeyRegisterButton
-              email={email}
-              onSuccess={() => alert("Passkey registered successfully")}
-              onError={(msg) => alert(msg)}
-            />
+              <PasskeyRegisterButton
+                email={email}
+                onSuccess={() => alert("Passkey registered successfully")}
+                onError={(msg) => alert(msg)}
+              />
+            </div>
 
             {!email && (
-              <p className="text-xs text-gray-400 text-center mt-2">
+              <p className="text-xs text-gray-400 text-center mt-3">
                 Enter your email above to use a passkey
               </p>
             )}
 
             {/* Default credentials hint */}
-            <div className="mt-6 p-3.5 bg-purple-50 rounded-xl border border-purple-100">
+            <div className="mt-8 p-4 bg-purple-50 rounded-xl border border-purple-100">
               <p className="text-xs text-purple-700 text-center leading-relaxed">
-                <span className="font-semibold">Default credentials</span>
-                <br />
+                <span className="font-semibold block mb-1">Default credentials</span>
                 admin@arthomove.com · Admin@123
               </p>
             </div>

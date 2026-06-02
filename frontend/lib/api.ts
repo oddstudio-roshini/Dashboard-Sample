@@ -224,11 +224,31 @@ export const doctorsAPI = {
     const res = await apiClient.post(`/doctors/${id}/change-password`, { currentPassword, newPassword });
     return res.data;
   },
+
+  getCredentials: async (username: string): Promise<ApiResponse<{ username: string; temporaryPassword: string; clinicalId: string; fullName: string; email: string; hasHashedPassword: string }>> => {
+    const res = await apiClient.get(`/doctors/debug-credentials`, { params: { username } });
+    return res.data;
+  },
 };
 
 export const doctorAuthAPI = {
   login: async (username: string, password: string) => {
     const res = await apiClient.post('/doctors/doctor-login', { username, password });
+    return res.data;
+  },
+};
+
+export const doctorSetupAPI = {
+  validateToken: async (token: string) => {
+    const res = await apiClient.get('/doctors/setup-password/validate', { params: { token } });
+    return res.data;
+  },
+  completeSetup: async (token: string, password: string) => {
+    const res = await apiClient.post('/doctors/setup-password/complete', { token, password });
+    return res.data;
+  },
+  resendLink: async (doctorId: number) => {
+    const res = await apiClient.post(`/doctors/${doctorId}/resend-setup-link`);
     return res.data;
   },
 };

@@ -249,6 +249,7 @@ public class DTOs {
         private String mobileNumber;
         private String specialization;
         private String clinicHospital;
+        private String hospitalId;   // e.g. HOSP-001, derived from linked ClinicDoctor → Hospital
         private DoctorStatus status;
         private String notes;
         private Boolean requirePasswordChange;

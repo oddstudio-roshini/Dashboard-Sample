@@ -87,6 +87,7 @@ export interface ExerciseItem {
   publishedToApp?: boolean;
   publishedAt?: string | null;
   videoUrl?: string | null;
+  sessionCount?: number | null;
 }
 
 export interface HistoryItem {
@@ -122,8 +123,10 @@ export interface ActivityLogItem {
 
 export interface ActivityStats {
   recentLogs: ActivityLogItem[];
-  activeDays7: string[];                // YYYY-MM-DD dates with ≥1 login in last 7 days
+  activeDays7: string[];                 // YYYY-MM-DD dates with ≥1 login in last 7 days
   activityMap30: Record<string, number>; // YYYY-MM-DD → login count
+  joinDate?: string;      // YYYY-MM-DD — when patient joined & subscribed
+  exerciseDates?: string[]; // YYYY-MM-DD — when doctor assigned/published exercises
 }
 
 export interface PatientExerciseLibraryResponse {

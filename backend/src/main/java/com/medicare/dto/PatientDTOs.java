@@ -117,6 +117,7 @@ public class PatientDTOs {
         private Boolean publishedToApp;
         private LocalDateTime publishedAt;
         private String videoUrl;
+        private Long sessionCount;
     }
 
     @Getter @Setter @NoArgsConstructor @AllArgsConstructor @Builder
@@ -142,9 +143,11 @@ public class PatientDTOs {
 
     @Getter @Setter @NoArgsConstructor @AllArgsConstructor @Builder
     public static class ActivityStats {
-        private List<ActivityLogItem> recentLogs;    // last 30 events (LOGIN + LOGOUT)
-        private List<String>          activeDays7;   // YYYY-MM-DD dates with ≥1 login in last 7 days
-        private Map<String, Integer>  activityMap30; // YYYY-MM-DD → login count, last 30 days
+        private List<ActivityLogItem> recentLogs;      // last 60 events (LOGIN + LOGOUT)
+        private List<String>          activeDays7;     // YYYY-MM-DD dates with ≥1 login in last 7 days
+        private Map<String, Integer>  activityMap30;   // YYYY-MM-DD → login count, last 60 days
+        private String                joinDate;      // YYYY-MM-DD — when patient joined & subscribed
+        private List<String>          exerciseDates; // YYYY-MM-DD — when doctor assigned/published exercises
     }
 
     @Getter @Setter @NoArgsConstructor @AllArgsConstructor @Builder
@@ -187,5 +190,10 @@ public class PatientDTOs {
         private String eventType;
         private String title;
         private String description;
+    }
+
+    @Getter @Setter @NoArgsConstructor @AllArgsConstructor
+    public static class UpdateStatusRequest {
+        private String status;
     }
 }

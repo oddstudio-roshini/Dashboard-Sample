@@ -5,7 +5,6 @@ import {
   X,
   Activity,
   Monitor,
-  Building2,
   User,
   Info,
   LogOut,
@@ -401,18 +400,32 @@ export default function ViewLogsModal({ isOpen, doctor, onClose }: Props) {
                 Events will appear here as the doctor uses the system
               </p>
             </div>
+          ) : displayedLoginCount === 0 ? (
+            <div className="flex flex-col items-center justify-center py-20 text-center">
+              <div className="w-16 h-16 bg-gray-100 rounded-2xl flex items-center justify-center mb-3">
+                <Activity className="w-8 h-8 text-gray-400" />
+              </div>
+              <p className="text-gray-600 font-medium">No logins {loginPeriod === "this_week" ? "this week" : "last week"}</p>
+              <p className="text-xs text-gray-400 mt-1">
+                Switch to {loginPeriod === "this_week" ? "Last Week" : "This Week"} to see other records
+              </p>
+            </div>
           ) : (
             <div className="space-y-2">
-              {/* Column headers — Logout Time removed */}
-              <div className="grid grid-cols-10 gap-2 px-3 py-2 text-[10px] font-semibold text-gray-400 uppercase tracking-wider border-b border-gray-100">
+              {/* Column headers */}
+              <div className="grid grid-cols-8 gap-2 px-3 py-2 text-[10px] font-semibold text-gray-400 uppercase tracking-wider border-b border-gray-100">
                 <div className="col-span-3">Action</div>
-                <div className="col-span-2">Clinic</div>
-                <div className="col-span-1">Device</div>
+                <div className="col-span-2">Device</div>
                 <div className="col-span-2">Timestamp</div>
-                <div className="col-span-2">Who Acted</div>
+                <div className="col-span-1">Who Acted</div>
               </div>
 
-              {logs.filter((l) => l.action !== "PASSWORD_RESET").map((log, idx) => {
+              {logs.filter((l) => {
+                if (l.action === "PASSWORD_RESET") return false;
+                const ts = new Date(l.timestamp);
+                if (loginPeriod === "this_week") return ts >= thisWeekStart;
+                return ts >= lastWeekStart && ts < thisWeekStart;
+              }).map((log, idx) => {
                 const config =
                   ACTION_CONFIG[log.action as LogAction] ||
                   ACTION_CONFIG.PROFILE_UPDATED;
@@ -422,7 +435,7 @@ export default function ViewLogsModal({ isOpen, doctor, onClose }: Props) {
                 return (
                   <div
                     key={log.id}
-                    className={`grid grid-cols-10 gap-2 px-3 py-3 rounded-xl border transition-colors ${
+                    className={`grid grid-cols-8 gap-2 px-3 py-3 rounded-xl border transition-colors ${
                       isForceLogout
                         ? "bg-rose-50/40 border-rose-100"
                         : isReceptionistLogin
@@ -443,16 +456,8 @@ export default function ViewLogsModal({ isOpen, doctor, onClose }: Props) {
                       </span>
                     </div>
 
-                    {/* Clinic */}
-                    <div className="col-span-2 flex items-center min-w-0">
-                      <div className="flex items-center gap-1 min-w-0 w-full">
-                        <Building2 className="w-3 h-3 text-gray-400 flex-shrink-0" />
-                        <TruncText text={log.clinic} maxLen={14} className="text-xs text-gray-600" />
-                      </div>
-                    </div>
-
                     {/* Device */}
-                    <div className="col-span-1 flex items-center min-w-0">
+                    <div className="col-span-2 flex items-center min-w-0">
                       <div className="flex items-center gap-1 min-w-0 w-full">
                         <Monitor className="w-3 h-3 text-gray-400 flex-shrink-0" />
                         <TruncText text={log.device} maxLen={8} className="text-xs text-gray-500" />
@@ -480,7 +485,7 @@ export default function ViewLogsModal({ isOpen, doctor, onClose }: Props) {
                     </div>
 
                     {/* Who Acted */}
-                    <div className="col-span-2 flex items-center">
+                    <div className="col-span-1 flex items-center">
                       <PerformedByBadge performedBy={log.performedBy || "ADMIN"} />
                     </div>
 

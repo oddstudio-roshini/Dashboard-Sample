@@ -1,11 +1,11 @@
 'use client';
 
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import Link from 'next/link';
 import {
   BookOpen, CalendarDays, CheckCircle2, CreditCard, Eye,
   RefreshCw, Search, UserCheck, Users, XCircle, Filter, UserX,
-  Clock, AlertTriangle, PauseCircle,
+  Clock, AlertTriangle, PauseCircle, ChevronDown,
 } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { patientApi, getFileUrl } from '@/lib/patientApi';
@@ -13,15 +13,34 @@ import type { WeeklyPaymentStat } from '@/lib/patientApi';
 import type { PatientListItem } from '@/types/patients';
 
 /* ── Badges ── */
-function StatusBadge({ status }: { status?: string }) {
+function StatusBadge({ status, paymentStatus }: { status?: string; paymentStatus?: string }) {
   const v = (status || '').toUpperCase();
+  // Expired plan with no renewal → show Inactive regardless of payment state
+  if (v === 'INACTIVE')
+    return (
+      <span className="inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-semibold bg-gray-100 text-gray-500">
+        <span className="w-1.5 h-1.5 rounded-full bg-gray-400 inline-block" />Inactive
+      </span>
+    );
+  if ((paymentStatus || '').toUpperCase() === 'FAILED')
+    return (
+      <span className="inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-semibold bg-yellow-100 text-yellow-700">
+        <span className="w-1.5 h-1.5 rounded-full bg-yellow-500 inline-block" />Pending
+      </span>
+    );
   if (v === 'ACTIVE')
     return (
       <span className="inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-semibold bg-green-100 text-green-700">
         <span className="w-1.5 h-1.5 rounded-full bg-green-500 inline-block" />Active
       </span>
     );
-  if (v === 'RENEWAL_DUE' || v === 'PAYMENT_FAILURE')
+  if (v === 'RENEWAL_DUE')
+    return (
+      <span className="inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-semibold bg-red-100 text-red-700">
+        <span className="w-1.5 h-1.5 rounded-full bg-red-500 inline-block" />Expired
+      </span>
+    );
+  if (v === 'PAYMENT_FAILURE')
     return (
       <span className="inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-semibold bg-red-100 text-red-700">
         <span className="w-1.5 h-1.5 rounded-full bg-red-500 inline-block" />Renewal Due
@@ -54,12 +73,15 @@ function StatusBadge({ status }: { status?: string }) {
 }
 
 function PaymentBadge({ status, patientStatus }: { status?: string; patientStatus?: string }) {
-  if ((patientStatus || '').toUpperCase() === 'INACTIVE')
+  const ps = (patientStatus || '').toUpperCase();
+  if (ps === 'INACTIVE')
     return <span className="text-gray-400 text-sm">—</span>;
-  const failed = (status || '').toUpperCase() === 'FAILED';
-  return failed
-    ? <span className="inline-flex rounded-full px-2.5 py-0.5 text-xs font-semibold bg-red-100 text-red-700">Failed</span>
-    : <span className="inline-flex rounded-full px-2.5 py-0.5 text-xs font-semibold bg-green-100 text-green-700">Paid</span>;
+  // Payment failed mid-process takes priority over subscription status
+  if ((status || '').toUpperCase() === 'FAILED')
+    return <span className="inline-flex rounded-full px-2.5 py-0.5 text-xs font-semibold bg-red-100 text-red-700">Failed</span>;
+  if (ps === 'RENEWAL_DUE')
+    return <span className="inline-flex rounded-full px-2.5 py-0.5 text-xs font-semibold bg-orange-100 text-orange-700">Renewal Due</span>;
+  return <span className="inline-flex rounded-full px-2.5 py-0.5 text-xs font-semibold bg-green-100 text-green-700">Paid</span>;
 }
 
 function PrescriptionCell({ patient }: { patient: PatientListItem }) {
@@ -120,6 +142,78 @@ function EmptyState({ hasSearch }: { hasSearch: boolean }) {
   );
 }
 
+const STATUS_OPTIONS = [
+  { value: 'ACTIVE',        label: 'Active',        dot: 'bg-green-500',  text: 'text-green-700',  bg: 'bg-green-50'  },
+  { value: 'INACTIVE',      label: 'Inactive',      dot: 'bg-gray-400',   text: 'text-gray-500',   bg: 'bg-gray-100'  },
+  { value: 'COMPLETED',     label: 'Completed',     dot: 'bg-blue-500',   text: 'text-blue-700',   bg: 'bg-blue-50'   },
+  { value: 'ON_HOLD',       label: 'On Hold',       dot: 'bg-orange-400', text: 'text-orange-600', bg: 'bg-orange-50' },
+  { value: 'RENEWAL_DUE',   label: 'Expired',       dot: 'bg-red-500',    text: 'text-red-600',    bg: 'bg-red-50'    },
+  { value: 'EXPIRING_SOON', label: 'Expiring Soon', dot: 'bg-amber-400',  text: 'text-amber-600',  bg: 'bg-amber-50'  },
+];
+
+function StatusChanger({ patient, onChange }: { patient: PatientListItem; onChange: (updated: PatientListItem) => void }) {
+  const [open, setOpen]       = useState(false);
+  const [saving, setSaving]   = useState(false);
+  const ref                   = useRef<HTMLDivElement>(null);
+
+  // Close on outside click
+  useEffect(() => {
+    if (!open) return;
+    const handler = (e: MouseEvent) => { if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false); };
+    document.addEventListener('mousedown', handler);
+    return () => document.removeEventListener('mousedown', handler);
+  }, [open]);
+
+  const current = STATUS_OPTIONS.find(o => o.value === String(patient.status).toUpperCase())
+    ?? STATUS_OPTIONS.find(o => o.value === 'ACTIVE')!;
+
+  const handleSelect = async (value: string) => {
+    if (value === current.value) { setOpen(false); return; }
+    setSaving(true);
+    setOpen(false);
+    try {
+      const updated = await patientApi.updateStatus(patient.id, value);
+      onChange(updated);
+      toast.success(`Status updated to ${STATUS_OPTIONS.find(o => o.value === value)?.label}`);
+    } catch {
+      toast.error('Failed to update status');
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  return (
+    <div ref={ref} className="relative inline-block">
+      <button
+        onClick={() => setOpen(v => !v)}
+        disabled={saving}
+        className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-xs font-semibold ${current.bg} ${current.text} hover:opacity-80 transition-opacity disabled:opacity-50`}
+      >
+        <span className={`w-1.5 h-1.5 rounded-full ${current.dot} inline-block`} />
+        {saving ? 'Saving…' : current.label}
+        <ChevronDown className="w-3 h-3 opacity-60" />
+      </button>
+
+      {open && (
+        <div className="absolute left-0 top-full mt-1 z-50 bg-white rounded-xl shadow-lg border border-gray-100 py-1 min-w-[140px]">
+          {STATUS_OPTIONS.map(opt => (
+            <button
+              key={opt.value}
+              onClick={() => handleSelect(opt.value)}
+              className={`w-full flex items-center gap-2 px-3 py-1.5 text-xs font-medium hover:bg-gray-50 transition-colors text-left
+                ${opt.value === current.value ? 'bg-purple-50 text-purple-700' : 'text-gray-700'}`}
+            >
+              <span className={`w-1.5 h-1.5 rounded-full ${opt.dot} flex-shrink-0`} />
+              {opt.label}
+              {opt.value === current.value && <span className="ml-auto text-purple-500 text-[10px]">✓</span>}
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
 /* ── Main page ── */
 export default function PatientsPage() {
   const [patients, setPatients] = useState<PatientListItem[]>([]);
@@ -155,7 +249,7 @@ export default function PatientsPage() {
         .filter(Boolean).some((v) => String(v).toLowerCase().includes(q));
       const s = String(p.status).toUpperCase();
       // Normalise legacy statuses for filter matching
-      const normStatus = s === 'PAYMENT_FAILURE' ? 'RENEWAL_DUE' : s === 'INACTIVE' ? 'ON_HOLD' : s;
+      const normStatus = s === 'PAYMENT_FAILURE' ? 'RENEWAL_DUE' : s;
       return matchesSearch && (status === 'ALL' || normStatus === status);
     });
   }, [patients, search, status]);
@@ -167,7 +261,8 @@ export default function PatientsPage() {
       active:       patients.filter(p => s(p) === 'ACTIVE').length,
       renewalDue:   patients.filter(p => ['RENEWAL_DUE','PAYMENT_FAILURE'].includes(s(p))).length,
       completed:    patients.filter(p => s(p) === 'COMPLETED').length,
-      onHold:       patients.filter(p => ['ON_HOLD','INACTIVE'].includes(s(p))).length,
+      onHold:       patients.filter(p => s(p) === 'ON_HOLD').length,
+      inactive:     patients.filter(p => s(p) === 'INACTIVE').length,
       expiringSoon: patients.filter(p => s(p) === 'EXPIRING_SOON').length,
     };
   }, [patients]);
@@ -198,14 +293,15 @@ export default function PatientsPage() {
         </button>
       </div>
 
-      {/* Stats — 6 cards for 6 statuses */}
-      <div className="mb-4 flex-none grid grid-cols-2 gap-3 lg:grid-cols-6">
+      {/* Stats */}
+      <div className="mb-4 flex-none grid grid-cols-2 gap-3 lg:grid-cols-7">
         <StatCard label="Total"         value={stats.total}        icon={<Users className="w-4 h-4 text-indigo-500" />}      iconBg="bg-indigo-50"  />
+        <StatCard label="Inactive"      value={stats.inactive}     icon={<UserX className="w-4 h-4 text-gray-500" />}        iconBg="bg-gray-50"    accent="text-gray-600" />
         <StatCard label="Active"        value={stats.active}       icon={<UserCheck className="w-4 h-4 text-green-600" />}   iconBg="bg-green-50"   accent="text-green-700" />
-        <StatCard label="Renewal Due"   value={stats.renewalDue}   icon={<CreditCard className="w-4 h-4 text-red-500" />}   iconBg="bg-red-50"     accent="text-red-600" />
         <StatCard label="Completed"     value={stats.completed}    icon={<CheckCircle2 className="w-4 h-4 text-blue-500" />} iconBg="bg-blue-50"    accent="text-blue-700" />
         <StatCard label="On Hold"       value={stats.onHold}       icon={<PauseCircle className="w-4 h-4 text-orange-500"/>} iconBg="bg-orange-50"  accent="text-orange-700" />
         <StatCard label="Expiring Soon" value={stats.expiringSoon} icon={<Clock className="w-4 h-4 text-amber-500" />}      iconBg="bg-amber-50"   accent="text-amber-700" />
+        <PaymentFailureStatCard value={patients.filter(p => String(p.paymentStatus).toUpperCase() === 'FAILED').length} weeklyStats={weeklyStats} />
       </div>
 
       {/* Search + filter */}
@@ -228,9 +324,10 @@ export default function PatientsPage() {
           >
             <option value="ALL">All Status</option>
             <option value="ACTIVE">Active</option>
-            <option value="RENEWAL_DUE">Renewal Due</option>
+            <option value="RENEWAL_DUE">Expired</option>
             <option value="COMPLETED">Completed</option>
             <option value="ON_HOLD">On Hold</option>
+            <option value="INACTIVE">Inactive</option>
             <option value="EXPIRING_SOON">Expiring Soon</option>
           </select>
         </div>
@@ -273,7 +370,14 @@ export default function PatientsPage() {
                       {[patient.age && `${patient.age}y`, patient.gender].filter(Boolean).join(' · ') || '—'}
                     </p>
                   </td>
-                  <td className="px-5 py-3.5"><StatusBadge status={patient.status} /></td>
+                  <td className="px-5 py-3.5">
+                    <StatusChanger
+                      patient={patient}
+                      onChange={(updated) =>
+                        setPatients(prev => prev.map(p => p.id === updated.id ? updated : p))
+                      }
+                    />
+                  </td>
                   <td className="px-5 py-3.5 text-sm text-gray-600 whitespace-nowrap">{patient.joinDate || '—'}</td>
                   <td className="px-5 py-3.5 text-sm text-gray-700">{patient.injury || '—'}</td>
                   <td className="px-5 py-3.5 text-sm text-gray-700 whitespace-nowrap">{patient.doctorAssigned || '—'}</td>
@@ -312,39 +416,54 @@ function StatCard({ label, value, icon, iconBg, accent }: {
   );
 }
 
-/* ── Payment failure card with weekly toggle ── */
+/* ── Payment failure card ── */
 function PaymentFailureStatCard({ value, weeklyStats }: {
   value: number; weeklyStats: WeeklyPaymentStat[];
 }) {
-  const [showThisWeek, setShowThisWeek] = useState(false);
-  const thisWeek = weeklyStats.length > 0 ? weeklyStats[weeklyStats.length - 1] : null;
+  const thisWeek  = weeklyStats.length > 0 ? weeklyStats[weeklyStats.length - 1] : null;
+  const lastWeek  = weeklyStats.length > 1 ? weeklyStats[weeklyStats.length - 2] : null;
+  const weekCount = thisWeek?.count ?? 0;
+  const lastCount = lastWeek?.count ?? 0;
+  const pct       = value > 0 ? Math.round((weekCount / value) * 100) : 0;
+  const trend     = weekCount - lastCount;
 
   return (
-    <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-4">
-      <div className="flex items-center justify-between mb-2">
+    <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-4 flex flex-col gap-2">
+      {/* Header */}
+      <div className="flex items-center justify-between">
         <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">Payment Failure</p>
         <div className="w-7 h-7 rounded-lg flex items-center justify-center bg-red-50">
           <CreditCard className="w-3.5 h-3.5 text-red-500" />
         </div>
       </div>
-      <div className="flex items-center gap-2">
+
+      {/* Total + trend */}
+      <div className="flex items-end justify-between">
         <p className="text-2xl font-bold text-gray-900">{value}</p>
-        <button
-          onClick={() => setShowThisWeek(!showThisWeek)}
-          className={`inline-flex items-center gap-1 rounded-lg px-2 py-1 text-[10px] font-semibold transition-all ${
-            showThisWeek ? 'bg-red-500 text-white' : 'bg-red-50 text-red-600 hover:bg-red-100'
-          }`}
-        >
-          <CalendarDays className="w-3 h-3 shrink-0" />
-          Week
-          {showThisWeek && thisWeek && <span className="font-black ml-0.5">{thisWeek.count}</span>}
-        </button>
+        {lastCount > 0 && (
+          <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded-full ${
+            trend > 0 ? 'bg-red-100 text-red-600' : trend < 0 ? 'bg-green-100 text-green-600' : 'bg-gray-100 text-gray-500'
+          }`}>
+            {trend > 0 ? `↑ ${trend}` : trend < 0 ? `↓ ${Math.abs(trend)}` : '→ 0'} vs last week
+          </span>
+        )}
       </div>
-      {showThisWeek && (
-        <p className="mt-1 text-[10px] text-red-400 font-medium truncate">
-          {thisWeek ? thisWeek.weekLabel : 'No data yet'}
-        </p>
-      )}
+
+      {/* Progress bar */}
+      <div>
+        <div className="flex justify-between items-center mb-1">
+          <div>
+            <span className="text-[9px] text-gray-400 font-semibold uppercase tracking-wide">This Week</span>
+            {thisWeek?.weekLabel && (
+              <p className="text-[9px] text-gray-400 mt-0.5">{thisWeek.weekLabel}</p>
+            )}
+          </div>
+          <span className="text-[10px] font-bold text-red-500">{weekCount} <span className="text-gray-300 font-normal">({pct}%)</span></span>
+        </div>
+        <div className="h-1.5 w-full bg-red-50 rounded-full overflow-hidden">
+          <div className="h-full bg-red-400 rounded-full transition-all duration-500" style={{ width: `${pct}%` }} />
+        </div>
+      </div>
     </div>
   );
 }

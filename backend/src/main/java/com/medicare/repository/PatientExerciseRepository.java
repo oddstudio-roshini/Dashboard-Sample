@@ -12,6 +12,7 @@ public interface PatientExerciseRepository extends JpaRepository<PatientExercise
     boolean existsByPatientIdAndExerciseId(Long patientId, Long exerciseId);
     Optional<PatientExercise> findByPatientIdAndExerciseId(Long patientId, Long exerciseId);
     List<PatientExercise> findByPatientIdAndBodyPartIdOrderByExerciseIdAsc(Long patientId, Long bodyPartId);
+    List<PatientExercise> findByPatientId(Long patientId);
     List<PatientExercise> findByPatientIdAndPublishedToAppTrueOrderByPublishedAtDesc(Long patientId);
     void deleteByPatientIdAndBodyPartId(Long patientId, Long bodyPartId);
 

@@ -124,7 +124,8 @@ export default function BodyPartExerciseDetailsPage() {
   const patient   = data.patient;
   const bodyPart  = data.bodyPart;
   const exercises = data.exercises || [];
-  const isLocked  = (patient.paymentStatus || '').toUpperCase() === 'FAILED';
+  const isLocked      = (patient.paymentStatus || '').toUpperCase() === 'FAILED';
+  const isCompleted   = (patient.status || '').toUpperCase() === 'COMPLETED';
 
   return (
     <div className="flex h-full flex-col overflow-hidden bg-gray-50">
@@ -160,12 +161,11 @@ export default function BodyPartExerciseDetailsPage() {
 
       {/* ── Patient profile strip ── */}
       <div className="flex-none bg-white border-b border-gray-100 shadow-sm">
-        <div className="grid grid-cols-2 divide-y divide-gray-100 md:grid-cols-5 md:divide-x md:divide-y-0">
+        <div className="grid grid-cols-2 divide-y divide-gray-100 md:grid-cols-4 md:divide-x md:divide-y-0">
           <ProfileField icon={<User className="h-4 w-4" />}         label="Patient Name"       value={patient.patient} />
           <ProfileField icon={<Shield className="h-4 w-4" />}       label="Injury / Diagnosis" value={patient.injury || (patient as any).diagnosis || '—'} />
           <ProfileField icon={<CalendarDays className="h-4 w-4" />} label="Join Date"          value={String(patient.joinDate || '—')} />
           <ProfileField icon={<User className="h-4 w-4" />}         label="Doctor Assigned"    value={patient.doctorAssigned || '—'} />
-          <ProfileField icon={<Activity className="h-4 w-4" />}     label="Status"             value={patient.status} isStatus paymentStatus={patient.paymentStatus} />
         </div>
       </div>
 
@@ -182,43 +182,133 @@ export default function BodyPartExerciseDetailsPage() {
           <div className="rounded-xl overflow-hidden shadow-sm border border-gray-200">
             <table className="w-full text-sm">
               <thead>
-                <tr className="bg-green-600 text-white text-left">
-                  <th className="px-5 py-3.5 font-semibold">Exercise Name</th>
-                  <th className="px-5 py-3.5 font-semibold">Duration</th>
-                  <th className="px-5 py-3.5 font-semibold">Sets</th>
-                  <th className="px-5 py-3.5 font-semibold">Reps</th>
-                  <th className="px-5 py-3.5 font-semibold">Frequency</th>
-                  <th className="px-5 py-3.5 font-semibold">Difficulty</th>
-                  <th className="px-5 py-3.5 font-semibold">Exercise Status</th>
+                <tr className="bg-gradient-to-r from-purple-600 to-fuchsia-600 text-white text-left">
+                  <th className="px-4 py-3 font-semibold">Exercise Name</th>
+                  <th className="px-4 py-3 font-semibold">Progress</th>
+                  <th className="px-4 py-3 font-semibold">Duration</th>
+                  <th className="px-4 py-3 font-semibold">Reps Done</th>
+                  <th className="px-4 py-3 font-semibold">Sets Done</th>
+                  <th className="px-4 py-3 font-semibold">Sessions</th>
+                  <th className="px-4 py-3 font-semibold">Frequency</th>
+                  <th className="px-4 py-3 font-semibold">Difficulty</th>
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-100">
-                {exercises.map((exercise: ExerciseItem) => (
-                  <tr key={exercise.patientExerciseId} className="hover:bg-gray-50 transition-colors">
-                    <td className="px-5 py-4 font-semibold text-gray-900">{exercise.exerciseName}</td>
-                    <td className="px-5 py-4 text-gray-700">
-                      {isLocked ? <span className="text-gray-400">—</span> :
-                        exercise.completedDurationMins ? `${exercise.completedDurationMins} min` : '—'}
-                    </td>
-                    <td className="px-5 py-4">
-                      {isLocked ? <span className="text-gray-400">—</span> :
-                        <Fraction done={exercise.completedSets ?? 0} target={exercise.targetSets ?? 0} completeColor="#16a34a" />}
-                    </td>
-                    <td className="px-5 py-4">
-                      {isLocked ? <span className="text-gray-400">—</span> :
-                        <Fraction done={exercise.completedReps ?? 0} target={exercise.targetReps ?? 0} completeColor="#2563eb" />}
-                    </td>
-                    <td className="px-5 py-4 text-gray-700">
-                      {isLocked ? <span className="text-gray-400">—</span> : formatFrequency(exercise.frequency)}
-                    </td>
-                    <td className="px-5 py-4">
-                      {isLocked ? <span className="text-gray-400">—</span> : <DifficultyBadge value={exercise.difficulty} />}
-                    </td>
-                    <td className="px-5 py-4">
-                      {isLocked ? <span className="text-gray-400">—</span> : <StatusBadge value={exercise.status} />}
-                    </td>
-                  </tr>
-                ))}
+                {exercises.map((exercise: ExerciseItem) => {
+                  // Completed patients → treat all exercises as active/done
+                  const inactive      = isCompleted ? false : (exercise.status || '').toUpperCase() === 'INACTIVE';
+                  const targetReps    = exercise.targetReps ?? 0;
+                  const targetSets    = exercise.targetSets ?? 0;
+                  const completedReps = isCompleted ? targetReps : (exercise.completedReps ?? 0);
+                  const completedSets = isCompleted ? targetSets : (exercise.completedSets ?? 0);
+                  // hasStarted: true only when the patient has recorded ANY real activity
+                  const hasStarted    = completedReps > 0 || completedSets > 0 || (exercise.sessionCount ?? 0) > 0;
+                  const pct = isCompleted ? 100 :
+                    targetReps > 0
+                      ? Math.min((completedReps / targetReps) * 100, 100)
+                      : targetSets > 0
+                        ? Math.min((completedSets / targetSets) * 100, 100)
+                        : 0;
+
+                  function getProgress() {
+                    if (isCompleted)           return { label: "Excellent",   color: "text-green-600",  bar: "bg-green-500" };
+                    // Check hasStarted FIRST — status field is irrelevant for "Not Started"
+                    if (!hasStarted)           return { label: "Not Started", color: "text-gray-400",   bar: "" };
+                    if (inactive && hasStarted)return { label: "Inactive",    color: "text-orange-500", bar: "" };
+                    if (pct > 90)              return { label: "Excellent",   color: "text-green-600",  bar: "bg-green-500" };
+                    if (pct >= 70)             return { label: "Good",        color: "text-blue-600",   bar: "bg-blue-500"  };
+                    if (pct >= 40)             return { label: "Average",     color: "text-yellow-600", bar: "bg-yellow-400"};
+                    return                            { label: "Low",         color: "text-red-500",    bar: "bg-red-400"   };
+                  }
+                  const progress = getProgress();
+
+                  return (
+                    <tr key={exercise.patientExerciseId} className="hover:bg-purple-50/30 transition-colors">
+                      {/* Exercise Name */}
+                      <td className="px-4 py-3 font-semibold text-gray-900">{exercise.exerciseName}</td>
+
+                      {/* Progress */}
+                      <td className="px-4 py-3 min-w-[140px]">
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center justify-between mb-1">
+                            <span className={`text-[11px] font-bold ${progress.color}`}>{progress.label}</span>
+                            {hasStarted && !inactive && (targetReps > 0 || targetSets > 0) && (
+                              <span className="text-[10px] text-gray-400 font-medium">{Math.round(pct)}%</span>
+                            )}
+                          </div>
+                          {hasStarted && !inactive && (targetReps > 0 || targetSets > 0) ? (
+                            <div className="h-1.5 w-full bg-gray-100 rounded-full overflow-hidden">
+                              <div className={`h-full rounded-full transition-all duration-500 ${progress.bar}`}
+                                style={{ width: `${Math.min(pct, 100)}%` }} />
+                            </div>
+                          ) : (
+                            <div className="h-1.5 w-full bg-gray-100 rounded-full" />
+                          )}
+                        </div>
+                      </td>
+
+                      {/* Duration */}
+                      <td className="px-4 py-3 text-gray-700">
+                        {isLocked ? <span className="text-gray-400">—</span> :
+                          !hasStarted && !isCompleted ? <span className="text-gray-400">—</span> :        /* NOT STARTED */
+                          inactive   &&  hasStarted   ? <span className="text-gray-400">{exercise.completedDurationMins ? `${exercise.completedDurationMins} min` : '—'}</span> :  /* INACTIVE */
+                          isCompleted
+                            ? `${exercise.completedDurationMins ?? 0} min`
+                            : exercise.completedDurationMins ? `${exercise.completedDurationMins} min` : '—'}
+                      </td>
+
+                      {/* Reps Done */}
+                      <td className="px-4 py-3">
+                        {isLocked
+                          ? <span className="text-gray-400">—</span>
+                          : !hasStarted && !isCompleted
+                            /* NOT STARTED — no reps yet */
+                            ? <span className="text-gray-400">—</span>
+                            : <Fraction done={completedReps} target={targetReps} completeColor="#2563eb" />}
+                      </td>
+
+                      {/* Sets Done */}
+                      <td className="px-4 py-3">
+                        {isLocked
+                          ? <span className="text-gray-400">—</span>
+                          : !hasStarted && !isCompleted
+                            /* NOT STARTED — no sets yet */
+                            ? <span className="text-gray-400">—</span>
+                            : <Fraction done={completedSets} target={targetSets} completeColor="#16a34a" />}
+                      </td>
+
+                      {/* Sessions */}
+                      <td className="px-4 py-3 text-gray-700 whitespace-nowrap">
+                        {isLocked
+                          ? <span className="text-gray-400">0 sessions</span>
+                          : isCompleted
+                            ? <span className="font-semibold text-green-600">{Math.max(exercise.sessionCount ?? 0, targetSets > 0 ? targetSets : 3)} sessions</span>
+                            : inactive
+                              ? !hasStarted
+                                /* NOT STARTED — no sessions at all */
+                                ? <span className="text-gray-400">—</span>
+                                /* INACTIVE — show sessions done before stopping */
+                                : <span className="font-semibold text-orange-500">{exercise.sessionCount ?? 0} session{(exercise.sessionCount ?? 0) !== 1 ? "s" : ""}</span>
+                              : (exercise.sessionCount ?? 0) > 0
+                                ? `${exercise.sessionCount} session${exercise.sessionCount !== 1 ? "s" : ""}`
+                                : <span className="text-gray-400">0 sessions</span>}
+                      </td>
+
+                      {/* Frequency — always shown (doctor-prescribed, applies to both NOT STARTED and INACTIVE) */}
+                      <td className="px-4 py-3 text-gray-700">
+                        {isLocked ? <span className="text-gray-400">—</span> :
+                          exercise.frequency
+                            ? <span className="text-xs font-medium text-purple-700 bg-purple-50 px-2 py-0.5 rounded-full">{formatFrequency(exercise.frequency)}</span>
+                            : <span className="text-gray-400">—</span>}
+                      </td>
+
+                      {/* Difficulty */}
+                      <td className="px-4 py-3">
+                        {isLocked ? <span className="text-gray-400">—</span> : <DifficultyBadge value={exercise.difficulty} />}
+                      </td>
+                    </tr>
+                  );
+                })}
               </tbody>
             </table>
           </div>

@@ -27,14 +27,14 @@ public class DoctorAuthService {
     public DoctorLoginResponse login(DoctorLoginRequest request) {
 
         Doctor doctor = doctorRepository.findByUsername(request.getUsername())
-                .orElseThrow(() -> new RuntimeException("Doctor not found"));
+                .orElseThrow(() -> new RuntimeException("Invalid username or password"));
 
-        if (!passwordEncoder.matches(request.getPassword(), doctor.getPassword())) {
-            throw new RuntimeException("Invalid password");
+        if (!verifyAndHealPassword(doctor, request.getPassword())) {
+            throw new RuntimeException("Invalid username or password");
         }
 
         if (Boolean.TRUE.equals(doctor.getIsSuspended())) {
-            throw new RuntimeException("Doctor account is suspended");
+            throw new RuntimeException("Your account has been suspended. Contact admin.");
         }
 
         doctor.setLastLogin(LocalDateTime.now());
@@ -69,6 +69,26 @@ public class DoctorAuthService {
                 .username(doctor.getUsername())
                 .requirePasswordChange(doctor.getRequirePasswordChange())
                 .build();
+    }
+
+    private boolean verifyAndHealPassword(Doctor doctor, String enteredPassword) {
+        if (enteredPassword == null || enteredPassword.isBlank()) return false;
+
+        String storedHash = doctor.getPassword();
+        if (storedHash != null && !storedHash.isBlank()) {
+            try {
+                if (passwordEncoder.matches(enteredPassword, storedHash)) return true;
+            } catch (Exception ignored) {}
+        }
+
+        String plain = doctor.getTemporaryPassword();
+        if (plain != null && !plain.isBlank() && enteredPassword.equals(plain)) {
+            doctor.setPassword(passwordEncoder.encode(plain));
+            doctorRepository.save(doctor);
+            return true;
+        }
+
+        return false;
     }
 
     public void logout(Long doctorId) {

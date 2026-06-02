@@ -20,8 +20,9 @@ export default function DoctorPatientsPage() {
   const [doctor,       setDoctor]       = useState<ClinicDoctor | null>(null);
   const [patients,     setPatients]     = useState<ClinicPatient[]>([]);
   const [loading,      setLoading]      = useState(true);
-  const [search,       setSearch]       = useState('');
-  const [genderFilter, setGenderFilter] = useState('');
+  const [search,        setSearch]        = useState('');
+  const [genderFilter,  setGenderFilter]  = useState('');
+  const [statusFilter,  setStatusFilter]  = useState('');
 
   useEffect(() => {
     clinicsApi.getDoctor(doctorId).then(setDoctor).catch(() => {});
@@ -44,6 +45,10 @@ export default function DoctorPatientsPage() {
     const t = setTimeout(() => fetchPatients(search, genderFilter), 400);
     return () => clearTimeout(t);
   }, [search, genderFilter, fetchPatients]);
+
+  const filteredPatients = statusFilter
+    ? patients.filter(p => p.appointmentStatus === statusFilter)
+    : patients;
 
   const scheduled = patients.filter(p => p.appointmentStatus === 'SCHEDULED').length;
   const completed  = patients.filter(p => p.appointmentStatus === 'COMPLETED').length;
@@ -78,24 +83,38 @@ export default function DoctorPatientsPage() {
             <div className="flex-1">
               <div className="flex flex-wrap items-center gap-2 mb-1">
                 <h1 className="text-xl font-bold text-gray-900">Dr. {doctor.fullName}</h1>
-                <span className={`text-xs px-2.5 py-0.5 rounded-full font-semibold ${
-                  doctor.status === 'ACTIVE' ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-500'
-                }`}>{doctor.status}</span>
-                <span className="bg-blue-100 text-blue-700 text-xs px-2.5 py-0.5 rounded-full font-medium">
-                  {doctor.specialization}
-                </span>
+                {doctor.specialization && (
+                  <span className="bg-blue-100 text-blue-700 text-xs px-2.5 py-0.5 rounded-full font-medium">
+                    {doctor.specialization}
+                  </span>
+                )}
+                {doctor.highestQualification && (
+                  <span className="bg-purple-50 text-purple-700 text-xs px-2.5 py-0.5 rounded-full font-medium">
+                    {doctor.highestQualification}
+                  </span>
+                )}
               </div>
-              <p className="text-sm text-gray-500 mb-2">• {doctor.experienceYears} years experience</p>
+              {(doctor.experienceYears !== null && doctor.experienceYears !== undefined && doctor.experienceYears > 0) && (
+                <p className="text-sm text-gray-500 mb-2">• {doctor.experienceYears} years experience</p>
+              )}
               <div className="flex flex-wrap gap-5 text-sm text-gray-500">
-                <div className="flex items-center gap-1.5">
-                  <Phone className="w-4 h-4 text-gray-400" />{doctor.contactPhone}
-                </div>
-                <div className="flex items-center gap-1.5">
-                  <Mail className="w-4 h-4 text-gray-400" />{doctor.contactEmail}
-                </div>
-                <div className="flex items-center gap-1.5">
-                  <Calendar className="w-4 h-4 text-gray-400" />{doctor.availableDays} | {doctor.consultationHours}
-                </div>
+                {doctor.contactPhone && (
+                  <div className="flex items-center gap-1.5">
+                    <Phone className="w-4 h-4 text-gray-400" />{doctor.contactPhone}
+                  </div>
+                )}
+                {doctor.contactEmail && (
+                  <div className="flex items-center gap-1.5">
+                    <Mail className="w-4 h-4 text-gray-400" />{doctor.contactEmail}
+                  </div>
+                )}
+                {doctor.availableDays?.trim() && (
+                  <div className="flex items-center gap-1.5">
+                    <Calendar className="w-4 h-4 text-gray-400" />
+                    {doctor.availableDays.trim()}
+                    {doctor.consultationHours?.trim() ? ` | ${doctor.consultationHours.trim()}` : ''}
+                  </div>
+                )}
               </div>
             </div>
             <div className="flex gap-8 flex-shrink-0 pt-1">
@@ -122,7 +141,7 @@ export default function DoctorPatientsPage() {
           <div className="flex items-center gap-2">
             <span className="text-base font-semibold text-gray-900">Patients</span>
             <span className="bg-orange-100 text-orange-700 text-xs px-2 py-0.5 rounded-full font-medium">
-              {patients.length} found
+              {filteredPatients.length} found
             </span>
           </div>
           <div className="flex flex-wrap items-center gap-2">
@@ -136,6 +155,16 @@ export default function DoctorPatientsPage() {
                 className="pl-9 pr-3 py-2 text-sm border border-gray-200 rounded-lg w-48 focus:outline-none focus:border-blue-400"
               />
             </div>
+            <select
+              value={statusFilter}
+              onChange={e => setStatusFilter(e.target.value)}
+              className="text-sm border border-gray-200 rounded-lg px-3 py-2 focus:outline-none focus:border-blue-400 bg-white"
+            >
+              <option value="">All Status</option>
+              <option value="SCHEDULED">Scheduled</option>
+              <option value="COMPLETED">Completed</option>
+              <option value="CANCELLED">Cancelled</option>
+            </select>
             <select
               value={genderFilter}
               onChange={e => setGenderFilter(e.target.value)}
@@ -153,7 +182,7 @@ export default function DoctorPatientsPage() {
             <div className="flex items-center justify-center py-16 text-gray-400 text-sm">
               <Activity className="w-4 h-4 mr-2 animate-spin" /> Loading patients...
             </div>
-          ) : patients.length === 0 ? (
+          ) : filteredPatients.length === 0 ? (
             <div className="flex flex-col items-center justify-center py-16 text-gray-400">
               <Users className="w-10 h-10 mb-2 opacity-30" />
               <p className="text-sm">No patients found</p>
@@ -169,11 +198,12 @@ export default function DoctorPatientsPage() {
                   <th className="px-5 py-3 text-left font-medium">Contact</th>
                   <th className="px-5 py-3 text-left font-medium">Appointment</th>
                   <th className="px-5 py-3 text-left font-medium">Visit Type</th>
+                  <th className="px-5 py-3 text-left font-medium">Status</th>
                   <th className="px-5 py-3 text-left font-medium">Notes</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-50">
-                {patients.map((p, i) => (
+                {filteredPatients.map((p, i) => (
                   <tr key={p.id} className="hover:bg-gray-50/60 transition-colors">
                     <td className="px-5 py-4 text-gray-400 text-xs">{i + 1}</td>
                     <td className="px-5 py-4 font-semibold text-gray-900 whitespace-nowrap">{p.fullName}</td>
@@ -184,29 +214,44 @@ export default function DoctorPatientsPage() {
                       </div>
                     </td>
                     <td className="px-5 py-4">
-                      <span className="text-red-500 text-sm font-medium">{p.diagnosis}</span>
+                      <span className="text-red-500 text-sm font-medium">{p.diagnosis || '—'}</span>
                     </td>
                     <td className="px-5 py-4">
-                      <div className="text-gray-700 text-xs whitespace-nowrap">+{p.contactPhone}</div>
-                      <div className="text-gray-400 text-xs mt-0.5">{p.contactEmail}</div>
+                      <div className="text-gray-700 text-xs whitespace-nowrap">{p.contactPhone ? `+${p.contactPhone}` : '—'}</div>
+                      {p.contactEmail && <div className="text-gray-400 text-xs mt-0.5">{p.contactEmail}</div>}
                     </td>
                     <td className="px-5 py-4">
-                      <div className="flex items-center gap-1.5 text-gray-700 text-xs whitespace-nowrap">
-                        <Calendar className="w-3.5 h-3.5 text-gray-400" />{p.appointmentDate}
-                      </div>
+                      {p.appointmentDate
+                        ? <div className="flex items-center gap-1.5 text-gray-700 text-xs whitespace-nowrap">
+                            <Calendar className="w-3.5 h-3.5 text-gray-400" />{p.appointmentDate}
+                          </div>
+                        : <span className="text-gray-300 text-xs">—</span>
+                      }
                     </td>
                     <td className="px-5 py-4">
-                      <span className="bg-gray-100 text-gray-600 text-xs px-2.5 py-1 rounded-lg font-medium whitespace-nowrap">
-                        {p.visitType}
+                      {p.visitType
+                        ? <span className="bg-gray-100 text-gray-600 text-xs px-2.5 py-1 rounded-lg font-medium whitespace-nowrap">{p.visitType}</span>
+                        : <span className="text-gray-300 text-xs">—</span>
+                      }
+                    </td>
+                    <td className="px-5 py-4">
+                      <span className={`text-xs font-semibold px-2.5 py-1 rounded-full whitespace-nowrap ${
+                        p.appointmentStatus === 'COMPLETED'  ? 'bg-green-50 text-green-600'  :
+                        p.appointmentStatus === 'SCHEDULED'  ? 'bg-blue-50 text-blue-600'    :
+                        p.appointmentStatus === 'CANCELLED'  ? 'bg-red-50 text-red-500'      :
+                        'bg-gray-100 text-gray-400'
+                      }`}>
+                        {p.appointmentStatus || '—'}
                       </span>
                     </td>
                     <td className="px-5 py-4 max-w-[180px]">
-                      {p.notes ? (
-                        <div className="flex items-start gap-1.5 text-gray-500 text-xs">
-                          <FileText className="w-3.5 h-3.5 mt-0.5 flex-shrink-0 text-gray-400" />
-                          <span className="line-clamp-2">{p.notes}</span>
-                        </div>
-                      ) : <span className="text-gray-300">—</span>}
+                      {p.notes
+                        ? <div className="flex items-start gap-1.5 text-gray-500 text-xs">
+                            <FileText className="w-3.5 h-3.5 mt-0.5 flex-shrink-0 text-gray-400" />
+                            <span className="line-clamp-2">{p.notes}</span>
+                          </div>
+                        : <span className="text-gray-300 text-xs">—</span>
+                      }
                     </td>
                   </tr>
                 ))}

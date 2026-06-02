@@ -136,7 +136,6 @@ import java.util.Map;
 public class DoctorController {
 
     private final DoctorService doctorService;
-
     private final DoctorAuthService doctorAuthService;
 
     // ─── EXISTING ENDPOINTS ───────────────────────────────────────────────────
@@ -193,6 +192,15 @@ public ResponseEntity<ApiResponse<DoctorResponse>> createDoctor(
                 doctors = doctorService.getAllDoctors();
             }
             return ResponseEntity.ok(ApiResponse.success("Doctors fetched", doctors));
+        } catch (RuntimeException e) {
+            return ResponseEntity.badRequest().body(ApiResponse.error(e.getMessage()));
+        }
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<ApiResponse<DoctorResponse>> getDoctorById(@PathVariable Long id) {
+        try {
+            return ResponseEntity.ok(ApiResponse.success("Doctor fetched", doctorService.getDoctorById(id)));
         } catch (RuntimeException e) {
             return ResponseEntity.badRequest().body(ApiResponse.error(e.getMessage()));
         }
@@ -267,17 +275,76 @@ public ResponseEntity<ApiResponse<DoctorResponse>> createDoctor(
 
     @PostMapping("/doctor-login")
     public ResponseEntity<ApiResponse<DoctorLoginResponse>> doctorLogin(
-            @RequestBody DoctorLoginRequest request
-    ) {
+            @RequestBody DoctorLoginRequest request) {
+        try {
+            DoctorLoginResponse response = doctorService.doctorLogin(request);
+            return ResponseEntity.ok(ApiResponse.success("Doctor login successful", response));
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(401).body(ApiResponse.error(e.getMessage()));
+        }
+    }
 
-        DoctorLoginResponse response = doctorService.doctorLogin(request);
+    /**
+     * GET /api/doctors/debug-credentials?username=DR12345678
+     * DEV ONLY — returns info about a doctor for debugging.
+     */
+    @GetMapping("/debug-credentials")
+    public ResponseEntity<ApiResponse<java.util.Map<String, String>>> debugCredentials(
+            @RequestParam String username) {
+        try {
+            return ResponseEntity.ok(ApiResponse.success("Debug info",
+                    doctorService.getDebugCredentials(username)));
+        } catch (RuntimeException e) {
+            return ResponseEntity.badRequest().body(ApiResponse.error(e.getMessage()));
+        }
+    }
 
-        return ResponseEntity.ok(
-                ApiResponse.success(
-                        "Doctor login successful",
-                        response
-                )
-        );
+    // ── Password Setup (token-based) ──────────────────────────────────────────
+
+    /**
+     * GET /api/doctors/setup-password/validate?token=xxx
+     * Validates the token and returns doctor info. Called by the /setup-password frontend page.
+     */
+    @GetMapping("/setup-password/validate")
+    public ResponseEntity<ApiResponse<java.util.Map<String, String>>> validateSetupToken(
+            @RequestParam String token) {
+        try {
+            return ResponseEntity.ok(ApiResponse.success("Token valid",
+                    doctorService.validateSetupToken(token)));
+        } catch (RuntimeException e) {
+            return ResponseEntity.badRequest().body(ApiResponse.error(e.getMessage()));
+        }
+    }
+
+    /**
+     * POST /api/doctors/setup-password/complete
+     * Doctor submits their new password. Marks token as used and sets password.
+     */
+    @PostMapping("/setup-password/complete")
+    public ResponseEntity<ApiResponse<String>> completeSetup(
+            @RequestBody java.util.Map<String, String> body) {
+        try {
+            String token    = body.get("token");
+            String password = body.get("password");
+            doctorService.completePasswordSetup(token, password);
+            return ResponseEntity.ok(ApiResponse.success("Password set successfully. You can now log in.", null));
+        } catch (RuntimeException e) {
+            return ResponseEntity.badRequest().body(ApiResponse.error(e.getMessage()));
+        }
+    }
+
+    /**
+     * POST /api/doctors/{id}/resend-setup-link
+     * Admin regenerates + resends a fresh setup link for a doctor.
+     */
+    @PostMapping("/{id}/resend-setup-link")
+    public ResponseEntity<ApiResponse<String>> resendSetupLink(@PathVariable Long id) {
+        try {
+            String link = doctorService.regenerateSetupLink(id);
+            return ResponseEntity.ok(ApiResponse.success("Setup link sent to doctor's email. Share manually if needed: " + link, link));
+        } catch (RuntimeException e) {
+            return ResponseEntity.badRequest().body(ApiResponse.error(e.getMessage()));
+        }
     }
 
     @PostMapping("/doctor-signout/{id}")
@@ -422,11 +489,24 @@ public ResponseEntity<ApiResponse<DoctorResponse>> createDoctor(
      *
      * Returns: { created, skipped, errors[] }
      */
+    /**
+     * POST /api/doctors/import-csv
+     *
+     * Accepts two CSV formats:
+     *   Format A — ARthoMove master CSV (doctorname, emailid, hospital, ...)
+     *   Format B — Simple CSV (firstName, lastName, email, mobileNumber, ...)
+     *
+     * Returns: { created, skipped, errors[], credentials[] }
+     * credentials[] contains { name, username, tempPassword, email } for every
+     * successfully created doctor — shown once in the UI so admin can distribute them.
+     */
     @PostMapping("/import-csv")
     public ResponseEntity<ApiResponse<Map<String, Object>>> importCsv(
             @RequestParam("file") MultipartFile file) {
+
         int created = 0, skipped = 0;
         List<String> errors = new ArrayList<>();
+        List<Map<String, String>> credentials = new ArrayList<>();
 
         try (BufferedReader reader = new BufferedReader(
                 new InputStreamReader(file.getInputStream(), StandardCharsets.UTF_8))) {
@@ -440,7 +520,6 @@ public ResponseEntity<ApiResponse<DoctorResponse>> createDoctor(
             for (int i = 0; i < headers.length; i++)
                 idx.put(headers[i].trim().toLowerCase().replaceAll("[^a-z0-9]", ""), i);
 
-            // Detect format: ARthoMove format has "doctor name" column
             boolean isArthomoveFormat = idx.containsKey("doctorname");
 
             String line;
@@ -454,13 +533,11 @@ public ResponseEntity<ApiResponse<DoctorResponse>> createDoctor(
                     CreateDoctorRequest req = new CreateDoctorRequest();
 
                     if (isArthomoveFormat) {
-                        // ── Format A: ARthoMove master CSV ──────────────────
-                        String fullName  = getCol(cols, idx, "doctorname");       // "Dr. Nisha Kumar"
+                        String fullName  = getCol(cols, idx, "doctorname");
                         String email     = getCol(cols, idx, "emailid");
                         String hospital  = getCol(cols, idx, "hospital");
                         String mobile    = getCol(cols, idx, "contactnumber");
                         String spec      = getCol(cols, idx, "specialization");
-                        String statusRaw = getCol(cols, idx, "status");
                         String branchCode= getCol(cols, idx, "branchcode");
                         String qual      = getCol(cols, idx, "highestqualification");
 
@@ -469,9 +546,8 @@ public ResponseEntity<ApiResponse<DoctorResponse>> createDoctor(
                             skipped++; continue;
                         }
 
-                        // Parse "Dr. Nisha Kumar" → firstName="Nisha", lastName="Kumar"
-                        String cleaned = fullName.replaceAll("(?i)^Dr\\.?\\s*", "").trim();
-                        int lastSpace  = cleaned.lastIndexOf(' ');
+                        String cleaned   = fullName.replaceAll("(?i)^Dr\\.?\\s*", "").trim();
+                        int lastSpace    = cleaned.lastIndexOf(' ');
                         String firstName = lastSpace > 0 ? cleaned.substring(0, lastSpace).trim() : cleaned;
                         String lastName  = lastSpace > 0 ? cleaned.substring(lastSpace + 1).trim() : "—";
 
@@ -484,7 +560,6 @@ public ResponseEntity<ApiResponse<DoctorResponse>> createDoctor(
                         req.setNotes(buildNotes(branchCode, qual));
 
                     } else {
-                        // ── Format B: Simple CSV ─────────────────────────────
                         String firstName = getCol(cols, idx, "firstname");
                         String email     = getCol(cols, idx, "email");
 
@@ -501,15 +576,22 @@ public ResponseEntity<ApiResponse<DoctorResponse>> createDoctor(
                         req.setClinicHospital(getCol(cols, idx, "clinichospital"));
                     }
 
-                    // Status — both formats use Active/Inactive or ACTIVE/INACTIVE
-                    String statusRaw = isArthomoveFormat
-                            ? getCol(cols, idx, "status")
-                            : getCol(cols, idx, "status");
-                    req.setStatus(parseStatus(statusRaw));
+                    req.setStatus(parseStatus(getCol(cols, idx, "status")));
                     req.setBirthYear(null);
 
-                    doctorService.createDoctor(req);
+                    // createDoctor returns the plain-text temporaryPassword in the response
+                    DoctorResponse saved = doctorService.createDoctor(req);
                     created++;
+
+                    // Collect credentials for this doctor
+                    Map<String, String> cred = new java.util.LinkedHashMap<>();
+                    cred.put("name",         saved.getFullName());
+                    cred.put("username",     saved.getUsername());
+                    cred.put("tempPassword", saved.getTemporaryPassword());
+                    cred.put("email",        saved.getEmail());
+                    cred.put("clinicalId",   saved.getClinicalId());
+                    cred.put("specialization", saved.getSpecialization() != null ? saved.getSpecialization() : "");
+                    credentials.add(cred);
 
                 } catch (Exception e) {
                     errors.add("Row " + rowNum + ": " + e.getMessage());
@@ -521,7 +603,12 @@ public ResponseEntity<ApiResponse<DoctorResponse>> createDoctor(
                     .body(ApiResponse.error("Failed to parse CSV: " + e.getMessage()));
         }
 
-        Map<String, Object> result = Map.of("created", created, "skipped", skipped, "errors", errors);
+        java.util.Map<String, Object> result = new java.util.LinkedHashMap<>();
+        result.put("created",     created);
+        result.put("skipped",     skipped);
+        result.put("errors",      errors);
+        result.put("credentials", credentials);
+
         return ResponseEntity.ok(ApiResponse.success(
                 created + " doctors imported, " + skipped + " skipped.", result));
     }

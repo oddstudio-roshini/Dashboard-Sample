@@ -436,11 +436,16 @@ import java.util.List;
 @Slf4j
 public class ClinicDataInitializer implements CommandLineRunner {
 
-    private final HospitalRepository       hospitalRepository;
-    private final BranchRepository         branchRepository;
-    private final ClinicDoctorRepository   clinicDoctorRepository;
-    private final ClinicPatientRepository  clinicPatientRepository;
-    private final JdbcTemplate             jdbcTemplate;
+    private final HospitalRepository                    hospitalRepository;
+    private final BranchRepository                      branchRepository;
+    private final ClinicDoctorRepository                clinicDoctorRepository;
+    private final ClinicPatientRepository               clinicPatientRepository;
+    private final PatientHistoryRepository             historyRepository;
+    private final PatientExerciseRepository            patientExerciseRepository;
+    private final ExerciseRepository                   exerciseRepository;
+    private final PatientExerciseScheduleRepository    scheduleRepository;
+    private final PatientActivityLogRepository         activityLogRepository;
+    private final JdbcTemplate                         jdbcTemplate;
 
     @Value("${file.upload-dir:uploads}")
     private String uploadDir;
@@ -458,7 +463,13 @@ public class ClinicDataInitializer implements CommandLineRunner {
         long dbDoctors   = clinicDoctorRepository.count();
         long dbPatients  = clinicPatientRepository.count();
 
-        boolean inSync = false;
+        // Re-seed only when the DB is genuinely out of sync with the CSVs.
+        // dbPatients uses >= because generateMissingPatients() adds synthetic rows on top of CSV rows.
+        boolean inSync = dbHospitals > 0
+                && dbHospitals == csvHospitals
+                && dbBranches  == csvBranches
+                && dbDoctors   == csvDoctors
+                && dbPatients  >= csvPatients;
 
         if (inSync) {
             log.info("Clinic DB in sync ({}/{}/{}/{}) — skipping seed.",
@@ -487,6 +498,8 @@ public class ClinicDataInitializer implements CommandLineRunner {
             Map<Long, Branch>      bMap = seedBranches(hMap);
             Map<Long, ClinicDoctor> dMap = seedDoctors(bMap, hMap);
             seedPatients(dMap);
+            generateMissingPatients(dMap);   // fill synthetic patients for any doctor still at 0
+            createDemoPatientWithHistory(dMap);  // demo patient with realistic join/assign/exercise dates
 
             log.info("Clinic seeding complete — {} hospitals, {} branches, {} doctors, {} patients.",
                     hMap.size(), bMap.size(), dMap.size(), clinicPatientRepository.count());
@@ -495,6 +508,7 @@ public class ClinicDataInitializer implements CommandLineRunner {
         ensureDummyPrescriptions();
         ensurePatientStatusDistribution();
         backfillPatientNames();
+        backfillJoinDates();   // fix patients whose join_date defaulted to today
     }
 
     // ── hospitals.csv (TAB-separated) ─────────────────────────────────────────
@@ -652,6 +666,10 @@ public class ClinicDataInitializer implements CommandLineRunner {
                 try {
                     ClinicDoctor doctor = dMap.get(Long.parseLong(f[1].trim()));
                     if (doctor == null) { log.warn("No doctor id={} for patient row", f[1]); continue; }
+                    LocalDate apptDate = LocalDate.parse(f[10].trim());
+                    // Derive join date: 2 months before appointment, varied by row index
+                    // so patients get distinct May dates rather than all defaulting to today
+                    LocalDate joinDate = apptDate.minusMonths(2).minusDays(count * 3L % 20);
                     clinicPatientRepository.save(ClinicPatient.builder()
                             .clinicDoctor(doctor)
                             .firstName(f[2].trim())
@@ -662,10 +680,11 @@ public class ClinicDataInitializer implements CommandLineRunner {
                             .contactEmail(f[7].trim())
                             .address(f[8].trim())
                             .diagnosis(f[9].trim())
-                            .appointmentDate(LocalDate.parse(f[10].trim()))
+                            .appointmentDate(apptDate)
                             .appointmentStatus(ClinicPatient.AppointmentStatus.valueOf(f[11].trim()))
                             .visitType(f[12].trim())
                             .notes(f.length > 13 ? f[13].trim() : null)
+                            .joinDate(joinDate)
                             .build());
                     count++;
                 } catch (Exception e) {
@@ -871,6 +890,211 @@ public class ClinicDataInitializer implements CommandLineRunner {
         "Chowdhury","Dutta","Mondal","Sarkar","Biswas","Bhattacharya","Chakraborty","Sinha","Prasad","Lal"
     };
 
+    /**
+     * After CSV seeding, many ClinicDoctors still have 0 patients because clinic_patients.csv
+     * only covers a small subset of doctor IDs (1–10ish out of 1056).
+     * This method generates 3–8 synthetic patients for every ClinicDoctor that has none,
+     * ensuring all doctors show a realistic patient count in the doctors module.
+     */
+    private void generateMissingPatients(Map<Long, ClinicDoctor> dMap) {
+        if (dMap.isEmpty()) return;
+
+        final String[] DIAGNOSES = {
+            "Lower Back Pain", "Knee Osteoarthritis", "Shoulder Impingement",
+            "Cervical Spondylosis", "ACL Rehab", "Tennis Elbow", "Sciatica",
+            "Rotator Cuff Injury", "Ankle Sprain", "Hip Mobility Restriction",
+            "Frozen Shoulder", "Plantar Fasciitis", "Post Fracture Rehab",
+            "Wrist Pain", "Post Stroke Upper Limb Rehab", "Cervical Radiculopathy"
+        };
+        final String[] VISIT_TYPES = {
+            "First Visit", "Follow-up", "Rehab Session", "Online Consultation", "Review Visit"
+        };
+        final String[] NOTES = {
+            "Home exercise program suggested", "Pain score improving",
+            "Follow-up after 2 weeks", "Requires shoulder mobility tracking",
+            "Continue current rehab plan", "Review progress report next visit",
+            "MediaPipe tracking planned", "Needs exercise library assignment"
+        };
+
+        Random rnd = new Random(42); // fixed seed → reproducible data across restarts
+        int generated = 0;
+
+        for (ClinicDoctor cd : dMap.values()) {
+            long existing = clinicPatientRepository.countByClinicDoctorId(cd.getId());
+            if (existing > 0) continue; // already has patients from CSV
+
+            int count = 3 + rnd.nextInt(6); // 3–8 patients per doctor
+            for (int i = 0; i < count; i++) {
+                boolean female   = rnd.nextBoolean();
+                String[] fPool   = female ? FEMALE_FIRST : MALE_FIRST;
+                String firstName = fPool[rnd.nextInt(fPool.length)];
+                String lastName  = LAST_NAMES[rnd.nextInt(LAST_NAMES.length)];
+
+                ClinicPatient.AppointmentStatus status;
+                int roll = rnd.nextInt(10);
+                if      (roll < 6) status = ClinicPatient.AppointmentStatus.SCHEDULED;
+                else if (roll < 9) status = ClinicPatient.AppointmentStatus.COMPLETED;
+                else               status = ClinicPatient.AppointmentStatus.CANCELLED;
+
+                LocalDate apptDate = LocalDate.now()
+                        .plusDays(rnd.nextInt(60) - 15); // ±15–45 days around today
+
+                String phone = String.valueOf(7000000000L + (long)(rnd.nextInt(900000000)));
+
+                // Realistic join date: 30–60 days ago (so May activity is valid history)
+                LocalDate joinDate = LocalDate.now().minusDays(30 + rnd.nextInt(30));
+
+                clinicPatientRepository.save(ClinicPatient.builder()
+                        .clinicDoctor(cd)
+                        .firstName(firstName)
+                        .lastName(lastName)
+                        .age(20 + rnd.nextInt(55))
+                        .gender(female ? "Female" : "Male")
+                        .contactPhone(phone)
+                        .diagnosis(DIAGNOSES[rnd.nextInt(DIAGNOSES.length)])
+                        .appointmentDate(apptDate)
+                        .appointmentStatus(status)
+                        .visitType(VISIT_TYPES[rnd.nextInt(VISIT_TYPES.length)])
+                        .notes(NOTES[rnd.nextInt(NOTES.length)])
+                        .joinDate(joinDate)  // Set realistic join date so past exercises are valid
+                        .build());
+                generated++;
+            }
+        }
+        if (generated > 0)
+            log.info("Generated {} synthetic patients for {} ClinicDoctors with 0 patients",
+                    generated, dMap.values().stream()
+                            .filter(cd -> clinicPatientRepository.countByClinicDoctorId(cd.getId()) > 0)
+                            .count());
+    }
+
+    private void createDemoPatientWithHistory(Map<Long, ClinicDoctor> dMap) {
+        try {
+            ClinicDoctor doctor = dMap.values().stream().findFirst().orElse(null);
+            if (doctor == null) return;
+
+            LocalDate joinDate = LocalDate.of(2026, 5, 5);
+            LocalDate exerciseAssignedDate = LocalDate.of(2026, 5, 10);
+
+            ClinicPatient patient = clinicPatientRepository.save(ClinicPatient.builder()
+                    .clinicDoctor(doctor)
+                    .firstName("Demo")
+                    .lastName("Patient")
+                    .age(35)
+                    .gender("Male")
+                    .contactPhone("9876543210")
+                    .diagnosis("Lower Back Pain - Demo")
+                    .appointmentDate(LocalDate.now())
+                    .appointmentStatus(ClinicPatient.AppointmentStatus.COMPLETED)
+                    .visitType("Initial Assessment")
+                    .notes("Demo patient for calendar showcase")
+                    .joinDate(joinDate)
+                    .build());
+
+            log.info("✓ Created demo patient {} (id: {})", patient.getFirstName() + " " + patient.getLastName(), patient.getId());
+
+            // Add history events
+            historyRepository.save(PatientHistory.builder()
+                    .patient(patient)
+                    .eventType("CREATED")
+                    .title("Patient Joined")
+                    .description("Enrolled in the system")
+                    .createdAt(joinDate.atStartOfDay())
+                    .build());
+
+            historyRepository.save(PatientHistory.builder()
+                    .patient(patient)
+                    .eventType("PUBLISH")
+                    .title("Exercises Assigned")
+                    .description("Exercise set published")
+                    .createdAt(exerciseAssignedDate.atTime(10, 0))
+                    .build());
+
+            // Assign exercises
+            List<Exercise> exercises = exerciseRepository.findAll();
+            if (exercises.isEmpty()) {
+                log.warn("No exercises found in database — skipping demo patient exercise assignment");
+                return;
+            }
+
+            for (int i = 0; i < Math.min(10, exercises.size()); i++) {
+                patientExerciseRepository.save(PatientExercise.builder()
+                        .patient(patient)
+                        .exercise(exercises.get(i))
+                        .bodyPart(exercises.get(i).getBodyPart())
+                        .purchased(true)
+                        .status(PatientExercise.PatientExerciseStatus.ACTIVE)
+                        .publishedToApp(true)
+                        .publishedAt(exerciseAssignedDate.atTime(10, 0))
+                        .build());
+            }
+
+            log.info("✓ Assigned {} exercises to demo patient", Math.min(10, exercises.size()));
+
+            // Create activity on specific dates with varied session counts
+            int[] activeDates = {4, 6, 7, 12, 14, 15, 16, 17, 18, 19, 20, 21, 22, 24, 25, 26, 27, 29, 30};
+            int[] sessionCounts = {1, 2, 1, 2, 1, 1, 1, 1, 1, 2, 1, 2, 2, 5, 2, 2, 11, 13, 14};
+
+            int totalSessions = 0;
+            for (int idx = 0; idx < activeDates.length; idx++) {
+                int date = activeDates[idx];
+                int sessions = sessionCounts[idx];
+                LocalDate actDate = LocalDate.of(2026, 5, date);
+
+                for (int s = 0; s < sessions; s++) {
+                    Exercise ex = exercises.get((idx + s) % exercises.size());
+
+                    PatientExercise pe = patientExerciseRepository.findByPatientIdAndExerciseId(patient.getId(), ex.getId())
+                            .orElse(null);
+
+                    if (pe == null) {
+                        pe = patientExerciseRepository.save(PatientExercise.builder()
+                                .patient(patient)
+                                .exercise(ex)
+                                .bodyPart(ex.getBodyPart())
+                                .purchased(true)
+                                .status(PatientExercise.PatientExerciseStatus.ACTIVE)
+                                .publishedToApp(true)
+                                .publishedAt(exerciseAssignedDate.atTime(10, 0))
+                                .build());
+                    }
+
+                    scheduleRepository.save(PatientExerciseSchedule.builder()
+                            .patient(patient)
+                            .patientExercise(pe)
+                            .scheduledDate(actDate)
+                            .status(PatientExerciseSchedule.ScheduleStatus.COMPLETED)
+                            .completedAt(actDate.atTime(12, 13))
+                            .build());
+
+                    totalSessions++;
+                }
+
+                // Add activity logs for login/logout
+                activityLogRepository.save(PatientActivityLog.builder()
+                        .patient(patient)
+                        .eventType("LOGIN")
+                        .loggedAt(actDate.atTime(8, 30))
+                        .device("Mobile App")
+                        .build());
+
+                activityLogRepository.save(PatientActivityLog.builder()
+                        .patient(patient)
+                        .eventType("LOGOUT")
+                        .loggedAt(actDate.atTime(12, 45))
+                        .sessionDurationMins(255)
+                        .device("Mobile App")
+                        .build());
+            }
+
+            log.info("✓ Created {} exercise sessions across {} dates for demo patient", totalSessions, activeDates.length);
+            log.info("✓ Demo patient ready — join date: May 5, exercises assigned: May 10");
+
+        } catch (Exception e) {
+            log.error("ERROR creating demo patient: {}", e.getMessage(), e);
+        }
+    }
+
     private void backfillPatientNames() {
         List<ClinicPatient> patients = clinicPatientRepository.findAllByOrderByIdAsc();
         if (patients.isEmpty()) return;
@@ -888,6 +1112,31 @@ public class ClinicDataInitializer implements CommandLineRunner {
             }
         }
         if (updated > 0) log.info("Backfilled Indian names for {} patients", updated);
+    }
+
+    /**
+     * Patients seeded from clinic_patients.csv before this fix had no joinDate set,
+     * causing @PrePersist to default it to the startup date. This method detects those
+     * rows (join_date = today) and assigns a realistic past date derived from their
+     * appointment date so activity calendars show proper history.
+     */
+    private void backfillJoinDates() {
+        List<ClinicPatient> patients = clinicPatientRepository.findAllByOrderByIdAsc();
+        LocalDate today = LocalDate.now();
+        int fixed = 0;
+        for (int i = 0; i < patients.size(); i++) {
+            ClinicPatient p = patients.get(i);
+            // Only touch rows where join_date is today — those were defaulted by @PrePersist
+            if (p.getJoinDate() == null || !p.getJoinDate().equals(today)) continue;
+            // Derive a varied May date: appointment minus 2 months, offset by row index
+            LocalDate base = p.getAppointmentDate() != null
+                    ? p.getAppointmentDate().minusMonths(2).minusDays((long)(i * 3) % 20)
+                    : today.minusDays(20 + (long)(i * 3) % 20);
+            p.setJoinDate(base);
+            clinicPatientRepository.save(p);
+            fixed++;
+        }
+        if (fixed > 0) log.info("Backfilled join dates for {} patients (were defaulted to today)", fixed);
     }
 
     // ── Fix stale patient_status CHECK constraint ─────────────────────────────
